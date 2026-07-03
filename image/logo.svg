@@ -1,0 +1,35 @@
+<svg width="340" height="100" viewBox="0 0 340 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Signix logo">
+  <defs>
+    <linearGradient id="signixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3355FF"/>
+      <stop offset="52%" stop-color="#8A2BE2"/>
+      <stop offset="100%" stop-color="#E63950"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon: a single continuous motion trail, shaped like a signing hand's path -->
+  <g transform="translate(6,6)">
+    <path d="M62 16
+             C 46 10 30 16 26 30
+             C 22 44 34 54 50 52
+             C 62 50.5 66 40 58 34
+             C 50 28 34 30 30 42
+             C 26 54 38 66 54 68
+             C 66 69.5 76 62 78 50"
+          fill="none"
+          stroke="url(#signixGradient)"
+          stroke-width="11"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <circle cx="62" cy="16" r="6.5" fill="#3355FF"/>
+    <circle cx="78" cy="50" r="6.5" fill="#E63950"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="106" y="64"
+        font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif"
+        font-weight="700"
+        font-size="42"
+        letter-spacing="0.2"
+        fill="#F5F3EE">Signix</text>
+</svg>
