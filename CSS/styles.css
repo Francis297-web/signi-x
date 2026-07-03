@@ -76,6 +76,8 @@ nav{
 }
 .logo{ font-family: var(--font-display); font-weight: 700; font-size: 21px; display:flex; align-items:center; gap:10px; }
 .logo .dot{ width: 9px; height:9px; border-radius:50%; background: var(--coral); box-shadow: 0 0 0 4px rgba(255,107,74,0.18); }
+.logo img{ height: 30px; display:block; }
+.footer-brand .logo img{ height: 26px; }
 .nav-links{ display:flex; gap: 34px; font-size: 14.5px; color: var(--ink-dim); }
 .nav-links a{ transition: color .15s ease; position:relative; padding: 4px 0; }
 .nav-links a:hover, .nav-links a.active{ color: var(--ink); }
@@ -300,8 +302,10 @@ nav{
 .founder-photo{
   aspect-ratio: 1/1; border-radius: 16px; background: linear-gradient(160deg, var(--surface-hi), #0D1220 75%);
   border: 1px solid var(--line); position:relative; display:flex; align-items:flex-end; padding: 20px;
+  overflow: hidden;
 }
-.founder-photo::after{ content:"P W"; font-family: var(--font-display); font-size: 46px; color: var(--ink-faint); letter-spacing: .06em; }
+.founder-photo::after{ content:"P W"; font-family: var(--font-display); font-size: 46px; color: var(--ink-faint); letter-spacing: .06em; position:relative; z-index:1; }
+.founder-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position: top center; z-index:2; }
 .founder blockquote{ font-family: var(--font-display); font-size: clamp(21px, 2.4vw, 27px); line-height: 1.4; font-weight: 500; color: var(--ink); margin-bottom: 22px; }
 .founder blockquote span{ color: var(--coral); }
 .founder-name{ font-weight:600; font-size:15px; }
