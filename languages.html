@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All sign languages — Signix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo"><span class="dot"></span>Signix</a>
+    <ul class="nav-links">
+      <li><a href="learn.html">Learn</a></li>
+      <li><a href="languages.html" class="active">Languages</a></li>
+      <li><a href="creators.html">Creators</a></li>
+      <li><a href="upload.html">Upload</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="upload.html" class="btn btn-ghost">Log in</a>
+      <a href="upload.html" class="btn btn-primary">Upload a sign</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Every sign language, tracked in one place.</h1>
+      <p>KSL is live. Every other language below is on the roadmap — reach out if you're fluent and want to help launch one.</p>
+    </div>
+  </section>
+
+  <section style="padding: 44px 0 100px;">
+    <div class="wrap">
+      <div class="filter-bar">
+        <input type="text" class="search-input" placeholder="Search by name or code, e.g. ASL" data-lang-search aria-label="Search sign languages">
+        <button class="filter-chip active" data-lang-filter="all">All</button>
+        <button class="filter-chip" data-lang-filter="live">Live</button>
+        <button class="filter-chip" data-lang-filter="soon">Coming soon</button>
+      </div>
+      <p class="result-count" data-result-count></p>
+
+      <div class="lang-grid">
+        <div class="lang-card is-live" data-name="Kenyan Sign Language" data-code="KSL" data-status="live"><span class="badge live">● live</span><span class="name">Kenyan Sign Language</span><span class="code">KSL</span></div>
+        <div class="lang-card" data-name="American Sign Language" data-code="ASL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">American Sign Language</span><span class="code">ASL</span></div>
+        <div class="lang-card" data-name="British Sign Language" data-code="BSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">British Sign Language</span><span class="code">BSL</span></div>
+        <div class="lang-card" data-name="South African Sign Language" data-code="SASL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">South African Sign Language</span><span class="code">SASL</span></div>
+        <div class="lang-card" data-name="Nigerian Sign Language" data-code="NSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Nigerian Sign Language</span><span class="code">NSL</span></div>
+        <div class="lang-card" data-name="French Sign Language" data-code="LSF" data-status="soon"><span class="badge soon">coming soon</span><span class="name">French Sign Language</span><span class="code">LSF</span></div>
+        <div class="lang-card" data-name="Japanese Sign Language" data-code="JSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Japanese Sign Language</span><span class="code">JSL</span></div>
+        <div class="lang-card" data-name="Auslan" data-code="AUS" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Auslan</span><span class="code">AUS</span></div>
+        <div class="lang-card" data-name="Indian Sign Language" data-code="ISL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Indian Sign Language</span><span class="code">ISL</span></div>
+        <div class="lang-card" data-name="Ethiopian Sign Language" data-code="EthSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Ethiopian Sign Language</span><span class="code">EthSL</span></div>
+        <div class="lang-card" data-name="Ugandan Sign Language" data-code="USL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Ugandan Sign Language</span><span class="code">USL</span></div>
+        <div class="lang-card" data-name="Chinese Sign Language" data-code="CSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Chinese Sign Language</span><span class="code">CSL</span></div>
+        <div class="lang-card" data-name="German Sign Language" data-code="DGS" data-status="soon"><span class="badge soon">coming soon</span><span class="name">German Sign Language</span><span class="code">DGS</span></div>
+        <div class="lang-card" data-name="Brazilian Sign Language" data-code="Libras" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Brazilian Sign Language</span><span class="code">Libras</span></div>
+        <div class="lang-card" data-name="Tanzanian Sign Language" data-code="TSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Tanzanian Sign Language</span><span class="code">TSL</span></div>
+        <div class="lang-card" data-name="Ghanaian Sign Language" data-code="GSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Ghanaian Sign Language</span><span class="code">GSL</span></div>
+        <div class="lang-card" data-name="Mexican Sign Language" data-code="LSM" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Mexican Sign Language</span><span class="code">LSM</span></div>
+        <div class="lang-card" data-name="International Sign" data-code="IS" data-status="soon"><span class="badge soon">coming soon</span><span class="name">International Sign</span><span class="code">IS</span></div>
+      </div>
+
+      <div class="upload-cta" style="margin-top:44px;">
+        <div><h3>Don't see your sign language?</h3><p>Signix grows through fluent signers who volunteer to seed a new language's first lessons. Tell us which one to launch next.</p></div>
+        <a href="about.html" class="btn btn-primary btn-lg">Request a language</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="dot"></span>Signix</a>
+        <p>A reference and creator platform for sign languages, starting with KSL.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><ul>
+        <li><a href="learn.html">Learn KSL</a></li>
+        <li><a href="languages.html">All languages</a></li>
+        <li><a href="creators.html">Creator feed</a></li>
+        <li><a href="upload.html">Upload a sign</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Community</h4><ul>
+        <li><a href="about.html">About Signix</a></li>
+        <li><a href="about.html">Creator guidelines</a></li>
+        <li><a href="about.html">Moderation &amp; safety</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Support</h4><ul>
+        <li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li>
+        <li><a href="tel:+254790357975">0790 357 975</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="credit">Made by <b>NEXORA TECHNOLOGIES</b></div>
+      <div class="footer-contact">
+        <a href="tel:+254790357975">0790357975</a>
+        <a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
