@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload a sign — Signix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo"><span class="dot"></span>Signix</a>
+    <ul class="nav-links">
+      <li><a href="learn.html">Learn</a></li>
+      <li><a href="languages.html">Languages</a></li>
+      <li><a href="creators.html">Creators</a></li>
+      <li><a href="upload.html" class="active">Upload</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="upload.html" class="btn btn-ghost">Log in</a>
+      <a href="upload.html" class="btn btn-primary">Upload a sign</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Teach a sign.</h1>
+      <p>Record or upload a short clip, tell us what it teaches, and submit it for review. A Deaf moderator checks every clip before it goes live.</p>
+    </div>
+  </section>
+
+  <section class="upload-page">
+    <div class="wrap upload-layout">
+      <div>
+        <div class="dropzone" tabindex="0" role="button" aria-label="Choose a video file to upload">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-dim)" stroke-width="1.5"><path d="M12 16V4M12 4l-4 4M12 4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <p>Drag a video here, or click to choose a file. MP4 or MOV, up to 2 minutes.</p>
+          <span class="filename"></span>
+        </div>
+        <input type="file" id="video-file" accept="video/mp4,video/quicktime" hidden>
+      </div>
+
+      <form id="upload-form">
+        <div class="form-field">
+          <label for="sign-word">Sign or phrase</label>
+          <input type="text" id="sign-word" placeholder="e.g. Karibu" required>
+        </div>
+        <div class="form-field">
+          <label for="language">Sign language</label>
+          <select id="language" required>
+            <option value="ksl" selected>Kenyan Sign Language (KSL)</option>
+            <option value="other">Other — specify in description</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option>Greetings</option>
+            <option>Family</option>
+            <option>Numbers</option>
+            <option>Classroom</option>
+            <option>Culture</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="description">Description</label>
+          <textarea id="description" placeholder="Context, regional variants, or anything a learner should know"></textarea>
+        </div>
+        <div class="form-field">
+          <div class="checkbox-row">
+            <input type="checkbox" id="captions" checked>
+            <label for="captions" style="text-transform:none; font-family:var(--font-body); font-size:13.5px; margin:0; color:var(--ink-dim);">I've added open captions to this clip</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Submit for review</button>
+        <div class="form-success"><span>✓</span><span>Submitted — a moderator will review it shortly.</span></div>
+        <p class="form-note">This form is a working preview: submissions aren't stored anywhere yet, since Signix doesn't have a backend connected.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="dot"></span>Signix</a>
+        <p>A reference and creator platform for sign languages, starting with KSL.</p>
+      </div>
+      <div class="footer-col"><h4>Platform</h4><ul>
+        <li><a href="learn.html">Learn KSL</a></li>
+        <li><a href="languages.html">All languages</a></li>
+        <li><a href="creators.html">Creator feed</a></li>
+        <li><a href="upload.html">Upload a sign</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Community</h4><ul>
+        <li><a href="about.html">About Signix</a></li>
+        <li><a href="about.html">Creator guidelines</a></li>
+        <li><a href="about.html">Moderation &amp; safety</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Support</h4><ul>
+        <li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li>
+        <li><a href="tel:+254790357975">0790 357 975</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="credit">Made by <b>NEXORA TECHNOLOGIES</b></div>
+      <div class="footer-contact">
+        <a href="tel:+254790357975">0790357975</a>
+        <a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
