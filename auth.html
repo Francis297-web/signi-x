@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signix | Authentication</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <!-- Left Side -->
+        <div class="auth-left">
+
+            <img src="assets/signix-logo.png" alt="Signix Logo" class="logo">
+
+            <h1>Welcome to <span>Signix</span></h1>
+
+            <p>
+                Learn, communicate and connect through sign language.
+                Join thousands of learners worldwide.
+            </p>
+
+        </div>
+
+        <!-- Right Side -->
+        <div class="auth-right">
+
+            <div class="tabs">
+
+                <button class="tab active" data-tab="login">
+                    Login
+                </button>
+
+                <button class="tab" data-tab="register">
+                    Register
+                </button>
+
+            </div>
+
+            <!-- LOGIN -->
+
+            <form id="loginForm" class="form active">
+
+                <div class="input-box">
+
+                    <i class="ri-mail-line"></i>
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="ri-lock-line"></i>
+
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        required>
+
+                    <i class="ri-eye-line togglePassword"></i>
+
+                </div>
+
+                <div class="options">
+
+                    <label>
+
+                        <input type="checkbox">
+
+                        Remember me
+
+                    </label>
+
+                    <a href="#">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+                <button class="btn" type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <!-- REGISTER -->
+
+            <form id="registerForm" class="form">
+
+                <div class="input-box">
+
+                    <i class="ri-user-line"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="ri-mail-line"></i>
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="ri-lock-line"></i>
+
+                    <input
+                        type="password"
+                        placeholder="Create Password"
+                        required>
+
+                    <i class="ri-eye-line togglePassword"></i>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="ri-lock-password-line"></i>
+
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        required>
+
+                </div>
+
+                <button class="btn" type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="divider">
+
+                <span>OR</span>
+
+            </div>
+
+            <div class="social">
+
+                <button>
+
+                    <i class="ri-google-fill"></i>
+
+                    Continue with Google
+
+                </button>
+
+                <button>
+
+                    <i class="ri-github-fill"></i>
+
+                    Continue with GitHub
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const tabs=document.querySelectorAll(".tab");
+const forms=document.querySelectorAll(".form");
+
+tabs.forEach(tab=>{
+
+tab.onclick=()=>{
+
+tabs.forEach(t=>t.classList.remove("active"));
+forms.forEach(f=>f.classList.remove("active"));
+
+tab.classList.add("active");
+
+document.getElementById(
+tab.dataset.tab+"Form"
+).classList.add("active");
+
+}
+
+});
+
+document.querySelectorAll(".togglePassword").forEach(icon=>{
+
+icon.onclick=()=>{
+
+const input=icon.previousElementSibling;
+
+input.type=input.type==="password"
+?
+"text"
+:
+"password";
+
+icon.className=input.type==="password"
+?
+"ri-eye-line togglePassword"
+:
+"ri-eye-off-line togglePassword";
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
