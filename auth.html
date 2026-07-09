@@ -1,240 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signix | Authentication</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Remix Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="CSS/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auth — Signix</title>
+<link rel="icon" href="SIGNIX.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
+body{font-family:'Inter',sans-serif;background:#F7F9FF;color:#1E293B}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:1.5rem;text-decoration:none;color:var(--dark);display:inline-flex;align-items:center;gap:10px}
+.logo img{height:36px;width:auto}
+.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.22)}
+.btn-gradient:hover{filter:brightness(1.06);color:#fff;transform:translateY(-1px)}
+.form-control:focus{border-color:var(--violet);box-shadow:0 0 0 .25rem rgba(124,58,237,.14)}
+.auth-card{background:#fff;border-radius:24px;border:1px solid #E9ECF6;box-shadow:0 12px 40px rgba(15,23,42,.06);height:100%}
+.divider{display:flex;align-items:center;gap:12px;color:#94A3B8;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:#E2E8F0}
+.social-btn{border:1px solid #E2E8F0;background:#fff;border-radius:999px;padding:9px 14px;font-weight:500;transition:.15s}
+.social-btn:hover{background:#F8FAFF;border-color:#DDE3F3;transform:translateY(-1px)}
+.center-line{position:relative}
+@media(min-width:992px){.center-line::after{content:"";position:absolute;left:50%;top:24px;bottom:24px;width:1px;background:linear-gradient(180deg,transparent,#E2E8F0 15%,#E2E8F0 85%,transparent)}}
+.badge-soft{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:6px 10px;border-radius:999px}
+</style>
 </head>
-
 <body>
 
-<div class="auth-page">
+<div class="container py-4 py-lg-5">
+  <!-- Header logo only -->
+  <div class="text-center mb-4 mb-lg-5">
+    <a href="index.html" class="logo mx-auto">
+      <img src="SIGNIX.png" alt="Signix logo">
+      Signix
+    </a>
+    <div class="mt-2 small text-secondary">A reference and creator platform for sign languages, starting with KSL</div>
+  </div>
 
-    <div class="auth-card">
-
-        <!-- Left Side -->
-        <div class="auth-left">
-
-            <img src="assets/signix-logo.png" alt="Signix Logo" class="logo">
-
-            <h1>Welcome to <span>Signix</span></h1>
-
-            <p>
-                Learn, communicate and connect through sign language.
-                Join thousands of learners worldwide.
-            </p>
-
+  <div class="row g-4 g-lg-0 center-line justify-content-center">
+    <!-- LOGIN LEFT -->
+    <div class="col-lg-5">
+      <div class="auth-card p-4 p-md-5 h-100">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+          <div>
+            <span class="badge-soft" style="background:#DBEAFE;color:var(--blue)">Welcome back</span>
+            <h3 class="fw-bold mt-3 mb-1">Sign in</h3>
+            <p class="text-secondary small mb-0">Access your creator dashboard and uploads.</p>
+          </div>
+          <div class="bg-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center"><i class="bi bi-box-arrow-in-right" style="color:var(--blue)"></i></div>
         </div>
 
-        <!-- Right Side -->
-        <div class="auth-right">
-
-            <div class="tabs">
-
-                <button class="tab active" data-tab="login">
-                    Login
-                </button>
-
-                <button class="tab" data-tab="register">
-                    Register
-                </button>
-
-            </div>
-
-            <!-- LOGIN -->
-
-            <form id="loginForm" class="form active">
-
-                <div class="input-box">
-
-                    <i class="ri-mail-line"></i>
-
-                    <input
-                        type="email"
-                        placeholder="Email Address"
-                        required>
-
-                </div>
-
-                <div class="input-box">
-
-                    <i class="ri-lock-line"></i>
-
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        required>
-
-                    <i class="ri-eye-line togglePassword"></i>
-
-                </div>
-
-                <div class="options">
-
-                    <label>
-
-                        <input type="checkbox">
-
-                        Remember me
-
-                    </label>
-
-                    <a href="#">
-                        Forgot Password?
-                    </a>
-
-                </div>
-
-                <button class="btn" type="submit">
-                    Login
-                </button>
-
-            </form>
-
-            <!-- REGISTER -->
-
-            <form id="registerForm" class="form">
-
-                <div class="input-box">
-
-                    <i class="ri-user-line"></i>
-
-                    <input
-                        type="text"
-                        placeholder="Full Name"
-                        required>
-
-                </div>
-
-                <div class="input-box">
-
-                    <i class="ri-mail-line"></i>
-
-                    <input
-                        type="email"
-                        placeholder="Email Address"
-                        required>
-
-                </div>
-
-                <div class="input-box">
-
-                    <i class="ri-lock-line"></i>
-
-                    <input
-                        type="password"
-                        placeholder="Create Password"
-                        required>
-
-                    <i class="ri-eye-line togglePassword"></i>
-
-                </div>
-
-                <div class="input-box">
-
-                    <i class="ri-lock-password-line"></i>
-
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        required>
-
-                </div>
-
-                <button class="btn" type="submit">
-                    Create Account
-                </button>
-
-            </form>
-
-            <div class="divider">
-
-                <span>OR</span>
-
-            </div>
-
-            <div class="social">
-
-                <button>
-
-                    <i class="ri-google-fill"></i>
-
-                    Continue with Google
-
-                </button>
-
-                <button>
-
-                    <i class="ri-github-fill"></i>
-
-                    Continue with GitHub
-
-                </button>
-
-            </div>
-
+        <div class="d-grid gap-2 mb-4">
+          <button class="social-btn w-100 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-google"></i> Continue with Google</button>
+          <div class="row g-2">
+            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-apple me-1"></i> Apple</button></div>
+            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-facebook me-1" style="color:var(--blue)"></i> Facebook</button></div>
+          </div>
         </div>
 
+        <div class="divider mb-4">or with email</div>
+
+        <form class="d-grid gap-3">
+          <div>
+            <label class="form-label small fw-semibold">Email address</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span>
+              <input type="email" class="form-control" placeholder="you@nexora.co.ke" required>
+            </div>
+          </div>
+          <div>
+            <div class="d-flex justify-content-between"><label class="form-label small fw-semibold">Password</label><a href="#" class="small text-decoration-none" style="color:var(--violet)">Forgot?</a></div>
+            <div class="input-group">
+              <span class="input-group-text bg-white"><i class="bi bi-lock"></i></span>
+              <input type="password" id="loginPass" class="form-control" placeholder="••••••••" required>
+              <button type="button" class="input-group-text bg-white toggle" data-target="loginPass"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="remember"><label class="form-check-label small" for="remember">Remember me</label></div>
+            <span class="small text-secondary d-flex align-items-center gap-1"><i class="bi bi-shield-lock" style="color:var(--green)"></i> Secure login</span>
+          </div>
+          <button class="btn btn-gradient rounded-pill py-2 fw-semibold mt-1">Sign in <i class="bi bi-arrow-right ms-1"></i></button>
+        </form>
+      </div>
     </div>
 
+    <!-- REGISTER RIGHT -->
+    <div class="col-lg-5">
+      <div class="auth-card p-4 p-md-5 h-100" style="background:linear-gradient(180deg,#FFFFFF 0%,#FCFDFF 100%)">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+          <div>
+            <span class="badge-soft" style="background:#EDE9FE;color:var(--violet)">New here</span>
+            <h3 class="fw-bold mt-3 mb-1">Create account</h3>
+            <p class="text-secondary small mb-0">Join as a learner or fluent creator.</p>
+          </div>
+          <div class="rounded-circle d-grid" style="width:44px;height:44px;place-items:center;background:linear-gradient(135deg,#EDE9FE,#D1FAE5)"><i class="bi bi-person-plus" style="color:var(--violet)"></i></div>
+        </div>
+
+        <div class="d-grid gap-2 mb-4">
+          <button class="social-btn w-100 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-google"></i> Sign up with Google</button>
+          <div class="row g-2">
+            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-apple me-1"></i> Apple</button></div>
+            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-github me-1"></i> GitHub</button></div>
+          </div>
+        </div>
+
+        <div class="divider mb-4">or create with email</div>
+
+        <form class="d-grid gap-3">
+          <div class="row g-2">
+            <div class="col-6"><label class="form-label small fw-semibold">First name</label><input class="form-control" placeholder="Patience" required></div>
+            <div class="col-6"><label class="form-label small fw-semibold">Last name</label><input class="form-control" placeholder="Wambui" required></div>
+          </div>
+          <div>
+            <label class="form-label small fw-semibold">Email</label>
+            <div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span><input type="email" class="form-control" placeholder="you@nexora.co.ke" required></div>
+          </div>
+          <div>
+            <label class="form-label small fw-semibold">Password</label>
+            <div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-lock"></i></span><input type="password" id="regPass" class="form-control" placeholder="At least 8 characters" required><button type="button" class="input-group-text bg-white toggle" data-target="regPass"><i class="bi bi-eye"></i></button></div>
+            <div class="d-flex gap-2 mt-2">
+              <span class="badge rounded-pill bg-light border text-secondary fw-normal"><i class="bi bi-dot" style="color:var(--green)"></i>8+ chars</span>
+              <span class="badge rounded-pill bg-light border text-secondary fw-normal"><i class="bi bi-dot" style="color:var(--blue)"></i>Number</span>
+              <span class="badge rounded-pill bg-light border text-secondary fw-normal"><i class="bi bi-dot" style="color:var(--violet)"></i>Symbol</span>
+            </div>
+          <div class="form-check small"><input class="form-check-input" type="checkbox" id="terms" required><label class="form-check-label" for="terms">I agree to <a href="#" style="color:var(--violet);text-decoration:none">Creator guidelines</a> and <a href="#" style="color:var(--violet);text-decoration:none">Terms</a></label></div>
+          <button class="btn btn-dark rounded-pill py-2 fw-semibold" style="background:var(--dark)">Create account <i class="bi bi-stars ms-1" style="color:var(--green)"></i></button>
+          <p class="small text-secondary text-center mb-0"><i class="bi bi-patch-check-fill me-1" style="color:var(--green)"></i> No machine translation. Verified by fluent signers.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center small text-secondary mt-4">Made by <b style="color:var(--dark)">NEXORA TECHNOLOGIES</b> • <a href="about.html" class="text-decoration-none" style="color:var(--violet)">Why Signix exists</a></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-
-const tabs=document.querySelectorAll(".tab");
-const forms=document.querySelectorAll(".form");
-
-tabs.forEach(tab=>{
-
-tab.onclick=()=>{
-
-tabs.forEach(t=>t.classList.remove("active"));
-forms.forEach(f=>f.classList.remove("active"));
-
-tab.classList.add("active");
-
-document.getElementById(
-tab.dataset.tab+"Form"
-).classList.add("active");
-
-}
-
-});
-
-document.querySelectorAll(".togglePassword").forEach(icon=>{
-
-icon.onclick=()=>{
-
-const input=icon.previousElementSibling;
-
-input.type=input.type==="password"
-?
-"text"
-:
-"password";
-
-icon.className=input.type==="password"
-?
-"ri-eye-line togglePassword"
-:
-"ri-eye-off-line togglePassword";
-
-}
-
-});
-
+document.querySelectorAll('.toggle').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const i=document.getElementById(b.dataset.target); const ic=b.querySelector('i');
+    i.type=i.type==='password'?'text':'password'; ic.classList.toggle('bi-eye'); ic.classList.toggle('bi-eye-slash');
+  })
+})
 </script>
-
 </body>
 </html>
