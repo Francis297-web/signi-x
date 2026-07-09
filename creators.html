@@ -20,21 +20,14 @@ h1,h2,h3,h4,.logo{font-family:'Space Grotesk',sans-serif}
 .logo-circle.xs{width:22px;height:22px}.logo-circle.xs img{padding:3px}
 .logo-circle.lg{width:56px;height:56px}.logo-circle.lg img{padding:9px}
 .btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.22)}
-.btn-gradient:hover{filter:brightness(1.05);color:#fff;transform:translateY(-1px)}
 .eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
 .page-hero{background:radial-gradient(700px 300px at 10% -20%,rgba(124,58,237,.14),transparent),radial-gradient(600px 300px at 90% 0%,rgba(16,185,129,.16),transparent),#fff;border-bottom:1px solid #EEF2FF}
-.creator-card{position:relative;border-radius:22px;overflow:hidden;height:300px;background:#0F172A;color:#fff;border:1px solid rgba(255,255,255,.08);transition:.2s;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
-.creator-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,23,42,.18)}
-.creator-card .bg{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(15,23,42,.92) 100%),radial-gradient(400px 220px at 20% 0%,rgba(124,58,237,.38),transparent),linear-gradient(135deg,#1E3A8A,#7C3AED 55%,#10B981)}
-.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--dark);display:grid;place-items:center;font-size:1.6rem;box-shadow:0 8px 20px rgba(0,0,0,.18)}
-.like{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:999px;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;display:grid;place-items:center}
-.like.active{background:#fff;color:#EF4444}
-.meta{position:relative;z-index:1}
-.avatar{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--dark);display:grid;place-items:center;font-weight:700;font-size:.8rem;border:2px solid rgba(255,255,255,.7)}
+.creator-card{position:relative;border-radius:22px;overflow:hidden;height:340px;background:#0F172A;color:#fff;border:1px solid rgba(255,255,255,.08);transition:.2s;display:flex;flex-direction:column;justify-content:flex-end}
+.creator-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.creator-card .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(15,23,42,.92) 100%);z-index:1;pointer-events:none}
+.creator-card .meta{position:relative;z-index:2;padding:16px}
 .menu-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
 .menu-link:hover{background:#F1F5F9}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
-.ai-highlight{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:16px;padding:14px}
-.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem}.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;margin-left:auto;border-bottom-right-radius:6px}
 footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
 </style>
 </head>
@@ -52,7 +45,6 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
       <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
     </ul>
     <div class="ms-auto d-flex gap-2">
-      <button class="btn btn-light rounded-pill px-3 d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#aiBot"><i class="bi bi-robot me-1"></i> AI Bot</button>
       <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload a sign</a>
     </div>
   </div>
@@ -70,69 +62,33 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
     <a href="creators.html" class="menu-link active"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
     <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
     <a href="about.html" class="menu-link"><i class="bi bi-info-circle fs-5"></i> About</a>
-    <hr class="my-4">
-    <div class="ai-highlight">
-      <div class="fw-bold d-flex align-items-center gap-2 mb-2"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span> AI Assistant <span class="badge bg-success rounded-pill ms-auto">NEW</span></div>
-      <p class="small text-secondary mb-3">Ask how to get verified or how uploads are moderated.</p>
-      <button id="openAiBot" class="btn btn-gradient w-100 rounded-pill"><i class="bi bi-stars me-2"></i>Open AI Bot</button>
-    </div>
-    <div class="mt-auto p-3 bg-light rounded-4 border small d-flex align-items-center gap-2"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Nairobi • Live • Creators 120+</div>
-  </div>
-</div>
-
-<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
-  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,var(--blue),var(--violet))"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
-  <div class="offcanvas-body d-flex flex-column p-0">
-    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Karibu! I can explain how to become a verified creator or how your clips are reviewed.</div></div>
-    <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask about creator rules..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
   </div>
 </div>
 
 <main>
 <section class="page-hero py-5">
   <div class="container py-3">
-    <div class="row align-items-end g-4">
-      <div class="col-lg-7">
-        <span class="eyebrow mb-3"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Community • 100% captioned</span>
-        <h1 class="display-6 fw-bold mt-2" style="line-height:1.05">Taught by the community,<br><span class="text-gradient">for the community.</span></h1>
-        <p class="text-secondary fs-5 mt-3" style="max-width:560px">Short, captioned clips from fluent KSL signers. Every upload is reviewed by a Deaf moderator before it is published.</p>
-        <div class="d-flex flex-wrap gap-2 mt-4"><span class="badge rounded-pill bg-white border text-dark px-3 py-2"><span class="bg-success rounded-circle d-inline-block me-2" style="width:8px;height:8px"></span>Live now: 5 creators online</span><span class="badge rounded-pill px-3 py-2" style="background:#EDE9FE;color:var(--violet)">Verified only</span></div>
-      </div>
-      <div class="col-lg-5 d-flex justify-content-lg-end">
-        <div class="bg-white border rounded-4 p-3 shadow-sm d-flex align-items-center gap-3" style="max-width:360px;width:100%"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span><div class="flex-grow-1"><div class="fw-bold small">Want to teach?</div><div class="small text-secondary">60 second clips, phone friendly</div></div><a href="upload.html" class="btn btn-gradient rounded-pill btn-sm px-3">Upload</a></div>
-      </div>
-    </div>
+    <span class="eyebrow mb-3"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Community • Real uploads only</span>
+    <h1 class="display-6 fw-bold mt-2">Real signs from real people</h1>
+    <p class="text-secondary fs-6 mt-2" style="max-width:560px">Only verified community uploads appear here. No demo accounts.</p>
   </div>
 </section>
 
 <section class="py-5">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h5 class="fw-bold mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span> Latest uploads</h5>
-      <div class="d-flex gap-2"><button class="btn btn-light border rounded-pill btn-sm">Following</button><button class="btn btn-dark rounded-pill btn-sm">For you</button></div>
+      <h5 class="fw-bold mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span> Community feed <span id="countBadge" class="badge bg-light text-dark border ms-2">0</span></h5>
+      <a href="upload.html" class="btn btn-dark rounded-pill btn-sm">Upload new</a>
     </div>
 
-    <div class="row g-3 g-md-4" id="feedGrid">
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3"><div class="creator-card"><div class="bg"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><span class="logo-circle xs position-absolute" style="top:12px;left:12px;z-index:2"><img src="image/SIGNIX.png" alt="Signix logo"></span><div class="meta"><div class="d-flex align-items-center gap-2 mb-2"><span class="avatar">M</span><span class="small">@mwangi.signs • 12.4k</span></div><div class="fw-bold fs-5">Karibu</div><div class="small opacity-75">Welcome • Greeting • B-hand</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3"><div class="creator-card"><div class="bg" style="filter:hue-rotate(25deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><span class="logo-circle xs position-absolute" style="top:12px;left:12px;z-index:2"><img src="image/SIGNIX.png" alt="Signix logo"></span><div class="meta"><div class="d-flex align-items-center gap-2 mb-2"><span class="avatar" style="background:#EDE9FE;color:var(--violet)">F</span><span class="small">@fadhili_ksl • 8.1k</span></div><div class="fw-bold fs-5">Asante sana</div><div class="small opacity-75">Thank you very much</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3"><div class="creator-card"><div class="bg" style="filter:hue-rotate(90deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><span class="logo-circle xs position-absolute" style="top:12px;left:12px;z-index:2"><img src="image/SIGNIX.png" alt="Signix logo"></span><div class="meta"><div class="fw-bold fs-5">Namba 1–10</div><div class="small opacity-75">@deaf.and.deft • 21.7k views</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3"><div class="creator-card"><div class="bg" style="filter:hue-rotate(150deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold fs-5">School signs</div><div class="small opacity-75">@ksl_nairobi • 6.3k</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3"><div class="creator-card"><div class="bg" style="filter:hue-rotate(200deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold fs-5">Market bargaining</div><div class="small opacity-75">@wambui.p • 15.9k</div></div></div></div>
+    <div id="loadingState" class="text-center py-5"><div class="spinner-border text-primary"></div><p class="small text-secondary mt-2">Loading real uploads...</p></div>
+    <div class="row g-3 g-md-4 d-none" id="feedGrid"></div>
 
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none extra"><div class="creator-card"><div class="bg" style="filter:hue-rotate(280deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold">Weather signs</div><div class="small opacity-75">@atieno.ksl • 4.2k</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none extra"><div class="creator-card"><div class="bg" style="filter:hue-rotate(320deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold">Colours</div><div class="small opacity-75">@ksl_nairobi • 9.6k</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none extra"><div class="creator-card"><div class="bg" style="filter:hue-rotate(40deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold">Days of the week</div><div class="small opacity-75">@fadhili_ksl • 7.8k</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none extra"><div class="creator-card"><div class="bg" style="filter:hue-rotate(70deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold">Emotions</div><div class="small opacity-75">@mwangi.signs • 13.1k</div></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4 col-xl-3 d-none extra"><div class="creator-card"><div class="bg" style="filter:hue-rotate(110deg)"></div><div class="play">▸</div><button class="like"><i class="bi bi-heart"></i></button><div class="meta"><div class="fw-bold">Food & drink</div><div class="small opacity-75">@wambui.p • 10.5k</div></div></div></div>
-    </div>
-
-    <div class="text-center mt-4">
-      <button id="loadMore" class="btn btn-light border rounded-pill px-4 btn-lg"><i class="bi bi-arrow-down-circle me-1"></i> Load more clips</button>
-    </div>
-
-    <div class="p-4 p-md-5 mt-5 rounded-5 bg-white border d-flex flex-wrap justify-content-between align-items-center gap-3">
-      <div class="d-flex gap-3 align-items-center"><span class="logo-circle lg"><img src="image/SIGNIX.png" alt="Signix logo"></span><div><h4 class="fw-bold mb-1">Ready to teach one?</h4><p class="text-secondary mb-0">Record a 60 second clip, add captions, and submit for review. Verified by Deaf moderators.</p></div></div>
-      <a href="upload.html" class="btn btn-gradient btn-lg rounded-pill px-4">Upload a video <i class="bi bi-arrow-right ms-1"></i></a>
+    <div id="emptyState" class="text-center py-5 d-none">
+      <span class="logo-circle lg mx-auto mb-3"><img src="image/SIGNIX.png" alt="Signix logo"></span>
+      <h5 class="fw-bold">No uploads yet</h5>
+      <p class="text-secondary small mx-auto" style="max-width:380px">Be the first to teach the community. Your video will appear here after you upload.</p>
+      <a href="upload.html" class="btn btn-gradient rounded-pill px-4 mt-2"><i class="bi bi-cloud-upload me-1"></i> Upload your first sign</a>
     </div>
   </div>
 </section>
@@ -140,26 +96,80 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
 
 <footer class="pt-5 pb-4">
   <div class="container">
-    <div class="row g-4 pb-4 border-bottom border-secondary border-opacity-25">
-      <div class="col-lg-4"><a href="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span><span class="text-white">Signix</span></a><p class="small mt-3 pe-lg-4">A reference and creator platform for sign languages, starting with KSL.</p></div>
-      <div class="col-6 col-lg-2"><h6 class="text-white small text-uppercase fw-bold">Platform</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="learn.html">Learn KSL</a></li><li><a href="languages.html">All languages</a></li><li><a href="creators.html">Creator feed</a></li><li><a href="upload.html">Upload</a></li></ul></div>
-      <div class="col-6 col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Community</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="about.html">About</a></li><li><a href="#">Guidelines</a></li><li><a href="#">Safety</a></li></ul></div>
-      <div class="col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Support</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li><li><a href="tel:+254790357975">0790 357 975</a></li></ul></div>
-    </div>
-    <div class="d-flex flex-wrap justify-content-between pt-3 small"><div>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></div><div class="d-flex align-items-center gap-2"><span class="logo-circle xs bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span>info@nexora.co.ke • 0790357975</div></div>
+    <div class="d-flex flex-wrap justify-content-between pt-3 small"><div>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></div><div>© 2026 Signix</div></div>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const sideEl=document.getElementById('sideMenu'),botEl=document.getElementById('aiBot');
-document.getElementById('openAiBot').addEventListener('click',()=>{const s=bootstrap.Offcanvas.getInstance(sideEl)||new bootstrap.Offcanvas(sideEl);s.hide();setTimeout(()=>new bootstrap.Offcanvas(botEl).show(),300)});
-const chatW=document.getElementById('chatWindow'),chatI=document.getElementById('chatInput'),sendB=document.getElementById('sendBtn');
-function addM(t,w){const d=document.createElement('div');d.className='bot-bubble '+w;d.textContent=t;chatW.appendChild(d);chatW.scrollTop=chatW.scrollHeight}
-function botR(q){const t=q.toLowerCase();if(t.includes('verif'))return 'To get verified you need 5 approved uploads and a short fluency check by a Deaf moderator.';return 'Ask about creator guidelines, captions, or moderation.'}
-function send(){const v=chatI.value.trim();if(!v)return;addM(v,'user');chatI.value='';setTimeout(()=>addM(botR(v),'ai'),500)}sendB.addEventListener('click',send);chatI.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
-document.querySelectorAll('.like').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('active');b.innerHTML=b.classList.contains('active')?'<i class="bi bi-heart-fill"></i>':'<i class="bi bi-heart"></i>'}));
-document.getElementById('loadMore').addEventListener('click',function(){document.querySelectorAll('.extra').forEach(el=>el.classList.remove('d-none'));this.style.display='none'});
+// ===== REAL UPLOADS ONLY =====
+const feedGrid = document.getElementById('feedGrid');
+const emptyState = document.getElementById('emptyState');
+const loadingState = document.getElementById('loadingState');
+const countBadge = document.getElementById('countBadge');
+const CLOUD_NAME = "dvtlbpkly";
+
+function getLocalVideos(){
+  try{ return JSON.parse(localStorage.getItem('signix_videos') || '[]'); }catch{ return [] }
+}
+
+async function getCloudinaryList(){
+  try{
+    const res = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/video/list/signix.json`, {cache:'no-store'});
+    if(!res.ok) return [];
+    const data = await res.json();
+    return (data.resources || []).map(r=>({
+      url: `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/${r.public_id}.mp4`,
+      word: r.context?.custom?.word || r.public_id.split('/').pop(),
+      signer: r.context?.custom?.signer || 'community',
+      language: r.context?.custom?.language || 'KSL',
+      category: r.context?.custom?.category || 'General',
+      createdAt: r.created_at ? new Date(r.created_at).getTime() : Date.now()
+    }));
+  }catch{ return [] }
+}
+
+function render(videos){
+  loadingState.classList.add('d-none');
+  feedGrid.classList.remove('d-none');
+  feedGrid.innerHTML = '';
+  countBadge.textContent = videos.length;
+
+  if(videos.length === 0){
+    feedGrid.classList.add('d-none');
+    emptyState.classList.remove('d-none');
+    return;
+  }
+  emptyState.classList.add('d-none');
+
+  videos.sort((a,b)=> (b.createdAt||0)-(a.createdAt||0)).forEach(v=>{
+    const col = document.createElement('div');
+    col.className = 'col-12 col-sm-6 col-lg-4 col-xl-3';
+    col.innerHTML = `
+      <div class="creator-card shadow-sm">
+        <video src="${v.url}" controls playsinline preload="metadata"></video>
+        <div class="overlay"></div>
+        <div class="meta">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="badge rounded-pill" style="background:#EDE9FE;color:#7C3AED">${v.language || 'KSL'}</span>
+            <span class="badge rounded-pill bg-white text-dark border">${v.category || 'General'}</span>
+          </div>
+          <div class="fw-bold fs-5 text-white">${v.word || 'Untitled sign'}</div>
+          <div class="small text-white-50"><i class="bi bi-person me-1"></i>@${(v.signer||'anon').replace('@','')} • real upload</div>
+        </div>
+      </div>`;
+    feedGrid.appendChild(col);
+  });
+}
+
+(async ()=>{
+  const local = getLocalVideos();
+  const cloud = await getCloudinaryList();
+  // merge, local first, dedupe by url
+  const map = new Map();
+  [...local, ...cloud].forEach(v=>{ if(v.url && !map.has(v.url)) map.set(v.url, v) });
+  render([...map.values()]);
+})();
 </script>
 </body>
 </html>
