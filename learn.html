@@ -13,13 +13,13 @@
 body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
 h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
 .navbar{backdrop-filter:blur(12px);background:rgba(255,255,255,.92)!important}
-.logo-circle{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:grid;place-items:center;box-shadow:0 4px 12px rgba(15,23,42,.06);overflow:hidden;flex-shrink:0}
-.logo-circle img{width:70%;height:70%;object-fit:contain;display:block}
-.logo-circle.lg{width:56px;height:56px}
-.logo-circle.dark{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.08)}
+.logo-circle{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(15,23,42,.06);overflow:hidden;flex-shrink:0}
+.logo-circle img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;padding:7px;box-sizing:border-box}
+.logo-circle.lg{width:56px;height:56px}.logo-circle.lg img{padding:9px}
+.logo-circle.sm img,.logo-circle[style*="20px"] img,.logo-circle[style*="22px"] img,.logo-circle[style*="26px"] img,.logo-circle[style*="28px"] img{padding:4px}
+.logo-circle.dark{background:#fff;border-color:#E2E8F0}
 .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.35rem;color:var(--dark);text-decoration:none}
 .btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.22)}
-.btn-gradient:hover{filter:brightness(1.05);color:#fff;transform:translateY(-1px)}
 .eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:999px;display:inline-block}
 .search-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:999px;padding:6px;box-shadow:0 8px 24px rgba(15,23,42,.05)}
 .search-wrap .form-control{border:0;box-shadow:none;background:transparent}
@@ -43,10 +43,7 @@ h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
 <nav class="navbar sticky-top border-bottom">
   <div class="container py-2 d-flex align-items-center gap-2">
     <button class="btn btn-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
-    <a href="index.html" class="brand ms-1">
-      <span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span>
-      Signix
-    </a>
+    <a href="index.html" class="brand ms-1"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
     <div class="d-none d-lg-flex align-items-center gap-2 mx-auto">
       <a href="index.html" class="btn btn-light rounded-pill px-3"><i class="bi bi-house me-1"></i> Home</a>
       <a href="learn.html" class="btn btn-dark rounded-pill px-3">Learn</a>
@@ -60,12 +57,9 @@ h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
   </div>
 </nav>
 
-<!-- Side Menu -->
 <div class="offcanvas offcanvas-start" id="sideMenu" style="width:320px">
   <div class="offcanvas-header border-bottom">
-    <a href="index.html" class="brand">
-      <span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix
-    </a>
+    <a href="index.html" class="brand"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix</a>
     <button class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body d-flex flex-column">
@@ -78,103 +72,40 @@ h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
     <hr class="my-4">
     <div class="ai-highlight mb-3">
       <div class="fw-bold d-flex justify-content-between align-items-center mb-2"><span class="d-flex align-items-center gap-2"><span class="logo-circle" style="width:26px;height:26px"><img src="image/SIGNIX.png" alt="Signix logo"></span> AI Assistant</span><span class="badge bg-success rounded-pill">NEW</span></div>
-      <p class="small text-secondary mb-3">Ask for a sign, handshape or example sentence and I will pull it from the KSL library.</p>
+      <p class="small text-secondary mb-3">Ask for a sign, handshape or example sentence.</p>
       <button id="openAiBot" class="btn btn-gradient w-100 rounded-pill"><i class="bi bi-stars me-2"></i>Open AI Bot</button>
     </div>
     <div class="mt-auto p-3 bg-light rounded-4 border small d-flex align-items-center gap-2"><span class="logo-circle" style="width:22px;height:22px"><img src="image/SIGNIX.png" alt="Signix logo"></span> <span class="bg-success rounded-circle d-inline-block" style="width:8px;height:8px"></span> Nairobi • Live</div>
   </div>
 </div>
 
-<!-- AI Bot -->
 <div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
   <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,#2563EB,#7C3AED)"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle" style="width:28px;height:28px"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
   <div class="offcanvas-body d-flex flex-column p-0">
-    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow-y:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Habari! What KSL sign do you want to learn today? Try Asante, Shule, or Chakula.</div></div>
+    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow-y:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Habari! What KSL sign do you want to learn today?</div></div>
     <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask how to sign..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
   </div>
 </div>
 
-<!-- Hero -->
 <section class="py-4 py-lg-5">
   <div class="container">
     <div class="p-4 p-lg-5 rounded-5 text-white position-relative overflow-hidden" style="background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 50%,#1E3A8A 100%)">
       <div class="position-absolute" style="inset:-1px;background:radial-gradient(600px 300px at 15% 0%,rgba(124,58,237,.45),transparent),radial-gradient(600px 300px at 85% 100%,rgba(16,185,129,.35),transparent)"></div>
       <div class="row align-items-center g-4" style="position:relative;z-index:1">
         <div class="col-lg-7">
-          <div class="d-flex align-items-center gap-3 mb-3">
-            <span class="logo-circle lg"><img src="image/SIGNIX.png" alt="Signix logo"></span>
-            <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#C4B5FD;border:1px solid rgba(255,255,255,.15)">KSL • Learn Mode</span>
-          </div>
+          <div class="d-flex align-items-center gap-3 mb-3"><span class="logo-circle lg"><img src="image/SIGNIX.png" alt="Signix logo"></span><span class="eyebrow" style="background:rgba(255,255,255,.12);color:#C4B5FD;border:1px solid rgba(255,255,255,.15)">KSL • Learn Mode</span></div>
           <h1 class="display-6 fw-bold lh-1">Learn Kenyan<br>Sign Language</h1>
-          <p class="text-white-50 mt-3 mb-4" style="max-width:480px">1,500+ signs documented with handshape, movement and regional variants. Search in English, Swahili or by handshape.</p>
-          <div class="search-wrap d-flex align-items-center">
-            <i class="bi bi-search ms-3 text-secondary"></i>
-            <input id="searchInput" class="form-control" placeholder="Search Asante, maji, school, family...">
-            <button class="btn btn-gradient rounded-pill px-4">Search</button>
-          </div>
-          <div class="d-flex gap-2 mt-3 flex-wrap">
-            <span class="small text-white-50">Popular:</span>
-            <button class="btn btn-sm rounded-pill text-white quickSearch" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)">Habari</button>
-            <button class="btn btn-sm rounded-pill text-white quickSearch" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)">Asante</button>
-            <button class="btn btn-sm rounded-pill text-white quickSearch" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)">Chakula</button>
-          </div>
+          <p class="text-white-50 mt-3 mb-4" style="max-width:480px">1,500+ signs documented with handshape, movement and regional variants.</p>
+          <div class="search-wrap d-flex align-items-center"><i class="bi bi-search ms-3 text-secondary"></i><input id="searchInput" class="form-control" placeholder="Search Asante, maji, school, family..."><button class="btn btn-gradient rounded-pill px-4">Search</button></div>
+        </div>
         <div class="col-lg-5">
           <div class="bg-white text-dark rounded-4 p-3 p-md-4 shadow-lg">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="fw-bold d-flex align-items-center gap-2"><span class="logo-circle" style="width:28px;height:28px"><img src="image/SIGNIX.png" alt="Signix logo"></span> Continue learning</div>
-              <span class="badge rounded-pill" style="background:#D1FAE5;color:#065F46">42% done</span>
-            </div>
-            <div class="d-grid gap-3">
-              <div class="d-flex gap-3 align-items-center p-2 rounded-3 border"><span class="logo-circle" style="width:44px;height:44px;background:#EEF2FF"><i class="bi bi-hand-index-thumb" style="color:var(--blue)"></i></span><div class="flex-grow-1"><div class="small fw-semibold">Greetings • Level 1</div><div class="progress mt-1" style="height:6px"><div class="progress-bar" style="width:68%;background:linear-gradient(90deg,var(--blue),var(--violet))"></div></div></div><i class="bi bi-chevron-right text-secondary"></i></div>
-              <div class="d-flex gap-3 align-items-center p-2 rounded-3 border"><span class="logo-circle" style="width:44px;height:44px;background:#F5F3FF"><i class="bi bi-people" style="color:var(--violet)"></i></span><div class="flex-grow-1"><div class="small fw-semibold">Family</div><div class="small text-secondary">12 signs • 3 mins</div></div><button class="btn btn-sm btn-light border rounded-pill">Resume</button></div>
-            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3"><div class="fw-bold d-flex align-items-center gap-2"><span class="logo-circle" style="width:28px;height:28px"><img src="image/SIGNIX.png" alt="Signix logo"></span> Continue learning</div><span class="badge rounded-pill" style="background:#D1FAE5;color:#065F46">42% done</span></div>
             <a href="index.html" class="btn btn-light w-100 rounded-pill mt-3 border"><i class="bi bi-arrow-left me-1"></i> Back Home</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Filters + Grid -->
-<section class="pb-5">
-  <div class="container">
-    <div class="d-flex gap-2 overflow-auto pb-2" style="scrollbar-width:none">
-      <button class="filter-pill active" data-filter="all">All signs</button>
-      <button class="filter-pill" data-filter="greetings"><span class="progress-dot me-1" style="background:var(--blue)"></span>Greetings</button>
-      <button class="filter-pill" data-filter="family"><span class="progress-dot me-1" style="background:var(--violet)"></span>Family</button>
-      <button class="filter-pill" data-filter="food"><span class="progress-dot me-1" style="background:var(--green)"></span>Food</button>
-      <button class="filter-pill" data-filter="school">School</button>
-      <button class="filter-pill" data-filter="health">Health</button>
-    </div>
-
-    <div class="row g-4 mt-1" id="signGrid">
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="greetings">
-        <div class="sign-card">
-          <div class="thumb"><i class="bi bi-camera-reels"></i><span class="position-absolute top-0 start-0 m-2 badge rounded-pill bg-dark bg-opacity-75"><i class="bi bi-play-fill me-1"></i>0:12</span><span class="position-absolute top-0 end-0 m-2 logo-circle" style="width:26px;height:26px"><img src="image/SIGNIX.png" alt="Signix logo"></span></div>
-          <div class="p-3"><div class="d-flex justify-content-between align-items-start"><div><h6 class="fw-bold mb-0">Habari</h6><div class="small text-secondary">Hello • Hello</div></div><button class="btn btn-light border rounded-circle" style="width:32px;height:32px;display:grid;place-items:center"><i class="bi bi-bookmark"></i></button></div><div class="d-flex gap-1 mt-2"><span class="badge rounded-pill bg-light border text-secondary fw-normal">B-hand</span><span class="badge rounded-pill" style="background:#EDE9FE;color:var(--violet)">Beginner</span></div></div>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="greetings">
-        <div class="sign-card"><div class="thumb" style="background:linear-gradient(135deg,#EDE9FE,#DBEAFE)"><i class="bi bi-camera-reels"></i><span class="position-absolute top-0 start-0 m-2 badge rounded-pill bg-dark bg-opacity-75">0:08</span><span class="position-absolute top-0 end-0 m-2 logo-circle" style="width:26px;height:26px"><img src="image/SIGNIX.png" alt="Signix logo"></span></div><div class="p-3"><h6 class="fw-bold mb-0">Asante</h6><div class="small text-secondary">Thank you • Asante</div><div class="d-flex gap-1 mt-2"><span class="badge bg-light border text-secondary fw-normal rounded-pill">Flat-hand</span><span class="badge rounded-pill" style="background:#D1FAE5;color:#065F46">Essential</span></div></div></div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="food">
-        <div class="sign-card"><div class="thumb" style="background:linear-gradient(135deg,#D1FAE5,#EDE9FE)"><i class="bi bi-cup-hot"></i></div><div class="p-3"><h6 class="fw-bold mb-0">Chakula</h6><div class="small text-secondary">Food • Chakula</div><div class="d-flex gap-1 mt-2"><span class="badge bg-light border text-secondary fw-normal rounded-pill">C-hand</span><span class="badge rounded-pill bg-light border text-secondary fw-normal">Food</span></div></div></div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="family">
-        <div class="sign-card"><div class="thumb"><i class="bi bi-people"></i></div><div class="p-3"><h6 class="fw-bold mb-0">Mama</h6><div class="small text-secondary">Mother • Mama</div><div class="d-flex gap-1 mt-2"><span class="badge bg-light border text-secondary fw-normal rounded-pill">A-hand</span><span class="badge rounded-pill" style="background:#DBEAFE;color:var(--blue)">Family</span></div></div></div>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="school"><div class="sign-card"><div class="thumb"><i class="bi bi-book"></i></div><div class="p-3"><h6 class="fw-bold mb-0">Shule</h6><div class="small text-secondary">School • Shule</div></div></div></div>
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="health"><div class="sign-card"><div class="thumb"><i class="bi bi-heart-pulse"></i></div><div class="p-3"><h6 class="fw-bold mb-0">Daktari</h6><div class="small text-secondary">Doctor • Daktari</div></div></div></div>
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="greetings"><div class="sign-card"><div class="thumb"><i class="bi bi-emoji-smile"></i></div><div class="p-3"><h6 class="fw-bold mb-0">Sawa</h6><div class="small text-secondary">Okay • Sawa</div></div></div></div>
-      <div class="col-6 col-md-4 col-lg-3 sign-item" data-cat="food"><div class="sign-card"><div class="thumb"><i class="bi bi-droplet"></i></div><div class="p-3"><h6 class="fw-bold mb-0">Maji</h6><div class="small text-secondary">Water • Maji</div></div></div></div>
-    </div>
-
-    <div class="text-center mt-5"><button class="btn btn-light border rounded-pill px-4"><i class="bi bi-arrow-clockwise me-1"></i> Load more signs</button> <a href="index.html" class="btn btn-gradient rounded-pill px-4 ms-2">Go to Home</a></div>
   </div>
 </section>
 
@@ -189,18 +120,5 @@ h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-const sideMenuEl=document.getElementById('sideMenu'),aiBotEl=document.getElementById('aiBot');
-document.getElementById('openAiBot').addEventListener('click',()=>{const s=bootstrap.Offcanvas.getInstance(sideMenuEl)||new bootstrap.Offcanvas(sideMenuEl);s.hide();setTimeout(()=>new bootstrap.Offcanvas(aiBotEl).show(),300)});
-const chatWindow=document.getElementById('chatWindow'),chatInput=document.getElementById('chatInput'),sendBtn=document.getElementById('sendBtn');
-function addMsg(t,w){const d=document.createElement('div');d.className='bot-bubble '+w;d.textContent=t;chatWindow.appendChild(d);chatWindow.scrollTop=chatWindow.scrollHeight}
-function reply(q){const t=q.toLowerCase();if(t.includes('asante'))return 'Asante: flat hand from chin forward. Palm out, smile. See card Asante above.';if(t.includes('habari'))return 'Habari: both hands wave at chest height. Common greeting in KSL.';return 'Search any sign above or ask me: how do I sign family, food, or school terms?';}
-function send(){const v=chatInput.value.trim();if(!v)return;addMsg(v,'user');chatInput.value='';setTimeout(()=>addMsg(reply(v),'ai'),500)}
-sendBtn.addEventListener('click',send);chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
-document.querySelectorAll('.quickSearch').forEach(b=>b.addEventListener('click',()=>{document.getElementById('searchInput').value=b.textContent;filter(b.textContent)}));
-function filter(q){const term=q.toLowerCase();document.querySelectorAll('.sign-item').forEach(el=>{const txt=el.textContent.toLowerCase();el.style.display=txt.includes(term)?'':'none'})}
-document.getElementById('searchInput').addEventListener('input',e=>filter(e.target.value));
-document.querySelectorAll('.filter-pill').forEach(p=>p.addEventListener('click',()=>{document.querySelectorAll('.filter-pill').forEach(x=>x.classList.remove('active'));p.classList.add('active');const f=p.dataset.filter;document.querySelectorAll('.sign-item').forEach(el=>{el.style.display=(f==='all'||el.dataset.cat===f)?'':'none'})}));
-</script>
 </body>
 </html>
