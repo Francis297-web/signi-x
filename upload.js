@@ -1,6 +1,6 @@
-// upload.js - Cloudinary video upload for Signix
-const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dvtlbpkly/video/upload";
-const UPLOAD_PRESET = "signix_unsigned"; // create unsigned preset in Cloudinary dashboard
+// upload.js - Signix upload handler
+const UPLOAD_ENDPOINT = "https://api.cloudinary.com/v1_1/dvtlbpkly/video/upload";
+const UPLOAD_PRESET = "signix_uploads";
 
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('video-file');
@@ -14,9 +14,6 @@ const progressWrap = document.getElementById('progressWrap');
 const progressBar = document.getElementById('progressBar');
 const progressText = document.getElementById('progressText');
 const uploadStatus = document.getElementById('uploadStatus');
-const urlBox = document.getElementById('urlBox');
-const cloudinaryUrl = document.getElementById('cloudinaryUrl');
-const cloudinaryLink = document.getElementById('cloudinaryLink');
 const successBox = document.getElementById('successBox');
 const errorBox = document.getElementById('errorBox');
 const submitBtn = document.getElementById('submitBtn');
@@ -43,7 +40,7 @@ function clearFile(){
   dropzone.classList.remove('has-file','dragover');
   removeBtn.classList.add('d-none');
   fileInput.value=''; fileMeta.textContent='';
-  progressWrap.classList.add('d-none'); urlBox.classList.add('d-none');
+  progressWrap.classList.add('d-none');
   successBox.classList.add('d-none'); errorBox.classList.add('d-none');
 }
 
@@ -54,15 +51,19 @@ dropzone.addEventListener('drop',e=>{e.preventDefault();dropzone.classList.remov
 fileInput.addEventListener('change',()=>{if(fileInput.files[0]) handleFile(fileInput.files[0])});
 removeBtn.addEventListener('click',e=>{e.stopPropagation();clearFile()});
 
-async function uploadToCloudinary(file){
+async function uploadToSignix(file){
   const fd = new FormData();
   fd.append('file', file);
   fd.append('upload_preset', UPLOAD_PRESET);
   fd.append('folder', 'signix');
+  const signer = document.getElementById('signer-username').value.trim();
+  const lang = document.getElementById('language-name').value.trim();
+  const word = document.getElementById('sign-word').value.trim();
+  fd.append('context', `signer=${signer}|language=${lang}|word=${word}`);
 
   return new Promise((resolve, reject)=>{
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', CLOUDINARY_URL);
+    xhr.open('POST', UPLOAD_ENDPOINT);
     xhr.upload.onprogress = (e)=>{
       if(e.lengthComputable){
         const pct = Math.round((e.loaded/e.total)*100);
@@ -81,23 +82,20 @@ form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   errorBox.classList.add('d-none'); successBox.classList.add('d-none');
   if(!selectedFile){ fileMeta.textContent='Choose a video first'; return; }
-  const word = document.getElementById('sign-word').value.trim(); if(!word){ document.getElementById('sign-word').focus(); return; }
 
-  submitBtn.disabled=true; submitBtn.textContent='Uploading...';
+  submitBtn.disabled=true; submitBtn.textContent='Uploading to Signix...';
   progressWrap.classList.remove('d-none');
 
   try{
-    const res = await uploadToCloudinary(selectedFile);
-    cloudinaryUrl.textContent = res.secure_url;
-    cloudinaryLink.href = res.secure_url;
-    urlBox.classList.remove('d-none');
+    const res = await uploadToSignix(selectedFile);
     successBox.classList.remove('d-none');
     uploadStatus.textContent='Complete';
-    console.log('Saved URL:', res.secure_url);
+    console.log('Stored:', res.secure_url);
   }catch(err){
-    errorBox.textContent='Upload failed: '+err;
+    errorBox.textContent='Upload failed, try again.';
     errorBox.classList.remove('d-none');
+    uploadStatus.textContent='Failed';
   }finally{
-    submitBtn.disabled=false; submitBtn.textContent='Upload to Cloudinary';
+    submitBtn.disabled=false; submitBtn.textContent='Upload to Signix';
   }
 });
