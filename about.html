@@ -1,101 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Signix</title>
-<link rel="icon" href="image/SIGNIX.png">
+<link rel="icon" href="image/SIGNIX.png" type="image/png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
 body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
-.logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.3rem;color:var(--dark);text-decoration:none}
-.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:grid;place-items:center;overflow:hidden;flex:0 0 40px}
-.logo-circle img{width:68%;height:68%;object-fit:contain;display:block}
-.logo-circle.sm{width:28px;height:28px}
-.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 55%,var(--green));border:0;color:#fff}
-.founder-ring{width:220px;height:220px;border-radius:50%;padding:6px;background:linear-gradient(135deg,var(--blue),var(--violet),var(--green));margin:auto}
+h1,h2,h3,h4,.logo{font-family:'Space Grotesk',sans-serif}
+.navbar{backdrop-filter:blur(12px);background:rgba(255,255,255,.92)!important}
+.logo{font-weight:700;font-size:1.3rem;text-decoration:none;color:var(--dark);display:inline-flex;align-items:center;gap:10px}
+.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;box-shadow:0 4px 12px rgba(15,23,42,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 40px}
+.logo-circle img{width:100%;height:100%;object-fit:contain;padding:7px;box-sizing:border-box;display:block}
+.logo-circle.sm{width:28px;height:28px}.logo-circle.sm img{padding:4px}
+.logo-circle.lg{width:56px;height:56px}.logo-circle.lg img{padding:9px}
+.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 55%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.25)}
+.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:100px;display:inline-block}
+.text-gradient{background:linear-gradient(135deg,var(--blue),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.founder-section{background:radial-gradient(800px 400px at 10% -10%,rgba(124,58,237,.14),transparent),radial-gradient(600px 300px at 90% 0%,rgba(16,185,129,.16),transparent),#fff;border-bottom:1px solid #EEF2FF}
+.founder-ring{width:clamp(220px,62vw,320px);height:clamp(220px,62vw,320px);border-radius:50%;padding:6px;background:linear-gradient(135deg,var(--blue),var(--violet),var(--green));box-shadow:0 18px 40px rgba(37,99,235,.18);margin-inline:auto;position:relative}
 .founder-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#fff;border:4px solid #fff}
 .founder-inner img{width:100%;height:100%;object-fit:cover;display:block}
-.menu-link{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500;font-size:.95rem}
-.menu-link:hover{background:#F1F5F9}.menu-link.active{background:#EDE9FE;color:var(--violet);border:1px solid #DDD6FE}
-footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}
+blockquote{font-size:clamp(1.3rem,2.6vw,1.95rem);line-height:1.32;font-weight:500;color:var(--dark)}
+blockquote span{background:linear-gradient(135deg,var(--blue),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+.mission-card{border-radius:20px;padding:26px;height:100%;background:#fff;box-shadow:0 6px 24px rgba(15,23,42,.05);border-top:4px solid #E2E8F0;transition:.2s}
+.mission-card:hover{transform:translateY(-4px)}
+.mission-card.blue{border-top-color:var(--blue)}.mission-card.violet{border-top-color:var(--violet)}.mission-card.green{border-top-color:var(--green)}
+.timeline{position:relative;padding-left:32px;border-left:2px dashed #E2E8F0}
+.timeline-item{position:relative;padding:0 0 36px 28px}.timeline-item::before{content:"";position:absolute;left:-39px;top:6px;width:14px;height:14px;border-radius:50%;border:3px solid #fff}
+.timeline-item:nth-child(1)::before{background:var(--blue);box-shadow:0 0 0 4px #DBEAFE}.timeline-item:nth-child(2)::before{background:var(--violet);box-shadow:0 0 0 4px #EDE9FE}.timeline-item:nth-child(3)::before{background:var(--green);box-shadow:0 0 0 4px #D1FAE5}
+.when{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:100px}
+.final-cta{background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 45%,#1E3A8A 100%);position:relative;overflow:hidden;border-radius:32px}
+.final-cta::before{content:"";position:absolute;inset:-1px;background:radial-gradient(500px 300px at 20% 0%,rgba(124,58,237,.5),transparent),radial-gradient(500px 300px at 80% 100%,rgba(16,185,129,.38),transparent)}
+footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
+.menu-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
+.menu-link:hover{background:#F1F5F9}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
+.ai-highlight{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:16px;padding:14px}
+.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem;line-height:1.45}.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;border-bottom-right-radius:6px;margin-left:auto}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--violet),var(--green));z-index:9999;transition:width.12s}
 </style>
-<base href="./">
 </head>
 <body>
+<div id="progress"></div>
 
-<nav class="navbar sticky-top bg-white border-bottom">
+<nav class="navbar sticky-top border-bottom">
   <div class="container py-2 d-flex align-items-center gap-2">
-    <button class="btn btn-light border rounded-circle" style="width:44px;height:44px" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
-    <a href="index.html" data-link="index.html" class="logo ms-1"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
+    <button class="btn btn-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
+    <a href="index.html" class="logo ms-1"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
     <ul class="navbar-nav d-none d-lg-flex flex-row mx-auto gap-1">
-      <li class="nav-item"><a class="nav-link px-3" data-link="index.html" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="learn.html" href="learn.html">Learn</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="languages.html" href="languages.html">Languages</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="creators.html" href="creators.html">Creators</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="upload.html" href="upload.html">Upload</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="learn.html">Learn</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="languages.html">Languages</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="creators.html">Creators</a></li>
       <li class="nav-item"><a class="nav-link active fw-bold px-3" style="color:var(--blue)" href="about.html">About</a></li>
     </ul>
-    <a href="upload.html" data-link="upload.html" class="btn btn-gradient rounded-pill px-4 ms-auto">Upload</a>
+    <div class="ms-auto d-flex gap-2">
+      <button class="btn btn-light rounded-pill px-3 d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#aiBot"><i class="bi bi-robot me-1"></i> AI Bot</button>
+      <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload</a>
+    </div>
   </div>
 </nav>
 
-<div class="offcanvas offcanvas-start" id="sideMenu" style="width:320px">
+<div class="offcanvas offcanvas-start" id="sideMenu" style="width:330px">
   <div class="offcanvas-header border-bottom">
-    <a href="index.html" data-link="index.html" class="logo"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
+    <a href="index.html" class="logo"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
     <button class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body d-flex flex-column">
-    <div class="small text-uppercase fw-bold text-secondary mb-2" style="letter-spacing:.08em">Menu</div>
-    <a href="index.html" data-link="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home</a>
-    <a href="learn.html" data-link="learn.html" class="menu-link"><i class="bi bi-book fs-5" style="color:var(--blue)"></i> Learn</a>
-    <a href="lesson.html" data-link="lesson.html" class="menu-link"><i class="bi bi-journal-code fs-5"></i> Lesson</a>
-    <a href="languages.html" data-link="languages.html" class="menu-link"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
-    <a href="creators.html" data-link="creators.html" class="menu-link"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
-    <a href="upload.html" data-link="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
-    <a href="about.html" class="menu-link active"><i class="bi bi-info-circle fs-5"></i> About</a>
+    <a href="learn.html" class="menu-link"><i class="bi bi-book fs-5" style="color:var(--blue)"></i> Learn KSL</a>
+    <a href="languages.html" class="menu-link"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
+    <a href="creators.html" class="menu-link"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
+    <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
+    <a href="about.html" class="menu-link active"><i class="bi bi-info-circle fs-5"></i> About Signix</a>
     <hr class="my-4">
-    <div class="p-3 bg-light rounded-4 border small d-flex align-items-center gap-2">
-      <span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span> All pages linked • No 404
+    <div class="ai-highlight">
+      <div class="fw-bold d-flex align-items-center gap-2 mb-2"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span> AI Assistant <span class="badge bg-success rounded-pill ms-auto">NEW</span></div>
+      <p class="small text-secondary mb-3">Ask about KSL signs, grammar, or how to document a new sign.</p>
+      <button id="openAiBot" class="btn btn-gradient w-100 rounded-pill"><i class="bi bi-stars me-2"></i>Open AI Bot</button>
     </div>
+    <div class="mt-auto p-3 bg-light rounded-4 border small d-flex align-items-center gap-2"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span> Nairobi • Live</div>
   </div>
 </div>
 
-<main class="py-5">
-<div class="container">
-  <div class="row align-items-center g-5">
-    <div class="col-md-5 text-center">
-      <div class="founder-ring"><div class="founder-inner"><img src="image/Patience.jpeg" alt="Patience Wambui" onerror="this.src='image/Patience.jpeg'"></div></div>
-      <div class="mt-3 text-center">
-        <div class="fw-bold" style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;">Patience Wambui</div>
-        <div class="small text-secondary">Founder and C.E.O at Signix</div>
+<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
+  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,var(--blue),var(--violet))"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body d-flex flex-column p-0">
+    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Jambo! I am your KSL assistant. Ask me how to sign something, or how to upload correctly.</div></div>
+    <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask about a sign..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
+  </div>
+</div>
+
+<main>
+<section class="founder-section py-5">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-md-5 text-center">
+        <div class="founder-ring">
+          <div class="founder-inner">
+            <img src="image/Patience.jpeg" alt="Patience Wambui Founder" onerror="this.src='image/Patience.jpeg'">
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="fw-bold" style="font-size:1.15rem;">Patience Wambui</div>
+          <div class="small text-secondary">Founder and C.E.O at Signix</div>
+          <div class="d-flex justify-content-center gap-2 mt-3"><span class="badge rounded-pill bg-white border shadow-sm"><i class="bi bi-patch-check-fill me-1" style="color:var(--green)"></i>Verified Founder</span><span class="badge rounded-pill" style="background:#DBEAFE;color:var(--blue)">KSL Native</span></div>
+        </div>
       </div>
-    <div class="col-md-7">
-      <h1 class="fw-bold">About Signix</h1>
-      <p class="text-secondary">Founder story uses Patience.jpg only, no avatar. Logo everywhere is SIGNIX.png inside a circle.</p>
-      <div class="d-flex flex-wrap gap-2 mt-3">
-        <a href="index.html" data-link="index.html" class="btn btn-gradient rounded-pill px-4">Go Home</a>
-        <a href="learn.html" data-link="learn.html" class="btn btn-light border rounded-pill px-4">Learn</a>
-        <a href="languages.html" data-link="languages.html" class="btn btn-light border rounded-pill px-4">Languages</a>
-        <a href="creators.html" data-link="creators.html" class="btn btn-light border rounded-pill px-4">Creators</a>
-        <a href="upload.html" data-link="upload.html" class="btn btn-light border rounded-pill px-4">Upload</a>
+      <div class="col-md-7">
+        <span class="eyebrow mb-3"><i class="bi bi-quote me-1"></i> Founder Note</span>
+        <blockquote class="mt-3 mb-3">"Deaf Kenyans have always had a language. <span>What we didn't have was a place to keep it, teach it, and grow it together</span> — so we built one."</blockquote>
+        <p class="text-secondary">Patience has always had a deep passion for the Deaf community. Growing up in Nairobi, she saw how her Deaf friends and neighbours had a rich, expressive language but no digital home to preserve it. While KSL thrived in classrooms, churches and homes, it was missing online.</p>
+        <p class="text-secondary">She started sitting with Deaf elders, students and interpreters, recording signs on her phone and writing down stories and regional variants. What began as notebooks and small video clips became Signix — a reference built by fluent signers, for learners, families and creators. Her mission is simple: make Kenyan Sign Language visible, searchable and celebrated for the next generation.</p>
+        <div class="d-flex align-items-center gap-3 mt-4">
+          <span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span>
+          <div><div class="fw-bold" style="color:var(--dark)">Patience Wambui</div><div class="small text-secondary">Founder, Signix • Nairobi, Kenya</div></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<section class="py-5">
+  <div class="container py-4">
+    <p class="eyebrow">Why Signix exists</p>
+    <h2 class="display-6 fw-bold mt-3 mb-4">A reference, <span class="text-gradient">not just a feed.</span></h2>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="mission-card blue"><div class="d-flex justify-content-between"><span class="small fw-bold text-secondary">01</span><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span></div><div class="fs-4 mt-3 mb-2" style="color:var(--blue)"><i class="bi bi-journal-code"></i></div><h5 class="fw-bold">Documentation first</h5><p class="small text-secondary mb-0">Every sign gets handshape, movement and context.</p></div></div>
+      <div class="col-md-4"><div class="mission-card violet"><div class="d-flex justify-content-between"><span class="small fw-bold text-secondary">02</span><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span></div><div class="fs-4 mt-3 mb-2" style="color:var(--violet)"><i class="bi bi-people-fill"></i></div><h5 class="fw-bold">Built by signers</h5><p class="small text-secondary mb-0">Fluent signers teach. Nothing is machine translated.</p></div></div>
+      <div class="col-md-4"><div class="mission-card green"><div class="d-flex justify-content-between"><span class="small fw-bold text-secondary">03</span><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span></div><div class="fs-4 mt-3 mb-2" style="color:var(--green)"><i class="bi bi-bullseye"></i></div><h5 class="fw-bold">One language at a time</h5><p class="small text-secondary mb-0">KSL in full depth before the next language.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white border-top border-bottom">
+  <div class="container py-4">
+    <div class="row g-5"><div class="col-lg-4"><p class="eyebrow" style="background:#D1FAE5;color:#065F46">Roadmap</p><h2 class="fw-bold mt-3">Where Signix is headed</h2></div>
+      <div class="col-lg-8"><div class="timeline"><div class="timeline-item"><span class="when text-bg-primary">Phase 1 • Now</span><h5 class="fw-bold mt-3">Kenyan Sign Language</h5><p class="text-secondary small mb-0">Core library, open uploads, 1,500+ documented signs.</p></div><div class="timeline-item"><span class="when" style="background:#EDE9FE;color:var(--violet)">Phase 2 • Next</span><h5 class="fw-bold mt-3">East African languages</h5><p class="text-secondary small mb-0">Ugandan, Tanzanian, Ethiopian SL with local creators.</p></div><div class="timeline-item" style="padding-bottom:0"><span class="when" style="background:#D1FAE5;color:#065F46">Phase 3 • Future</span><h5 class="fw-bold mt-3">Global directory</h5><p class="text-secondary small mb-0">Open to any sign language with fluent community.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5"><div class="container"><div class="final-cta p-4 p-md-5"><div class="row align-items-center g-4 position-relative" style="z-index:1"><div class="col-lg-7 text-white d-flex gap-3 align-items-start"><span class="logo-circle lg bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span><div><h2 class="fw-bold">Fluent in a language we have not launched?</h2><p class="text-white-50 mb-0">Partner with Nexora to seed it with deaf led creators.</p></div></div><div class="col-lg-5 d-flex gap-2 justify-content-lg-end"><a href="mailto:info@nexora.co.ke" class="btn btn-gradient btn-lg rounded-pill px-4">Email us</a><a href="tel:+254790357975" class="btn btn-outline-light btn-lg rounded-pill px-4">Call</a></div></div></section>
 </main>
 
-<footer class="pt-4 pb-4"><div class="container"><div class="row g-3"><div class="col-lg-6"><a href="index.html" data-link="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span><span class="text-white">Signix</span></a></div><div class="col-6 col-lg-3"><ul class="list-unstyled small d-grid gap-1"><li><a href="index.html" data-link="index.html">Home</a></li><li><a href="learn.html" data-link="learn.html">Learn</a></li><li><a href="lesson.html" data-link="lesson.html">Lesson</a></li></ul></div><div class="col-6 col-lg-3"><ul class="list-unstyled small d-grid gap-1"><li><a href="languages.html" data-link="languages.html">Languages</a></li><li><a href="creators.html" data-link="creators.html">Creators</a></li><li><a href="upload.html" data-link="upload.html">Upload</a></li><li><a href="about.html">About</a></li></ul></div></div></div></footer>
+<footer class="pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4 pb-4 border-bottom border-secondary border-opacity-25">
+      <div class="col-lg-4"><a href="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span><span class="text-white">Signix</span></a><p class="small mt-3 pe-lg-4">A reference and creator platform for sign languages, starting with KSL.</p></div>
+      <div class="col-6 col-lg-2"><h6 class="text-white small text-uppercase fw-bold">Platform</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="learn.html">Learn</a></li><li><a href="languages.html">Languages</a></li><li><a href="creators.html">Creators</a></li><li><a href="upload.html">Upload</a></li></ul></div>
+      <div class="col-6 col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Community</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="about.html">About</a></li><li><a href="#">Guidelines</a></li><li><a href="#">Safety</a></li></ul></div>
+      <div class="col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Support</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li><li><a href="tel:+254790357975">0790 357 975</a></li></ul></div>
+    </div>
+    <div class="d-flex justify-content-between pt-3 small flex-wrap gap-2"><div>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></div><div class="d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="image/SIGNIX.png" alt="Signix logo"></span> © 2026 Signix</div></div>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-document.querySelectorAll('a[data-link]').forEach(a=>{
-  const page = a.getAttribute('data-link');
-  const inSubfolder = window.location.pathname.split('/').length > 2;
-  a.href = inSubfolder ? '../' + page : page;
-});
+const progress=document.getElementById('progress');window.addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';});
+const sideEl=document.getElementById('sideMenu'),botEl=document.getElementById('aiBot');
+document.getElementById('openAiBot')?.addEventListener('click',()=>{const s=bootstrap.Offcanvas.getInstance(sideEl)||new bootstrap.Offcanvas(sideEl);s.hide();setTimeout(()=>new bootstrap.Offcanvas(botEl).show(),300)});
+const SYSTEM=`You are Signix AI for Kenyan Sign Language. Be concise, friendly, accurate.`;
+async function callAI(q,history=[]){
+  const messages=[{role:"system",content:SYSTEM},...history.slice(-6),{role:"user",content:q}];
+  const r=await fetch("https://text.pollinations.ai/openai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"openai",messages,temperature:0.7,max_tokens:350})});
+  if(!r.ok) throw new Error("api"); const j=await r.json(); return j.choices?.[0]?.message?.content?.trim()||"Try again.";
+}
+const win=document.getElementById('chatWindow'),inp=document.getElementById('chatInput'),btn=document.getElementById('sendBtn');const hist=[];
+function bubble(t,w){const d=document.createElement('div');d.className='bot-bubble '+w;d.textContent=t;win.appendChild(d);win.scrollTop=win.scrollHeight;return d;}
+let typing=null;
+async function send(){const q=inp.value.trim();if(!q)return;bubble(q,'user');inp.value='';hist.push({role:'user',content:q});typing=bubble('Thinking...','ai');btn.disabled=true;try{const a=await callAI(q,hist);typing.remove();bubble(a,'ai');hist.push({role:'assistant',content:a});}catch{typing.remove();bubble('Offline mode: ask about Habari, Asante, or how to document a sign.','ai');}finally{btn.disabled=false;}}
+btn.addEventListener('click',send);inp.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 </script>
 </body>
 </html>
