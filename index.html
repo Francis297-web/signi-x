@@ -2,99 +2,152 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Signix</title>
+<title>Signix — Every sign language, one place</title>
 <link rel="icon" href="SIGNIX.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981}
-body{font-family:Inter,sans-serif;background:#F8FAFF;color:#1E293B}
-.logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.3rem;color:#0F172A;text-decoration:none}
-.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:grid;place-items:center;overflow:hidden;flex:0 0 40px}
-.logo-circle img{width:68%;height:68%;object-fit:contain;display:block}
-.logo-circle.sm{width:28px;height:28px}
-.founder-ring{width:220px;height:220px;border-radius:50%;padding:6px;background:linear-gradient(135deg,var(--blue),var(--violet),var(--green));margin:auto}
+:root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
+body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
+h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.35rem;color:var(--dark);text-decoration:none}
+.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;box-shadow:0 4px 12px rgba(15,23,42,.06);display:grid;place-items:center;overflow:hidden;flex:0 0 40px}
+.logo-circle img{width:70%;height:70%;object-fit:contain;display:block}
+.logo-circle.sm{width:28px;height:28px}.logo-circle.lg{width:56px;height:56px}
+.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 55%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.25)}
+.btn-gradient:hover{color:#fff;filter:brightness(1.05);transform:translateY(-1px)}
+.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:100px;display:inline-flex;align-items:center;gap:8px}
+.text-gradient{background:linear-gradient(135deg,var(--blue),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.navbar{backdrop-filter:blur(12px);background:rgba(255,255,255,.92)!important}
+.hero{padding:84px 0 64px;background:#fff;border-bottom:1px solid #EEF2FF;overflow:hidden}
+.video-wrap{position:relative;border-radius:24px;overflow:hidden;background:#0F172A;box-shadow:0 18px 40px rgba(15,23,42,.15);border:1px solid #E2E8F0;aspect-ratio:16/10}
+.video-wrap video{width:100%;height:100%;object-fit:cover;display:block}
+.founder-ring{width:200px;height:200px;border-radius:50%;padding:5px;background:linear-gradient(135deg,var(--blue),var(--violet),var(--green));margin-inline:auto}
 .founder-inner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#fff;border:4px solid #fff}
 .founder-inner img{width:100%;height:100%;object-fit:cover;display:block}
 .menu-link{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
 .menu-link:hover{background:#F1F5F9}.menu-link.active{background:#EDE9FE;color:var(--violet);border:1px solid #DDD6FE}
-footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}
+.read-more{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--violet);text-decoration:none}
+.read-more:hover{gap:10px;color:var(--blue)}
+footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
+.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem}.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;margin-left:auto}
 </style>
 </head>
 <body>
 
-<nav class="navbar sticky-top bg-white border-bottom">
+<nav class="navbar sticky-top border-bottom">
   <div class="container py-2 d-flex align-items-center gap-2">
-    <button class="btn btn-light border rounded-circle" style="width:44px;height:44px" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
-    <a href="index.html" data-link="index.html" class="logo ms-1"><span class="logo-circle"><img src="SIGNIX.png" alt="Signix logo" onerror="this.src='image/SIGNIX.png'"></span>Signix</a>
+    <button class="btn btn-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
+    <a href="index.html" class="logo ms-1"><span class="logo-circle"><img src="SIGNIX.png" alt="Signix logo"></span>Signix</a>
     <ul class="navbar-nav d-none d-lg-flex flex-row mx-auto gap-1">
-      <li class="nav-item"><a class="nav-link px-3" data-link="index.html" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="learn.html" href="learn.html">Learn</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="languages.html" href="languages.html">Languages</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="creators.html" href="creators.html">Creators</a></li>
-      <li class="nav-item"><a class="nav-link px-3" data-link="upload.html" href="upload.html">Upload</a></li>
-      <li class="nav-item"><a class="nav-link active fw-bold" style="color:var(--blue)" href="about.html">About</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="learn.html">Learn</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="languages.html">Languages</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="creators.html">Creators</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="upload.html">Upload</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
     </ul>
+    <div class="ms-auto d-flex gap-2">
+      <button class="btn btn-light rounded-pill px-3 d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#aiBot"><i class="bi bi-robot me-1"></i> AI Assistant</button>
+      <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload</a>
+    </div>
   </div>
 </nav>
 
-<!-- CLEAN SIDE MENU - NO FILENAMES, NO EXTRA INFO -->
-<div class="offcanvas offcanvas-start" id="sideMenu" style="width:320px">
+<!-- CLEAN SIDE MENU -->
+<div class="offcanvas offcanvas-start" id="sideMenu" style="width:310px">
   <div class="offcanvas-header border-bottom">
-    <a href="index.html" data-link="index.html" class="logo"><span class="logo-circle sm"><img src="SIGNIX.png" alt="Signix logo" onerror="this.src='image/SIGNIX.png'"></span>Signix</a>
+    <a href="index.html" class="logo"><span class="logo-circle sm"><img src="SIGNIX.png" alt="Signix logo"></span>Signix</a>
     <button class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
-  <div class="offcanvas-body d-flex flex-column">
-    <a href="index.html" data-link="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home</a>
-    <a href="learn.html" data-link="learn.html" class="menu-link"><i class="bi bi-book fs-5" style="color:var(--blue)"></i> Learn</a>
-    <a href="lesson.html" data-link="lesson.html" class="menu-link"><i class="bi bi-journal-code fs-5"></i> Lesson</a>
-    <a href="languages.html" data-link="languages.html" class="menu-link"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
-    <a href="creators.html" data-link="creators.html" class="menu-link"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
-    <a href="upload.html" data-link="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
-    <a href="about.html" class="menu-link active"><i class="bi bi-info-circle fs-5"></i> About</a>
+  <div class="offcanvas-body d-flex flex-column p-2">
+    <nav class="d-grid gap-1 mt-2">
+      <a href="index.html" class="menu-link active"><i class="bi bi-house fs-5"></i> Home</a>
+      <a href="learn.html" class="menu-link"><i class="bi bi-book fs-5" style="color:var(--blue)"></i> Learn</a>
+      <a href="lesson.html" class="menu-link"><i class="bi bi-journal-code fs-5"></i> Lesson</a>
+      <a href="languages.html" class="menu-link"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
+      <a href="creators.html" class="menu-link"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
+      <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
+      <a href="about.html" class="menu-link"><i class="bi bi-info-circle fs-5"></i> About</a>
+    </nav>
   </div>
 </div>
 
-<main class="py-5">
-<div class="container">
-  <div class="row align-items-center g-5">
-    <div class="col-md-5 text-center">
-      <div class="founder-ring">
-        <div class="founder-inner">
-          <!-- FOUNDER IS NOW image/patience.jpeg -->
-          <img src="image/patience.jpeg" alt="Patience Wambui" onerror="this.onerror=null; this.src='image/Patience.jpeg'; this.onerror=null; this.src='image/Patience.jpg'; this.onerror=null; this.src='image/patience.jpg';">
+<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
+  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,var(--blue),var(--violet))"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="SIGNIX.png" alt=""></span> Signix AI</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body d-flex flex-column p-0"><div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow:auto;background:#F8FAFF"><div class="bot-bubble ai">Jambo! Ask me about KSL signs.</div></div><div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask about a sign..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div></div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="eyebrow mb-3"><span class="logo-circle sm" style="width:20px;height:20px"><img src="SIGNIX.png" alt=""></span> Kenyan Sign Language • Live</span>
+        <h1 class="mt-3">Every sign language, documented <span class="text-gradient">by the people who sign it.</span></h1>
+        <p class="text-secondary mt-3">Watch a real example below, then explore lessons and creator uploads.</p>
+        <div class="d-flex gap-2 mt-4"><a href="learn.html" class="btn btn-gradient btn-lg rounded-pill px-4">Start Learning</a><a href="about.html" class="btn btn-light border btn-lg rounded-pill px-4">Our Story</a></div>
+      </div>
+      <div class="col-lg-6">
+        <div class="video-wrap">
+          <video controls poster="SIGNIX.png" playsinline>
+            <source src="Hello-ksl.mp4" type="video/mp4">
+            Your browser does not support video.
+          </video>
+          <div class="position-absolute bottom-0 start-0 m-3 d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="SIGNIX.png" alt=""></span><span class="badge bg-dark bg-opacity-75 rounded-pill px-3 py-2"><i class="bi bi-play-fill me-1"></i> Hello in KSL</span></div>
         </div>
-      </div>
-      <div class="mt-3 d-flex justify-content-center align-items-center gap-2">
-        <span class="logo-circle sm"><img src="SIGNIX.png" alt="Signix logo" onerror="this.src='image/SIGNIX.png'"></span>
-        <span class="small text-secondary">Founder: image/patience.jpeg</span>
-      </div>
-    <div class="col-md-7">
-      <h1 class="fw-bold">About Signix</h1>
-      <p class="text-secondary">Founder image is loaded from your <code>image</code> folder. No avatar is used anywhere.</p>
-      <div class="d-flex flex-wrap gap-2 mt-3">
-        <a href="index.html" data-link="index.html" class="btn btn-dark rounded-pill px-4">Home</a>
-        <a href="learn.html" data-link="learn.html" class="btn btn-light border rounded-pill px-4">Learn</a>
-        <a href="languages.html" data-link="languages.html" class="btn btn-light border rounded-pill px-4">Languages</a>
-        <a href="creators.html" data-link="creators.html" class="btn btn-light border rounded-pill px-4">Creators</a>
-        <a href="upload.html" data-link="upload.html" class="btn btn-light border rounded-pill px-4">Upload</a>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<section class="py-5 bg-white border-top border-bottom">
+  <div class="container py-3">
+    <div class="row align-items-center g-4">
+      <div class="col-md-4 text-center">
+        <div class="founder-ring">
+          <div class="founder-inner">
+            <img src="Patience.jpeg" alt="Patience Wambui" onerror="this.src='patience.jpeg'">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <blockquote class="fs-4 fw-medium lh-sm" style="color:var(--dark)">"Deaf Kenyans have always had a language. <span class="text-gradient fw-bold">What we didn't have was a place to keep it, teach it, and grow it together</span> — so we built one."</blockquote>
+        <div class="fw-bold mt-3">Patience Wambui</div>
+        <div class="small text-secondary mb-3">Founder, Signix • Nairobi</div>
+        <a href="about.html" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-md-4"><a href="learn.html" class="text-decoration-none"><div class="bg-white border rounded-4 p-4 h-100"><div class="logo-circle mb-3"><img src="SIGNIX.png" alt=""></div><h6 class="fw-bold text-dark">Learn KSL</h6><p class="small text-secondary mb-0">Structured lessons with handshape and movement notes.</p></div></a></div>
+      <div class="col-md-4"><a href="creators.html" class="text-decoration-none"><div class="bg-white border rounded-4 p-4 h-100"><i class="bi bi-people fs-4" style="color:var(--violet)"></i><h6 class="fw-bold text-dark mt-3">From the Community</h6><p class="small text-secondary mb-0">Short captioned clips by fluent signers.</p></div></a></div>
+      <div class="col-md-4"><a href="upload.html" class="text-decoration-none"><div class="bg-white border rounded-4 p-4 h-100"><i class="bi bi-cloud-upload fs-4" style="color:var(--green)"></i><h6 class="fw-bold text-dark mt-3">Teach a Sign</h6><p class="small text-secondary mb-0">Record, caption and publish in under 60 seconds.</p></div></a></div>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer class="pt-4 pb-4"><div class="container"><div class="d-flex justify-content-between small"><div><a href="index.html" data-link="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="SIGNIX.png" alt="Signix logo" onerror="this.src='image/SIGNIX.png'"></span><span class="text-white">Signix</span></a></div><div class="d-flex gap-3"><a href="index.html" data-link="index.html">Home</a><a href="about.html">About</a></div></div></div></footer>
+<footer class="pt-5 pb-4">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 border-top border-secondary border-opacity-25 pt-4">
+      <a href="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="SIGNIX.png" alt="Signix logo"></span><span class="text-white">Signix</span></a>
+      <div class="d-flex gap-3 small"><a href="learn.html">Learn</a><a href="languages.html">Languages</a><a href="about.html">About</a></div>
+      <div class="small">© 2026 NEXORA TECHNOLOGIES</div>
+    </div>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Fix 404 if about.html is inside a subfolder
-document.querySelectorAll('a[data-link]').forEach(a=>{
-  const page = a.getAttribute('data-link');
-  const depth = window.location.pathname.split('/').filter(Boolean).length;
-  const inSubfolder = depth > 1 && !window.location.pathname.endsWith(page);
-  a.href = inSubfolder ? '../' + page : page;
-});
+const win=document.getElementById('chatWindow'),inp=document.getElementById('chatInput'),btn=document.getElementById('sendBtn');let hist=[];
+function bub(t,w){const d=document.createElement('div');d.className='bot-bubble '+w;d.textContent=t;win.appendChild(d);win.scrollTop=win.scrollHeight;return d;}
+async function callAI(q){const m=[{role:"system",content:"You are Signix AI for KSL. Be concise."},...hist.slice(-6),{role:"user",content:q}];const r=await fetch("https://text.pollinations.ai/openai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"openai",messages:m,temperature:0.7,max_tokens:350})});const j=await r.json();return j.choices[0].message.content;}
+async function send(){const q=inp.value.trim();if(!q)return;bub(q,'user');hist.push({role:"user",content:q});inp.value='';const t=bub('Thinking...','ai');btn.disabled=true;try{const a=await callAI(q);t.textContent=a;hist.push({role:"assistant",content:a});}catch{t.textContent="Offline. Try again."}finally{btn.disabled=false;}}btn.addEventListener('click',send);inp.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 </script>
 </body>
 </html>
