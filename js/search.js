@@ -1,53 +1,38 @@
-// search.js - Signix live search
+// search.js - fixed for Learn page
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('searchInput');
+  const btn = document.getElementById('searchBtn') || document.querySelector('.search-wrap button');
   if (!input) return;
 
-  const cards = document.querySelectorAll('[data-search]');
-  if (!cards.length) return;
+  const cards = () => document.querySelectorAll('[data-search], .sign-card');
 
-  const grid = cards[0].parentElement;
+  function filter() {
+    const q = input.value.toLowerCase().trim();
+    let visible = 0;
 
-  // Create no-results element
-  let noResults = document.getElementById('noResults');
-  if (!noResults) {
-    noResults = document.createElement('div');
-    noResults.id = 'noResults';
-    noResults.className = 'col-12 text-center py-5 d-none';
-    noResults.innerHTML = `
-      <span class="logo-circle mx-auto mb-3" style="width:56px;height:56px"><img src="image/SIGNIX.png" alt=""></span>
-      <h6 class="fw-bold">No results for "<span id="qText"></span>"</h6>
-      <p class="small text-secondary mb-0">Try "Karibu", "Asante" or a creator name</p>`;
-    grid.appendChild(noResults);
-  }
-  const qText = document.getElementById('qText');
+    cards().forEach(card => {
+      const hay = (card.getAttribute('data-search') || card.textContent || '').toLowerCase();
+      const match = !q || hay.includes(q);
+      const col = card.closest('.col-12, .col-sm-6, .col-lg-4, [class*="col-"]') || card;
+      col.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
 
-  let debounce;
-  input.addEventListener('input', () => {
-    clearTimeout(debounce);
-    debounce = setTimeout(() => {
-      const q = input.value.toLowerCase().trim();
-      let visible = 0;
-
-      cards.forEach(card => {
-        const hay = (card.getAttribute('data-search') || card.textContent).toLowerCase();
-        const match =!q || hay.includes(q);
-        card.style.display = match? '' : 'none';
-        if (match) visible++;
-      });
-
-      const showEmpty = q && visible === 0;
-      noResults.classList.toggle('d-none',!showEmpty);
-      if (qText) qText.textContent = q;
-    }, 120);
-  });
-
-  // ESC to clear
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      input.value = '';
-      input.dispatchEvent(new Event('input'));
-      input.blur();
+    let no = document.getElementById('noResults');
+    if (!no && document.querySelector('.row.g-3, #learnGrid')) {
+      no = document.createElement('div');
+      no.id = 'noResults';
+      no.className = 'col-12 text-center py-5';
+      no.innerHTML = `<span class="logo-circle lg mx-auto mb-3"><img src="image/SIGNIX.png"></span><h6>No results for "${q}"</h6>`;
+      (document.querySelector('.row.g-3') || document.body).appendChild(no);
     }
-  });
+    if (no) {
+      no.style.display = (q && visible === 0) ? '' : 'none';
+      if (q) no.querySelector('h6').textContent = `No results for "${q}"`;
+    }
+  }
+
+  input.addEventListener('input', filter);
+  btn?.addEventListener('click', (e) => { e.preventDefault(); filter(); });
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); filter(); } });
 });
