@@ -21,7 +21,7 @@ h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
 .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.35rem;color:var(--dark);text-decoration:none}
 .btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.22)}
 .eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:999px;display:inline-block}
-.search-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:999px;padding:6px;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.search-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:999px;padding:6px;box-shadow:0 8px 24px rgba(15,23,42,.05);position:relative;z-index:2}
 .search-wrap .form-control{border:0;box-shadow:none;background:transparent}
 .filter-pill{border:1px solid #E2E8F0;background:#fff;border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:500;white-space:nowrap;transition:.15s}
 .filter-pill.active,.filter-pill:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
@@ -90,13 +90,13 @@ h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
 <section class="py-4 py-lg-5">
   <div class="container">
     <div class="p-4 p-lg-5 rounded-5 text-white position-relative overflow-hidden" style="background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 50%,#1E3A8A 100%)">
-      <div class="position-absolute" style="inset:-1px;background:radial-gradient(600px 300px at 15% 0%,rgba(124,58,237,.45),transparent),radial-gradient(600px 300px at 85% 100%,rgba(16,185,129,.35),transparent)"></div>
+      <div class="position-absolute" style="inset:-1px;background:radial-gradient(600px 300px at 15% 0%,rgba(124,58,237,.45),transparent),radial-gradient(600px 300px at 85% 100%,rgba(16,185,129,.35),transparent);pointer-events:none"></div>
       <div class="row align-items-center g-4" style="position:relative;z-index:1">
         <div class="col-lg-7">
           <div class="d-flex align-items-center gap-3 mb-3"><span class="logo-circle lg"><img src="image/SIGNIX.png" alt="Signix logo"></span><span class="eyebrow" style="background:rgba(255,255,255,.12);color:#C4B5FD;border:1px solid rgba(255,255,255,.15)">KSL • Learn Mode</span></div>
           <h1 class="display-6 fw-bold lh-1">Learn Kenyan<br>Sign Language</h1>
           <p class="text-white-50 mt-3 mb-4" style="max-width:480px">1,500+ signs documented with handshape, movement and regional variants.</p>
-          <div class="search-wrap d-flex align-items-center"><i class="bi bi-search ms-3 text-secondary"></i><input id="searchInput" class="form-control" placeholder="Search Asante, maji, school, family..."><button class="btn btn-gradient rounded-pill px-4">Search</button></div>
+          <div class="search-wrap d-flex align-items-center"><i class="bi bi-search ms-3 text-secondary"></i><input id="searchInput" class="form-control" placeholder="Search Asante, maji, school, family..."><button id="searchBtn" type="button" class="btn btn-gradient rounded-pill px-4">Search</button></div>
         </div>
         <div class="col-lg-5">
           <div class="bg-white text-dark rounded-4 p-3 p-md-4 shadow-lg">
