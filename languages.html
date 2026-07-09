@@ -4,111 +4,176 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All sign languages — Signix</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="SIGNIX.png" type="image/png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
+body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
+h1,h2,h3,h4,.logo{font-family:'Space Grotesk',sans-serif}
+.navbar{backdrop-filter:blur(12px);background:rgba(255,255,255,.92)!important}
+.logo{font-weight:700;font-size:1.3rem;text-decoration:none;color:var(--dark);display:inline-flex;align-items:center;gap:10px}
+.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;box-shadow:0 4px 12px rgba(15,23,42,.06);display:grid;place-items:center;overflow:hidden;flex:0 0 40px}
+.logo-circle img{width:68%;height:68%;object-fit:contain}
+.logo-circle.sm{width:28px;height:28px}.logo-circle.xs{width:22px;height:22px}.logo-circle.lg{width:56px;height:56px}
+.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.22)}
+.btn-gradient:hover{filter:brightness(1.05);color:#fff;transform:translateY(-1px)}
+.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:999px;display:inline-block}
+.page-hero{background:radial-gradient(700px 320px at 10% -20%,rgba(124,58,237,.14),transparent),radial-gradient(600px 300px at 90% 0%,rgba(16,185,129,.16),transparent),#fff;border-bottom:1px solid #EEF2FF}
+.search-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:999px;padding:6px 6px 6px 16px;box-shadow:0 8px 24px rgba(15,23,42,.05);display:flex;align-items:center;gap:8px}
+.search-wrap input{border:0;box-shadow:none;background:transparent;flex:1}
+.filter-chip{border:1px solid #E2E8F0;background:#fff;border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:500;transition:.15s}
+.filter-chip.active,.filter-chip:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+.lang-card{border:1px solid #E9ECF6;border-radius:18px;background:#fff;padding:18px;transition:.2s;height:100%;position:relative;overflow:hidden}
+.lang-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,23,42,.08);border-color:#DDD6FE}
+.lang-card.is-live{border-color:#BFDBFE;background:linear-gradient(180deg,#EFF6FF 0%,#fff 65%);box-shadow:0 8px 24px rgba(37,99,235,.06)}
+.badge-live{font-size:.68rem;background:#DBEAFE;color:var(--blue);border:1px solid #BFDBFE;padding:4px 9px;border-radius:999px;font-weight:700}
+.badge-soon{font-size:.68rem;background:#F1F5F9;color:#64748B;padding:4px 9px;border-radius:999px;font-weight:600}
+.code{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--dark);letter-spacing:.02em}
+.menu-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
+.menu-link:hover{background:#F1F5F9}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
+.ai-highlight{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:16px;padding:14px}
+.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem}.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;margin-left:auto;border-bottom-right-radius:6px}
+footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
+</style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <a href="index.html" class="logo"><span class="dot"></span>Signix</a>
-    <ul class="nav-links">
-      <li><a href="learn.html">Learn</a></li>
-      <li><a href="languages.html" class="active">Languages</a></li>
-      <li><a href="creators.html">Creators</a></li>
-      <li><a href="upload.html">Upload</a></li>
-      <li><a href="about.html">About</a></li>
+<nav class="navbar sticky-top border-bottom">
+  <div class="container py-2 d-flex align-items-center gap-2">
+    <button class="btn btn-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
+    <a href="index.html" class="logo ms-1"><span class="logo-circle"><img src="SIGNIX.png" alt="Signix"></span>Signix</a>
+    <ul class="navbar-nav d-none d-lg-flex flex-row mx-auto gap-1">
+      <li class="nav-item"><a class="nav-link px-3" href="learn.html">Learn</a></li>
+      <li class="nav-item"><a class="nav-link active fw-bold px-3" style="color:var(--blue)" href="languages.html">Languages</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="creators.html">Creators</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="upload.html">Upload</a></li>
+      <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
     </ul>
-    <div class="nav-cta">
-      <a href="upload.html" class="btn btn-ghost">Log in</a>
-      <a href="upload.html" class="btn btn-primary">Upload a sign</a>
+    <div class="ms-auto d-flex gap-2">
+      <button class="btn btn-light rounded-pill px-3 d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#aiBot"><i class="bi bi-robot me-1"></i> AI Bot</button>
+      <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload a sign</a>
     </div>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </nav>
-</header>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-start" id="sideMenu" style="width:330px">
+  <div class="offcanvas-header border-bottom">
+    <a href="index.html" class="logo"><span class="logo-circle sm"><img src="SIGNIX.png" alt=""></span>Signix</a>
+    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+    <a href="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home</a>
+    <a href="learn.html" class="menu-link"><i class="bi bi-book fs-5" style="color:var(--blue)"></i> Learn KSL</a>
+    <a href="languages.html" class="menu-link active"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
+    <a href="creators.html" class="menu-link"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
+    <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
+    <a href="about.html" class="menu-link"><i class="bi bi-info-circle fs-5"></i> About</a>
+    <hr class="my-4">
+    <div class="ai-highlight">
+      <div class="fw-bold d-flex align-items-center gap-2 mb-2"><span class="logo-circle sm"><img src="SIGNIX.png" alt=""></span> AI Assistant <span class="badge bg-success rounded-pill ms-auto">NEW</span></div>
+      <p class="small text-secondary mb-3">Ask which language to launch next or how a language gets verified.</p>
+      <button id="openAiBot" class="btn btn-gradient w-100 rounded-pill"><i class="bi bi-stars me-2"></i>Open AI Bot</button>
+    </div>
+    <div class="mt-auto p-3 bg-light rounded-4 border small d-flex align-items-center gap-2"><span class="logo-circle xs"><img src="SIGNIX.png" alt=""></span> 18 languages tracked • 1 live</div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
+  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,var(--blue),var(--violet))"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="SIGNIX.png" alt=""></span> Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
+  <div class="offcanvas-body d-flex flex-column p-0">
+    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Jambo! Search for ASL, BSL, or ask how a new language gets launched.</div></div>
+    <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask about a language..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
+  </div>
+</div>
 
 <main>
-  <section class="page-hero">
-    <div class="wrap">
-      <h1>Every sign language, tracked in one place.</h1>
-      <p>KSL is live. Every other language below is on the roadmap — reach out if you're fluent and want to help launch one.</p>
-    </div>
-  </section>
-
-  <section style="padding: 44px 0 100px;">
-    <div class="wrap">
-      <div class="filter-bar">
-        <input type="text" class="search-input" placeholder="Search by name or code, e.g. ASL" data-lang-search aria-label="Search sign languages">
-        <button class="filter-chip active" data-lang-filter="all">All</button>
-        <button class="filter-chip" data-lang-filter="live">Live</button>
-        <button class="filter-chip" data-lang-filter="soon">Coming soon</button>
+<section class="page-hero py-5">
+  <div class="container py-3">
+    <div class="row align-items-end g-4">
+      <div class="col-lg-7">
+        <span class="eyebrow mb-3 d-inline-flex align-items-center gap-2"><span class="logo-circle xs"><img src="SIGNIX.png" alt=""></span> Directory • 18 tracked</span>
+        <h1 class="display-6 fw-bold" style="line-height:1.05">Every sign language,<br><span class="text-gradient">tracked in one place.</span></h1>
+        <p class="text-secondary fs-5 mt-3" style="max-width:560px">KSL is live. Every other language below is on the roadmap. Reach out if you are fluent and want to help launch one.</p>
       </div>
-      <p class="result-count" data-result-count></p>
-
-      <div class="lang-grid">
-        <div class="lang-card is-live" data-name="Kenyan Sign Language" data-code="KSL" data-status="live"><span class="badge live">● live</span><span class="name">Kenyan Sign Language</span><span class="code">KSL</span></div>
-        <div class="lang-card" data-name="American Sign Language" data-code="ASL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">American Sign Language</span><span class="code">ASL</span></div>
-        <div class="lang-card" data-name="British Sign Language" data-code="BSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">British Sign Language</span><span class="code">BSL</span></div>
-        <div class="lang-card" data-name="South African Sign Language" data-code="SASL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">South African Sign Language</span><span class="code">SASL</span></div>
-        <div class="lang-card" data-name="Nigerian Sign Language" data-code="NSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Nigerian Sign Language</span><span class="code">NSL</span></div>
-        <div class="lang-card" data-name="French Sign Language" data-code="LSF" data-status="soon"><span class="badge soon">coming soon</span><span class="name">French Sign Language</span><span class="code">LSF</span></div>
-        <div class="lang-card" data-name="Japanese Sign Language" data-code="JSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Japanese Sign Language</span><span class="code">JSL</span></div>
-        <div class="lang-card" data-name="Auslan" data-code="AUS" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Auslan</span><span class="code">AUS</span></div>
-        <div class="lang-card" data-name="Indian Sign Language" data-code="ISL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Indian Sign Language</span><span class="code">ISL</span></div>
-        <div class="lang-card" data-name="Ethiopian Sign Language" data-code="EthSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Ethiopian Sign Language</span><span class="code">EthSL</span></div>
-        <div class="lang-card" data-name="Ugandan Sign Language" data-code="USL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Ugandan Sign Language</span><span class="code">USL</span></div>
-        <div class="lang-card" data-name="Chinese Sign Language" data-code="CSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Chinese Sign Language</span><span class="code">CSL</span></div>
-        <div class="lang-card" data-name="German Sign Language" data-code="DGS" data-status="soon"><span class="badge soon">coming soon</span><span class="name">German Sign Language</span><span class="code">DGS</span></div>
-        <div class="lang-card" data-name="Brazilian Sign Language" data-code="Libras" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Brazilian Sign Language</span><span class="code">Libras</span></div>
-        <div class="lang-card" data-name="Tanzanian Sign Language" data-code="TSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Tanzanian Sign Language</span><span class="code">TSL</span></div>
-        <div class="lang-card" data-name="Ghanaian Sign Language" data-code="GSL" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Ghanaian Sign Language</span><span class="code">GSL</span></div>
-        <div class="lang-card" data-name="Mexican Sign Language" data-code="LSM" data-status="soon"><span class="badge soon">coming soon</span><span class="name">Mexican Sign Language</span><span class="code">LSM</span></div>
-        <div class="lang-card" data-name="International Sign" data-code="IS" data-status="soon"><span class="badge soon">coming soon</span><span class="name">International Sign</span><span class="code">IS</span></div>
-      </div>
-
-      <div class="upload-cta" style="margin-top:44px;">
-        <div><h3>Don't see your sign language?</h3><p>Signix grows through fluent signers who volunteer to seed a new language's first lessons. Tell us which one to launch next.</p></div>
-        <a href="about.html" class="btn btn-primary btn-lg">Request a language</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="logo"><span class="dot"></span>Signix</a>
-        <p>A reference and creator platform for sign languages, starting with KSL.</p>
-      </div>
-      <div class="footer-col"><h4>Platform</h4><ul>
-        <li><a href="learn.html">Learn KSL</a></li>
-        <li><a href="languages.html">All languages</a></li>
-        <li><a href="creators.html">Creator feed</a></li>
-        <li><a href="upload.html">Upload a sign</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Community</h4><ul>
-        <li><a href="about.html">About Signix</a></li>
-        <li><a href="about.html">Creator guidelines</a></li>
-        <li><a href="about.html">Moderation &amp; safety</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Support</h4><ul>
-        <li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li>
-        <li><a href="tel:+254790357975">0790 357 975</a></li>
-      </ul></div>
-    </div>
-    <div class="footer-bottom">
-      <div class="credit">Made by <b>NEXORA TECHNOLOGIES</b></div>
-      <div class="footer-contact">
-        <a href="tel:+254790357975">0790357975</a>
-        <a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a>
+      <div class="col-lg-5">
+        <div class="search-wrap">
+          <i class="bi bi-search text-secondary"></i>
+          <input type="text" id="langSearch" class="form-control" placeholder="Search by name or code, e.g. ASL" aria-label="Search sign languages">
+          <button class="btn btn-gradient rounded-pill px-3" id="clearSearch">Clear</button>
+        </div>
+        <div class="d-flex gap-2 mt-3 flex-wrap">
+          <button class="filter-chip active" data-lang-filter="all">All</button>
+          <button class="filter-chip" data-lang-filter="live"><span class="bg-success rounded-circle d-inline-block me-1" style="width:7px;height:7px"></span>Live</button>
+          <button class="filter-chip" data-lang-filter="soon">Coming soon</button>
+        </div>
+        <div class="small text-secondary mt-2" id="resultCount">Showing 18 languages</div>
       </div>
     </div>
   </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3 g-md-4" id="langGrid">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Kenyan Sign Language" data-code="KSL" data-status="live"><div class="lang-card is-live h-100"><div class="d-flex justify-content-between align-items-start mb-3"><span class="badge-live">● live</span><span class="logo-circle xs"><img src="SIGNIX.png" alt=""></span></div><div class="d-flex align-items-center gap-3 mb-2"><span class="logo-circle" style="background:#DBEAFE;color:var(--blue);font-weight:700">KSL</span><div><div class="fw-bold">Kenyan Sign Language</div><div class="code small">KSL • Kenya</div></div></div><div class="small text-secondary">1,500+ signs • Verified creators • 100% captioned</div><a href="learn.html" class="btn btn-dark rounded-pill w-100 mt-3 btn-sm">Open KSL <i class="bi bi-arrow-right ms-1"></i></a></div></div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="American Sign Language" data-code="ASL" data-status="soon"><div class="lang-card h-100"><div class="d-flex justify-content-between mb-3"><span class="badge-soon">coming soon</span><span class="code small">ASL</span></div><div class="fw-semibold">American Sign Language</div><div class="small text-secondary mt-1">United States • Request launch</div><button class="btn btn-light border rounded-pill w-100 mt-3 btn-sm">Notify me</button></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="British Sign Language" data-code="BSL" data-status="soon"><div class="lang-card h-100"><div class="d-flex justify-content-between mb-3"><span class="badge-soon">coming soon</span><span class="code small">BSL</span></div><div class="fw-semibold">British Sign Language</div><div class="small text-secondary mt-1">United Kingdom</div><button class="btn btn-light border rounded-pill w-100 mt-3 btn-sm">Notify me</button></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="South African Sign Language" data-code="SASL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">South African Sign Language</div><div class="code small">SASL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Nigerian Sign Language" data-code="NSL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Nigerian Sign Language</div><div class="code small">NSL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="French Sign Language" data-code="LSF" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">French Sign Language</div><div class="code small">LSF</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Japanese Sign Language" data-code="JSL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Japanese Sign Language</div><div class="code small">JSL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Auslan" data-code="AUS" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Auslan</div><div class="code small">AUS</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Indian Sign Language" data-code="ISL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Indian Sign Language</div><div class="code small">ISL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Ethiopian Sign Language" data-code="EthSL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Ethiopian Sign Language</div><div class="code small">EthSL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Ugandan Sign Language" data-code="USL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Ugandan Sign Language</div><div class="code small">USL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Chinese Sign Language" data-code="CSL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Chinese Sign Language</div><div class="code small">CSL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="German Sign Language" data-code="DGS" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">German Sign Language</div><div class="code small">DGS</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Brazilian Sign Language" data-code="Libras" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Brazilian Sign Language</div><div class="code small">Libras</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Tanzanian Sign Language" data-code="TSL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Tanzanian Sign Language</div><div class="code small">TSL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Ghanaian Sign Language" data-code="GSL" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Ghanaian Sign Language</div><div class="code small">GSL</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="Mexican Sign Language" data-code="LSM" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">Mexican Sign Language</div><div class="code small">LSM</div></div></div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 lang-item" data-name="International Sign" data-code="IS" data-status="soon"><div class="lang-card h-100"><span class="badge-soon mb-3 d-inline-block">coming soon</span><div class="fw-semibold">International Sign</div><div class="code small">IS</div></div></div>
+    </div>
+
+    <div class="p-4 p-md-5 mt-5 rounded-5 position-relative overflow-hidden" style="background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 50%,#1E3A8A 100%)">
+      <div class="position-absolute" style="inset:-1px;background:radial-gradient(500px 280px at 20% 0%,rgba(124,58,237,.45),transparent),radial-gradient(500px 280px at 80% 100%,rgba(16,185,129,.35),transparent)"></div>
+      <div class="row align-items-center g-4 position-relative" style="z-index:1">
+        <div class="col-lg-7 text-white d-flex gap-3"><span class="logo-circle lg bg-white"><img src="SIGNIX.png" alt=""></span><div><h3 class="fw-bold mb-1">Don't see your sign language?</h3><p class="text-white-50 mb-0">Signix grows through fluent signers who volunteer to seed a new language's first lessons. Tell us which one to launch next.</p></div></div>
+        <div class="col-lg-5 d-flex justify-content-lg-end gap-2"><a href="about.html" class="btn btn-gradient btn-lg rounded-pill px-4">Request a language</a><a href="mailto:info@nexora.co.ke" class="btn btn-outline-light btn-lg rounded-pill px-4">Email</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4 pb-4 border-bottom border-secondary border-opacity-25">
+      <div class="col-lg-4"><a href="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="SIGNIX.png" alt=""></span><span class="text-white">Signix</span></a><p class="small mt-3 pe-lg-4">A reference and creator platform for sign languages, starting with KSL.</p></div>
+      <div class="col-6 col-lg-2"><h6 class="text-white small text-uppercase fw-bold">Platform</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="learn.html">Learn KSL</a></li><li><a href="languages.html">All languages</a></li><li><a href="creators.html">Creator feed</a></li><li><a href="upload.html">Upload</a></li></ul></div>
+      <div class="col-6 col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Community</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="about.html">About</a></li><li><a href="#">Guidelines</a></li><li><a href="#">Safety</a></li></ul></div>
+      <div class="col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Support</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li><li><a href="tel:+254790357975">0790 357 975</a></li></ul></div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-between pt-3 small"><div>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></div><div class="d-flex align-items-center gap-2"><span class="logo-circle xs bg-white"><img src="SIGNIX.png" alt=""></span>info@nexora.co.ke</div></div>
+  </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const sideEl=document.getElementById('sideMenu'),botEl=document.getElementById('aiBot');
+document.getElementById('openAiBot').addEventListener('click',()=>{const s=bootstrap.Offcanvas.getInstance(sideEl)||new bootstrap.Offcanvas(sideEl);s.hide();setTimeout(()=>new bootstrap.Offcanvas(botEl).show(),300)});
+const chatW=document.getElementById('chatWindow'),chatI=document.getElementById('chatInput'),sendB=document.getElementById('sendBtn');
+function addM(t,w){const d=document.createElement('div');d.className='bot-bubble '+w;d.textContent=t;chatW.appendChild(d);chatW.scrollTop=chatW.scrollHeight}
+function botR(q){const t=q.toLowerCase();if(t.includes('launch'))return 'To launch a new language we need 3 fluent volunteer creators and a Deaf moderator. Email info@nexora.co.ke with your language.';return 'Search above for any code like ASL, BSL, or ask how KSL was launched.'}
+function send(){const v=chatI.value.trim();if(!v)return;addM(v,'user');chatI.value='';setTimeout(()=>addM(botR(v),'ai'),500)}sendB.addEventListener('click',send);chatI.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+
+const search=document.getElementById('langSearch'),grid=document.getElementById('langGrid'),chips=document.querySelectorAll('[data-lang-filter]'),count=document.getElementById('resultCount'),clear=document.getElementById('clearSearch');
+let active='all';
+function apply(){const q=search.value.toLowerCase().trim();let visible=0;grid.querySelectorAll('.lang-item').forEach(el=>{const name=el.dataset.name.toLowerCase(),code=el.dataset.code.toLowerCase(),status=el.dataset.status;const matchesSearch=!q||name.includes(q)||code.includes(q);const matchesFilter=active==='all'||status===active;const show=matchesSearch&&matchesFilter;el.style.display=show?'':'none';if(show)visible++});count.textContent=`Showing ${visible} language${visible!==1?'s':''}${q?` for "${search.value}"`:''}`;}
+search.addEventListener('input',apply);chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('active'));c.classList.add('active');active=c.dataset.langFilter;apply()}));clear.addEventListener('click',()=>{search.value='';apply();search.focus()});apply();
+</script>
 </body>
 </html>
