@@ -30,7 +30,6 @@ h1,h2,h3,h4,.logo{font-family:'Space Grotesk',sans-serif}
 .form-control,.form-select{border-radius:12px;padding:11px 14px;border-color:#E2E8F0}
 .menu-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
 .menu-link:hover{background:#F1F5F9}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
-.ai-highlight{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:16px;padding:14px}
 footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
 .progress{height:8px;border-radius:999px;background:#E2E8F0}
 </style>
@@ -72,9 +71,9 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
 <main>
 <section class="page-hero py-5">
   <div class="container py-2">
-    <span class="eyebrow mb-3"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Cloudinary upload ready</span>
+    <span class="eyebrow mb-3"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Creator upload • Signix library</span>
     <h1 class="display-6 fw-bold">Teach a sign.</h1>
-    <p class="text-secondary">Video uploads directly to https://api.cloudinary.com/v1_1/dvtlbpkly/video/upload</p>
+    <p class="text-secondary">Upload your clip to Signix. It will be reviewed before going live.</p>
   </div>
 </section>
 
@@ -95,26 +94,26 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
         </div>
         <input type="file" id="video-file" accept="video/*" hidden>
         <div class="mt-3 p-3 bg-white border rounded-4 d-none" id="progressWrap">
-          <div class="d-flex justify-content-between small fw-semibold mb-2"><span>Uploading...</span><span id="progressText">0%</span></div>
+          <div class="d-flex justify-content-between small fw-semibold mb-2"><span>Uploading to Signix...</span><span id="progressText">0%</span></div>
           <div class="progress"><div class="progress-bar" id="progressBar" style="width:0%;background:linear-gradient(90deg,var(--blue),var(--violet))"></div></div>
           <div class="small text-secondary mt-2" id="uploadStatus"></div>
-        </div>
-        <div class="alert alert-light border rounded-4 mt-3 d-none" id="urlBox">
-          <div class="small text-break" id="cloudinaryUrl"></div>
-          <a href="#" target="_blank" id="cloudinaryLink" class="btn btn-sm btn-dark rounded-pill mt-2">Open video</a>
         </div>
       </div>
       <div class="col-lg-6">
         <form id="upload-form" class="form-card">
           <div class="d-flex align-items-center gap-2 mb-3"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span><h5 class="fw-bold mb-0">Clip details</h5></div>
+
+          <div class="mb-3"><label class="form-label small fw-semibold">Signer's username *</label><input type="text" id="signer-username" class="form-control" placeholder="e.g. @wambui.p" required></div>
           <div class="mb-3"><label class="form-label small fw-semibold">Sign or phrase *</label><input type="text" id="sign-word" class="form-control" placeholder="e.g. Karibu" required></div>
+
           <div class="row g-3">
-            <div class="col-sm-6"><label class="form-label small fw-semibold">Language</label><select id="language" class="form-select"><option value="ksl" selected>KSL</option><option>Other</option></select></div>
-            <div class="col-sm-6"><label class="form-label small fw-semibold">Category</label><select id="category" class="form-select"><option>Greetings</option><option>Family</option><option>Numbers</option></select></div>
+            <div class="col-sm-6"><label class="form-label small fw-semibold">Language name *</label><input type="text" id="language-name" class="form-control" value="KSL" placeholder="e.g. KSL" required></div>
+            <div class="col-sm-6"><label class="form-label small fw-semibold">Category</label><select id="category" class="form-select"><option>Greetings</option><option>Family</option><option>Numbers</option><option>Classroom</option><option>Culture</option><option>Other</option></select></div>
           </div>
-          <div class="mt-3"><label class="form-label small fw-semibold">Description</label><textarea id="description" class="form-control" rows="3"></textarea></div>
-          <div class="d-grid mt-4"><button type="submit" id="submitBtn" class="btn btn-gradient btn-lg rounded-pill">Upload to Cloudinary</button></div>
-          <div class="alert alert-success rounded-4 mt-3 d-none" id="successBox">Uploaded!</div>
+
+          <div class="mt-3"><label class="form-label small fw-semibold">Description</label><textarea id="description" class="form-control" rows="3" placeholder="Context, example sentence"></textarea></div>
+          <div class="d-grid mt-4"><button type="submit" id="submitBtn" class="btn btn-gradient btn-lg rounded-pill">Upload to Signix</button></div>
+          <div class="alert alert-success rounded-4 mt-3 d-none" id="successBox">Uploaded to Signix! A moderator will review it shortly.</div>
           <div class="alert alert-danger rounded-4 mt-3 d-none" id="errorBox"></div>
         </form>
       </div>
