@@ -16,11 +16,14 @@ h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif}
 .side-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;color:#334155;text-decoration:none;font-weight:600}
 .side-link.active{background:var(--dark);color:#fff}
 .stat-card{background:#fff;border:2px solid #E2E8F0;border-radius:16px;padding:14px;text-align:center;min-width:90px}
-.drop-zone{border:2px dashed #CBD5E1;border-radius:20px;background:#fff;padding:22px;text-align:center;transition:.2s;cursor:pointer}
-.drop-zone.dragover{border-color:var(--blue);background:#EFF6FF;transform:scale(1.01)}
-.drop-zone img,.drop-zone video{max-width:100%;max-height:260px;border-radius:14px;margin-top:14px;display:block;margin-inline:auto}
+.drop-zone{border:2px dashed #CBD5E1;border-radius:24px;background:#fff;padding:28px 20px;text-align:center;transition:.2s;cursor:pointer;position:relative}
+.drop-zone.dragover{border-color:var(--blue);background:#EFF6FF;transform:scale(1.01);border-style:solid}
+.plus-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--violet));display:grid;place-items:center;margin:0 auto;box-shadow:0 10px 24px rgba(37,99,235,.3);transition:.2s}
+.drop-zone:hover .plus-circle{transform:scale(1.06)}
+.drop-zone img,.drop-zone video{max-width:100%;max-height:280px;border-radius:14px;margin-top:16px;display:block;margin-inline:auto}
 .video-card{background:#fff;border-radius:20px;overflow:hidden;border:2px solid #E2E8F0;box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .video-card img,.video-card video{width:100%;height:240px;object-fit:cover;background:#000;display:block}
+@media(max-width:768px){.plus-circle{width:84px;height:84px}.drop-zone{padding:32px 18px}}
 </style>
 </head>
 <body>
@@ -52,24 +55,24 @@ h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif}
     <div class="col-lg-4">
       <div class="bg-white border border-2 rounded-4 p-4">
         <h5 class="fw-bold">Upload New Sign</h5>
-        <p class="small text-secondary mb-3">Works on any phone or laptop. Photo or video.</p>
+        <p class="small text-secondary mb-3">Photo or video from any device.</p>
         <form id="uploadForm" class="d-grid gap-3">
           <input id="vWord" class="form-control form-control-lg rounded-3" placeholder="Word e.g. Asante" required>
           <textarea id="vDesc" class="form-control rounded-3" rows="2" placeholder="Meaning / how to sign it"></textarea>
 
-          <!-- UNIVERSAL DROP ZONE -->
+          <!-- DRAG & DROP + PLUS FOR PHONE -->
           <div id="dropZone" class="drop-zone">
-            <i class="bi bi-cloud-arrow-up fs-2" style="color:var(--blue)"></i>
-            <div class="fw-bold mt-2">Tap to choose or drag & drop</div>
-            <div class="small text-secondary">Image (JPG, PNG) or Video (MP4, MOV, WEBM) • Max 15MB</div>
+            <div class="plus-circle"><i class="bi bi-plus-lg fs-1 text-white"></i></div>
+            <div class="fw-bold mt-3 fs-6">Tap + to add</div>
+            <div class="small text-secondary mt-1">Drag & drop or choose photo / video<br><span class="d-none d-md-inline">JPG, PNG, MP4, MOV, WEBM • Max 15MB</span><span class="d-md-none">Works with camera & gallery</span></div>
             <div id="preview"></div>
             <input id="vFile" type="file" accept="image/*,video/*" hidden>
           </div>
 
-          <!-- Phone quick actions -->
+          <!-- Quick camera buttons - still available but secondary -->
           <div class="d-flex gap-2">
-            <button type="button" class="btn btn-light border rounded-pill flex-fill" onclick="document.getElementById('camImage').click()"><i class="bi bi-camera me-1"></i> Take Photo</button>
-            <button type="button" class="btn btn-light border rounded-pill flex-fill" onclick="document.getElementById('camVideo').click()"><i class="bi bi-camera-video me-1"></i> Record Video</button>
+            <button type="button" class="btn btn-light border rounded-pill flex-fill" onclick="document.getElementById('camImage').click()"><i class="bi bi-camera me-1"></i> Camera</button>
+            <button type="button" class="btn btn-light border rounded-pill flex-fill" onclick="document.getElementById('camVideo').click()"><i class="bi bi-camera-video me-1"></i> Video</button>
           </div>
           <input id="camImage" type="file" accept="image/*" capture="environment" hidden>
           <input id="camVideo" type="file" accept="video/*" capture="environment" hidden>
@@ -77,7 +80,6 @@ h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif}
           <button id="publishBtn" class="btn btn-dark rounded-pill py-2 fw-bold" type="submit">Publish</button>
           <div id="formMsg" class="small text-center"></div>
         </form>
-        <div class="small text-secondary mt-3"><i class="bi bi-info-circle me-1"></i> Stored locally for demo. For true cross-device sharing, connect Firebase/Supabase later.</div>
       </div>
     </div>
 
@@ -109,12 +111,12 @@ const formMsg=document.getElementById('formMsg');
 
 function handleFile(f){
   if(!f) return;
-  if(f.size > 15*1024*1024){ formMsg.textContent='File too big (max 15MB for local demo).'; formMsg.className='small text-danger text-center'; return; }
+  if(f.size > 15*1024*1024){ formMsg.textContent='File too big (max 15MB).'; formMsg.className='small text-danger text-center'; return; }
   selectedFile=f;
   const isImg=f.type.startsWith('image/');
   const url=URL.createObjectURL(f);
-  preview.innerHTML = isImg? `<img src="${url}">` : `<video src="${url}" controls muted playsinline></video><div class="small mt-2 fw-semibold">${f.name}</div>`;
-  formMsg.textContent = `${isImg?'Image':'Video'} ready: ${f.name}`;
+  preview.innerHTML = isImg? `<img src="${url}">` : `<video src="${url}" controls muted playsinline></video><div class="small mt-2 fw-semibold text-truncate">${f.name}</div>`;
+  formMsg.textContent = `${isImg?'Image':'Video'} ready`;
   formMsg.className='small text-success text-center';
 }
 
@@ -123,7 +125,6 @@ vFile.addEventListener('change',e=>handleFile(e.target.files[0]));
 document.getElementById('camImage').addEventListener('change',e=>handleFile(e.target.files[0]));
 document.getElementById('camVideo').addEventListener('change',e=>handleFile(e.target.files[0]));
 
-// Drag & Drop for desktop
 ['dragenter','dragover'].forEach(ev=>dropZone.addEventListener(ev,e=>{e.preventDefault();dropZone.classList.add('dragover')}));
 ['dragleave','drop'].forEach(ev=>dropZone.addEventListener(ev,e=>{e.preventDefault();dropZone.classList.remove('dragover')}));
 dropZone.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f) handleFile(f); });
@@ -138,7 +139,7 @@ function render(){
   document.getElementById('sViews').textContent=mine.reduce((a,b)=>a+(b.views||0),0);
   document.getElementById('countBadge').textContent=mine.length+' items';
   const grid=document.getElementById('myGrid'); grid.innerHTML='';
-  if(!mine.length){grid.innerHTML='<div class="col-12"><div class="bg-white border-2 border rounded-4 p-5 text-center"><i class="bi bi-images fs-1 text-secondary"></i><p class="fw-bold mt-2 mb-1">No uploads yet</p><p class="small text-secondary">Upload a photo or video from your phone or laptop.</p></div></div>';return;}
+  if(!mine.length){grid.innerHTML='<div class="col-12"><div class="bg-white border-2 border rounded-4 p-5 text-center"><i class="bi bi-images fs-1 text-secondary"></i><p class="fw-bold mt-2 mb-1">No uploads yet</p><p class="small text-secondary">Tap + to upload your first photo or video.</p></div></div>';return;}
   mine.forEach(v=>{
     const col=document.createElement('div'); col.className='col-md-6';
     const media = v.isImage? `<img src="${v.url}" onclick="addView('${v.id}')" style="cursor:pointer">` : `<video src="${v.url}" controls playsinline onplay="addView('${v.id}')"></video>`;
@@ -161,15 +162,15 @@ document.getElementById('commentSend').onclick=()=>{const t=document.getElementB
 
 document.getElementById('uploadForm').addEventListener('submit', e=>{
   e.preventDefault();
-  if(!selectedFile){formMsg.textContent='Please choose an image or video.';formMsg.className='small text-danger text-center';return;}
+  if(!selectedFile){formMsg.textContent='Tap + and choose an image or video.';formMsg.className='small text-danger text-center';return;}
   const btn=document.getElementById('publishBtn'); btn.disabled=true; btn.textContent='Publishing...';
   const reader=new FileReader();
   reader.onload = ()=>{
     const dataUrl=reader.result;
     const newItem={id:Date.now().toString(),word:document.getElementById('vWord').value.trim(),desc:document.getElementById('vDesc').value.trim(),url:dataUrl,isImage:selectedFile.type.startsWith('image/'),mime:selectedFile.type,signer:user.name,signerEmail:user.email,likes:0,views:0,comments:[],createdAt:Date.now()};
     let vids=getVideos(); vids.unshift(newItem);
-    try{ saveVideos(vids); }catch(err){ formMsg.textContent='Local storage full. Delete some old uploads or use smaller files.'; formMsg.className='small text-danger text-center'; btn.disabled=false; btn.textContent='Publish'; return; }
-    e.target.reset(); preview.innerHTML=''; selectedFile=null; formMsg.textContent='Published! Check Home Feed.'; formMsg.className='small text-success text-center'; btn.disabled=false; btn.textContent='Publish';
+    try{ saveVideos(vids); }catch(err){ formMsg.textContent='Storage full. Delete some uploads.'; formMsg.className='small text-danger text-center'; btn.disabled=false; btn.textContent='Publish'; return; }
+    e.target.reset(); preview.innerHTML=''; selectedFile=null; formMsg.textContent='Published!'; formMsg.className='small text-success text-center'; btn.disabled=false; btn.textContent='Publish';
   };
   reader.readAsDataURL(selectedFile);
 });
