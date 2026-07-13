@@ -8,6 +8,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS/style.css?v=5">
+<script>
+// AUTH GUARD - must be logged in
+const _u = JSON.parse(localStorage.getItem('signix_user')||'null');
+if(!_u){ window.location.replace('auth.html'); }
+</script>
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
 body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
@@ -32,14 +38,12 @@ h1,h2,h3,h4,.logo{font-family:'Space Grotesk',sans-serif}
 .menu-link:hover{background:#F1F5F9}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
 footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
 .progress{height:8px;border-radius:999px;background:#E2E8F0}
-
-/* --- PHONE UPGRADE --- */
 @media (max-width: 768px){
- .dropzone{aspect-ratio:auto;min-height:340px;padding:20px 16px}
- .page-hero h1{font-size:2rem}
- .btn-phone{width:100%;padding:14px 20px;font-size:1rem}
+.dropzone{aspect-ratio:auto;min-height:340px;padding:20px 16px}
+.page-hero h1{font-size:2rem}
+.btn-phone{width:100%;padding:14px 20px;font-size:1rem}
   #dropContent h6{font-size:1.05rem}
- .form-card{padding:18px}
+.form-card{padding:18px}
 }
 .phone-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px;width:100%}
 .phone-hint{background:#F1F5F9;border:1px dashed #E2E8F0;border-radius:12px;padding:10px 12px;font-size:.8rem;color:#64748B}
@@ -58,33 +62,41 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
       <li class="nav-item"><a class="nav-link active fw-bold px-3" style="color:var(--blue)" href="upload.html">Upload</a></li>
       <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
     </ul>
-    <div class="ms-auto d-flex gap-2">
-      <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload a sign</a>
+    <div class="ms-auto d-flex gap-2 align-items-center">
+      <span id="navUser" class="small fw-semibold d-none d-md-block text-secondary"></span>
+      <a href="index.html" class="btn btn-outline-dark rounded-pill px-3 d-none d-md-block">Home</a>
     </div>
   </div>
 </nav>
 
 <div class="offcanvas offcanvas-start" id="sideMenu" style="width:330px">
   <div class="offcanvas-header border-bottom">
-    <a href="index.html" class="logo"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
+    <div class="d-flex align-items-center gap-3">
+      <img id="menuAvatar" src="https://ui-avatars.com/api/?name=S&background=2563EB&color=fff" style="width:42px;height:42px;border-radius:50%">
+      <div><div id="menuName" class="fw-bold">Karibu!</div><div id="menuEmail" class="small text-secondary"></div></div>
+    </div>
     <button class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body d-flex flex-column">
-    <a href="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home</a>
+    <a href="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home Feed</a>
     <a href="learn.html" class="menu-link"><i class="bi bi-book fs-5"></i> Learn KSL</a>
     <a href="languages.html" class="menu-link"><i class="bi bi-translate fs-5"></i> Languages</a>
     <a href="creators.html" class="menu-link"><i class="bi bi-people fs-5"></i> Creators</a>
     <a href="upload.html" class="menu-link active"><i class="bi bi-cloud-upload fs-5"></i> Upload a sign</a>
     <a href="about.html" class="menu-link"><i class="bi bi-info-circle fs-5"></i> About</a>
+    <div class="mt-auto border-top pt-3">
+      <a href="#" onclick="logout()" class="menu-link text-danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+      <div class="small text-secondary mt-2 px-2">Logged in as <span id="menuEmail2"></span></div>
+    </div>
   </div>
 </div>
 
 <main>
 <section class="page-hero py-4 py-md-5">
   <div class="container py-2">
-    <span class="eyebrow mb-3"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Creator upload • Works on phone</span>
-    <h1 class="display-6 fw-bold">Teach a sign.</h1>
-    <p class="text-secondary mb-0">Record with your phone or choose from gallery. Reviewed before going live.</p>
+    <span class="eyebrow mb-3"><span class="logo-circle xs"><img src="image/SIGNIX.png" alt="Signix logo"></span> Creator upload • <span id="welcomeShort">Secure upload</span></span>
+    <h1 class="display-6 fw-bold">Teach a sign, <span id="heroName">mwalimu</span>.</h1>
+    <p class="text-secondary mb-0">Record with your phone or choose from gallery. Your upload appears in real community feed only.</p>
   </div>
 </section>
 
@@ -98,22 +110,17 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
             <span class="logo-circle lg mb-3"><img src="image/SIGNIX.png" alt="Signix logo"></span>
             <h6 class="fw-bold mb-1">Upload from phone</h6>
             <p class="small text-secondary mb-0 text-center px-2">MP4, MOV up to 100MB • Hold phone horizontally</p>
-
             <div class="phone-actions">
               <button type="button" class="btn btn-dark rounded-pill px-4 btn-phone" id="btnChoose"><i class="bi bi-images me-1"></i> Choose from Gallery</button>
               <button type="button" class="btn btn-outline-dark rounded-pill px-4 btn-phone" id="btnCamera"><i class="bi bi-camera-video me-1"></i> Record / Camera</button>
             </div>
-
             <div class="small text-secondary mt-3" id="fileMeta"></div>
             <div class="phone-hint mt-3 d-flex align-items-center gap-2"><i class="bi bi-phone"></i> On iPhone & Android, <b>Record / Camera</b> opens your camera directly</div>
           </div>
           <button class="btn btn-light border rounded-pill btn-sm position-absolute d-none" id="removeFile" style="top:12px;right:12px;z-index:2"><i class="bi bi-x-lg me-1"></i>Remove</button>
         </div>
-
-        <!-- Hidden inputs: one for gallery, one for camera -->
         <input type="file" id="video-file" accept="video/mp4,video/quicktime,video/*" hidden>
         <input type="file" id="video-camera" accept="video/*" capture="environment" hidden>
-
         <div class="mt-3 p-3 bg-white border rounded-4 d-none" id="progressWrap">
           <div class="d-flex justify-content-between small fw-semibold mb-2"><span>Uploading to Signix...</span><span id="progressText">0%</span></div>
           <div class="progress"><div class="progress-bar" id="progressBar" style="width:0%;background:linear-gradient(90deg,var(--blue),var(--violet))"></div></div>
@@ -124,20 +131,17 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
       <div class="col-lg-6">
         <form id="upload-form" class="form-card">
           <div class="d-flex align-items-center gap-2 mb-3"><span class="logo-circle sm"><img src="image/SIGNIX.png" alt="Signix logo"></span><h5 class="fw-bold mb-0">Clip details</h5></div>
-
-          <div class="mb-3"><label class="form-label small fw-semibold">Signer's username *</label><input type="text" id="signer-username" class="form-control" placeholder="e.g. school.ksl" required inputmode="text" autocomplete="username"></div>
+          <div class="mb-3"><label class="form-label small fw-semibold">Signer's username *</label><input type="text" id="signer-username" class="form-control" placeholder="e.g. school.ksl" required></div>
           <div class="mb-3"><label class="form-label small fw-semibold">Sign or phrase *</label><input type="text" id="sign-word" class="form-control" placeholder="e.g. Karibu" required></div>
-
           <div class="row g-3">
             <div class="col-6"><label class="form-label small fw-semibold">Language name *</label><input type="text" id="language-name" class="form-control" value="KSL" required></div>
             <div class="col-6"><label class="form-label small fw-semibold">Category</label><select id="category" class="form-select"><option>Greetings</option><option>Family</option><option>Numbers</option><option>Classroom</option><option>Culture</option><option>Other</option></select></div>
           </div>
-
-          <div class="mt-3"><label class="form-label small fw-semibold">Description</label><textarea id="description" class="form-control" rows="3" placeholder="Context, example sentence" enterkeyhint="done"></textarea></div>
+          <div class="mt-3"><label class="form-label small fw-semibold">Description</label><textarea id="description" class="form-control" rows="3" placeholder="Context, example sentence"></textarea></div>
           <div class="d-grid mt-4"><button type="submit" id="submitBtn" class="btn btn-gradient btn-lg rounded-pill" style="min-height:54px">Upload to Signix</button></div>
-          <div class="alert alert-success rounded-4 mt-3 d-none" id="successBox"><i class="bi bi-check-circle me-1"></i> Uploaded! A moderator will review it shortly.</div>
+          <div class="alert alert-success rounded-4 mt-3 d-none" id="successBox"><i class="bi bi-check-circle me-1"></i> Uploaded! It will appear on homepage feed.</div>
           <div class="alert alert-danger rounded-4 mt-3 d-none" id="errorBox"></div>
-          <div class="small text-secondary text-center mt-2"><i class="bi bi-shield-lock me-1"></i> Works on Android, iPhone & Desktop</div>
+          <div class="small text-secondary text-center mt-2"><i class="bi bi-shield-lock me-1"></i> Real uploads only • No fake creators</div>
         </form>
       </div>
     </div>
@@ -154,20 +158,30 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="upload.js"></script>
 <script>
-// Phone wiring - connects Gallery + Camera buttons to your upload.js
+// Fill user info
+const user = JSON.parse(localStorage.getItem('signix_user'));
+if(user){
+  document.getElementById('navUser').textContent = user.name;
+  document.getElementById('menuName').textContent = user.name;
+  document.getElementById('menuEmail').textContent = user.email;
+  document.getElementById('menuEmail2').textContent = user.email;
+  document.getElementById('heroName').textContent = user.name.split(' ')[0];
+  document.getElementById('welcomeShort').textContent = `Karibu, ${user.name.split(' ')[0]}`;
+  document.getElementById('menuAvatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=2563EB&color=fff`;
+  // Auto-fill signer field
+  const signer = document.getElementById('signer-username');
+  if(signer &&!signer.value){ signer.value = user.name.toLowerCase().replace(/\s+/g,'.') }
+}
+function logout(){ localStorage.removeItem('signix_user'); window.location.replace('auth.html'); }
+
+// Phone wiring
 const fileInput = document.getElementById('video-file');
 const camInput = document.getElementById('video-camera');
-const btnChoose = document.getElementById('btnChoose');
-const btnCamera = document.getElementById('btnCamera');
-
-btnChoose?.addEventListener('click', () => fileInput.click());
-btnCamera?.addEventListener('click', () => camInput.click());
-
-// When camera captures, forward file to main input so upload.js handles it
+document.getElementById('btnChoose')?.addEventListener('click', () => fileInput.click());
+document.getElementById('btnCamera')?.addEventListener('click', () => camInput.click());
 camInput?.addEventListener('change', () => {
   if(camInput.files && camInput.files[0]){
-    const dt = new DataTransfer();
-    dt.items.add(camInput.files[0]);
+    const dt = new DataTransfer(); dt.items.add(camInput.files[0]);
     fileInput.files = dt.files;
     fileInput.dispatchEvent(new Event('change', {bubbles:true}));
   }
