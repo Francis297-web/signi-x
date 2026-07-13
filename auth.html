@@ -4,10 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Auth — Signix</title>
-<link rel="icon" href="SIGNIX.png">
+<link rel="icon" href="image/SIGNIX.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS/style.css?v=5">
+<script>
+// If already logged in, go to home - you can't be here
+const existing = localStorage.getItem('signix_user');
+if(existing){ window.location.replace('index.html'); }
+</script>
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
 body{font-family:'Inter',sans-serif;background:#F7F9FF;color:#1E293B}
@@ -16,7 +22,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
 .logo img{height:36px;width:auto}
 .btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.22)}
 .btn-gradient:hover{filter:brightness(1.06);color:#fff;transform:translateY(-1px)}
-.form-control:focus{border-color:var(--violet);box-shadow:0 0 0 .25rem rgba(124,58,237,.14)}
+.form-control:focus{border-color:var(--violet);box-shadow:0 0 0.25rem rgba(124,58,237,.14)}
 .auth-card{background:#fff;border-radius:24px;border:1px solid #E9ECF6;box-shadow:0 12px 40px rgba(15,23,42,.06);height:100%}
 .divider{display:flex;align-items:center;gap:12px;color:#94A3B8;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:#E2E8F0}
@@ -30,10 +36,9 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
 <body>
 
 <div class="container py-4 py-lg-5">
-  <!-- Header logo only -->
   <div class="text-center mb-4 mb-lg-5">
     <a href="index.html" class="logo mx-auto">
-      <img src="SIGNIX.png" alt="Signix logo">
+      <img src="image/SIGNIX.png" alt="Signix logo">
       Signix
     </a>
     <div class="mt-2 small text-secondary">A reference and creator platform for sign languages, starting with KSL</div>
@@ -52,22 +57,14 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
           <div class="bg-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center"><i class="bi bi-box-arrow-in-right" style="color:var(--blue)"></i></div>
         </div>
 
-        <div class="d-grid gap-2 mb-4">
-          <button class="social-btn w-100 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-google"></i> Continue with Google</button>
-          <div class="row g-2">
-            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-apple me-1"></i> Apple</button></div>
-            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-facebook me-1" style="color:var(--blue)"></i> Facebook</button></div>
-          </div>
-        </div>
+        <div id="loginAlert" class="alert alert-danger d-none small py-2"></div>
 
-        <div class="divider mb-4">or with email</div>
-
-        <form class="d-grid gap-3">
+        <form id="loginForm" class="d-grid gap-3">
           <div>
             <label class="form-label small fw-semibold">Email address</label>
             <div class="input-group">
               <span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span>
-              <input type="email" class="form-control" placeholder="you@nexora.co.ke" required>
+              <input id="loginEmail" type="email" class="form-control" placeholder="you@signix.co.ke" required>
             </div>
           </div>
           <div>
@@ -82,7 +79,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
             <div class="form-check"><input class="form-check-input" type="checkbox" id="remember"><label class="form-check-label small" for="remember">Remember me</label></div>
             <span class="small text-secondary d-flex align-items-center gap-1"><i class="bi bi-shield-lock" style="color:var(--green)"></i> Secure login</span>
           </div>
-          <button class="btn btn-gradient rounded-pill py-2 fw-semibold mt-1">Sign in <i class="bi bi-arrow-right ms-1"></i></button>
+          <button class="btn btn-gradient rounded-pill py-2 fw-semibold mt-1" type="submit">Sign in <i class="bi bi-arrow-right ms-1"></i></button>
         </form>
       </div>
     </div>
@@ -99,35 +96,23 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
           <div class="rounded-circle d-grid" style="width:44px;height:44px;place-items:center;background:linear-gradient(135deg,#EDE9FE,#D1FAE5)"><i class="bi bi-person-plus" style="color:var(--violet)"></i></div>
         </div>
 
-        <div class="d-grid gap-2 mb-4">
-          <button class="social-btn w-100 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-google"></i> Sign up with Google</button>
-          <div class="row g-2">
-            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-apple me-1"></i> Apple</button></div>
-            <div class="col-6"><button class="social-btn w-100"><i class="bi bi-github me-1"></i> GitHub</button></div>
-          </div>
-        </div>
+        <div id="regAlert" class="alert alert-danger d-none small py-2"></div>
 
-        <div class="divider mb-4">or create with email</div>
-
-        <form class="d-grid gap-3">
+        <form id="registerForm" class="d-grid gap-3">
           <div class="row g-2">
-            <div class="col-6"><label class="form-label small fw-semibold">First name</label><input class="form-control" placeholder="Patience" required></div>
-            <div class="col-6"><label class="form-label small fw-semibold">Last name</label><input class="form-control" placeholder="Wambui" required></div>
+            <div class="col-6"><label class="form-label small fw-semibold">First name</label><input id="regFirst" class="form-control" placeholder="Patience" required></div>
+            <div class="col-6"><label class="form-label small fw-semibold">Last name</label><input id="regLast" class="form-control" placeholder="Wambui" required></div>
           </div>
           <div>
             <label class="form-label small fw-semibold">Email</label>
-            <div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span><input type="email" class="form-control" placeholder="you@nexora.co.ke" required></div>
+            <div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-envelope"></i></span><input id="regEmail" type="email" class="form-control" placeholder="you@signix.co.ke" required></div>
           </div>
           <div>
             <label class="form-label small fw-semibold">Password</label>
             <div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-lock"></i></span><input type="password" id="regPass" class="form-control" placeholder="At least 8 characters" required><button type="button" class="input-group-text bg-white toggle" data-target="regPass"><i class="bi bi-eye"></i></button></div>
-            <div class="d-flex gap-2 mt-2">
-              <span class="badge rounded-pill bg-light border text-secondary fw-normal"><i class="bi bi-dot" style="color:var(--green)"></i>8+ chars</span>
-              <span class="badge rounded-pill bg-light border text-secondary fw-normal"><i class="bi bi-dot" style="color:var(--blue)"></i>Number</span>
-              <span class="badge rounded-pill bg-light border text-secondary fw-normal"><i class="bi bi-dot" style="color:var(--violet)"></i>Symbol</span>
-            </div>
+          </div>
           <div class="form-check small"><input class="form-check-input" type="checkbox" id="terms" required><label class="form-check-label" for="terms">I agree to <a href="#" style="color:var(--violet);text-decoration:none">Creator guidelines</a> and <a href="#" style="color:var(--violet);text-decoration:none">Terms</a></label></div>
-          <button class="btn btn-dark rounded-pill py-2 fw-semibold" style="background:var(--dark)">Create account <i class="bi bi-stars ms-1" style="color:var(--green)"></i></button>
+          <button class="btn btn-dark rounded-pill py-2 fw-semibold" type="submit" style="background:var(--dark)">Create account <i class="bi bi-stars ms-1" style="color:var(--green)"></i></button>
           <p class="small text-secondary text-center mb-0"><i class="bi bi-patch-check-fill me-1" style="color:var(--green)"></i> No machine translation. Verified by fluent signers.</p>
         </form>
       </div>
@@ -139,12 +124,63 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+// Show/hide password
 document.querySelectorAll('.toggle').forEach(b=>{
   b.addEventListener('click',()=>{
     const i=document.getElementById(b.dataset.target); const ic=b.querySelector('i');
     i.type=i.type==='password'?'text':'password'; ic.classList.toggle('bi-eye'); ic.classList.toggle('bi-eye-slash');
   })
-})
+});
+
+// Helper to manage users in localStorage
+function getUsers(){ return JSON.parse(localStorage.getItem('signix_users')||'[]'); }
+function saveUsers(u){ localStorage.setItem('signix_users', JSON.stringify(u)); }
+
+// REGISTER
+document.getElementById('registerForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const first = document.getElementById('regFirst').value.trim();
+  const last = document.getElementById('regLast').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('regPass').value;
+  const alertBox = document.getElementById('regAlert');
+
+  if(pass.length < 6){ alertBox.textContent="Password must be at least 6 characters"; alertBox.classList.remove('d-none'); return; }
+
+  let users = getUsers();
+  if(users.find(u=>u.email===email)){
+    alertBox.textContent="Account already exists, please sign in on the left.";
+    alertBox.classList.remove('d-none'); return;
+  }
+
+  const newUser = { name: `${first} ${last}`.trim(), email, password: pass, createdAt: Date.now() };
+  users.push(newUser); saveUsers(users);
+
+  // Create session for homepage guard
+  localStorage.setItem('signix_user', JSON.stringify({ name: newUser.name, email: newUser.email }));
+  window.location.href='index.html';
+});
+
+// LOGIN
+document.getElementById('loginForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPass').value;
+  const alertBox = document.getElementById('loginAlert');
+  let users = getUsers();
+
+  const found = users.find(u=>u.email===email && u.password===pass);
+
+  // Allow first-time demo login even if no users yet, to avoid lockout
+  if(found || users.length===0){
+    const sessionName = found? found.name : email.split('@')[0];
+    localStorage.setItem('signix_user', JSON.stringify({ name: sessionName, email }));
+    window.location.href='index.html';
+  } else {
+    alertBox.textContent = "Invalid email or password. Try creating an account on the right.";
+    alertBox.classList.remove('d-none');
+  }
+});
 </script>
 </body>
 </html>
