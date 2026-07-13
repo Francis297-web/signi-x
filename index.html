@@ -6,151 +6,59 @@
 <link rel="icon" href="image/SIGNIX.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-<link rel="stylesheet" href="CSS/style.css?v=4">
+<link rel="stylesheet" href="CSS/styles.css">
 <script>
-// AUTH GUARD - blocks homepage if not logged in
-(function(){
-  const user = JSON.parse(localStorage.getItem('signix_user')||'null');
-  if(!user){ window.location.replace('login.html'); }
-})();
+// Guard - must login via auth.html first
+const _s = JSON.parse(localStorage.getItem('signix_user')||'null');
+if(!_s) location.replace('auth.html');
 </script>
 <style>
-:root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981}
-body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
-.logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:1.4rem;color:#0F172A;text-decoration:none}
-.logo-img{height:36px}
-.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 55%,var(--green));border:0;color:#fff}
-.feed-card{position:relative;border-radius:20px;overflow:hidden;height:280px;background:#0F172A;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+body{background:#F8FAFF;font-family:Inter,sans-serif}
+.welcome-hero{background:linear-gradient(135deg,#EFF6FF,#F5F3FF,#ECFDF5);border:1px solid #E2E8F0;border-radius:28px}
+.feed-card{position:relative;height:280px;border-radius:20px;overflow:hidden;background:#0F172A;color:#fff;display:flex;align-items:flex-end}
 .feed-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.feed-card.bg-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 20%,rgba(15,23,42,.92) 100%);z-index:1}
-.feed-card.meta{position:relative;z-index:2;padding:16px}
-.welcome-hero{background:linear-gradient(135deg,#EFF6FF 0%,#F5F3FF 50%,#ECFDF5 100%);border-radius:28px;border:1px solid #E2E8F0}
-.side-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
-.side-link.active,.side-link:hover{background:#F1F5F9;color:#0F172A}
-.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem}.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;margin-left:auto}
+.feed-card.meta{position:relative;z-index:2;padding:16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85))}
+.side-link{display:flex;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none}
+.side-link.active{background:#F1F5F9}
 </style>
 </head>
 <body>
+<nav class="navbar bg-white border-bottom sticky-top"><div class="container d-flex align-items-center gap-2">
+<button class="btn btn-light border rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" style="width:42px;height:42px"><i class="bi bi-list"></i></button>
+<a href="index.html" class="fw-bold text-dark text-decoration-none d-flex align-items-center gap-2 ms-1"><img src="image/SIGNIX.png" style="height:32px">Signix</a>
+<div class="ms-auto d-flex gap-2"><span id="navUser" class="small text-secondary d-none d-md-block"></span><a href="upload.html" class="btn btn-dark rounded-pill px-4">Upload</a></div>
+</div></nav>
 
-<!-- NAVBAR -->
-<nav class="navbar sticky-top border-bottom bg-white">
-  <div class="container py-2 d-flex align-items-center gap-2">
-    <button class="btn btn-light border rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" style="width:42px;height:42px"><i class="bi bi-list"></i></button>
-    <a href="index.html" class="logo ms-1"><img src="image/SIGNIX.png" class="logo-img">Signix</a>
-    <div class="ms-auto d-flex gap-2 align-items-center">
-      <span id="navUser" class="small fw-semibold d-none d-md-block text-secondary"></span>
-      <a href="upload.html" class="btn btn-dark rounded-pill px-4"><i class="bi bi-cloud-arrow-up me-1"></i> Upload</a>
-      <button class="btn btn-light border rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#aiBot" style="width:42px;height:42px"><i class="bi bi-stars"></i></button>
-    </div>
-  </div>
-</nav>
+<div class="offcanvas offcanvas-start" id="sideMenu" style="width:300px"><div class="offcanvas-header border-bottom">
+<div class="d-flex gap-3 align-items-center"><img id="mAv" style="width:44px;height:44px;border-radius:50%"><div><div id="mName" class="fw-bold"></div><div id="mEmail" class="small text-secondary"></div></div></div>
+<button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+<div class="offcanvas-body d-flex flex-column p-3">
+<a href="index.html" class="side-link active"><i class="bi bi-house"></i> Home Feed</a>
+<a href="upload.html" class="side-link"><i class="bi bi-cloud-upload"></i> My Studio</a>
+<a href="learn.html" class="side-link"><i class="bi bi-book"></i> Learn KSL</a>
+<a href="#" onclick="localStorage.removeItem('signix_user');location.href='auth.html'" class="side-link text-danger mt-auto"><i class="bi bi-box-arrow-right"></i> Logout</a>
+</div></div>
 
-<!-- SIDE MENU -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="sideMenu" style="width:300px">
-  <div class="offcanvas-header border-bottom">
-    <div class="d-flex align-items-center gap-3">
-      <img id="menuAvatar" src="https://ui-avatars.com/api/?name=S&background=2563EB&color=fff" style="width:44px;height:44px;border-radius:50%">
-      <div><div id="menuName" class="fw-bold">Karibu!</div><div id="menuEmail" class="small text-secondary">learner</div></div>
-    </div>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body d-flex flex-column p-3">
-    <div class="mb-3"><span class="small text-uppercase fw-bold text-secondary" style="letter-spacing:1px">Menu</span></div>
-    <a href="index.html" class="side-link active"><i class="bi bi-house-door"></i> Home Feed</a>
-    <a href="upload.html" class="side-link"><i class="bi bi-camera-video"></i> Upload Sign</a>
-    <a href="my-uploads.html" class="side-link"><i class="bi bi-collection-play"></i> My Uploads</a>
-    <a href="learn.html" class="side-link"><i class="bi bi-book"></i> Learn KSL</a>
-    <a href="profile.html" class="side-link"><i class="bi bi-person"></i> Profile</a>
-    <div class="mt-auto border-top pt-3">
-      <a href="#" onclick="logout()" class="side-link text-danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
-      <div class="small text-secondary mt-3 px-2">Signix v1.0 • Every sign language, one place</div>
-    </div>
-  </div>
-</div>
-
-<main class="container py-4">
-  <!-- WELCOMING HERO -->
-  <section class="welcome-hero p-4 p-md-5 mb-5">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-7">
-        <span class="badge bg-white border text-primary rounded-pill px-3 py-2 mb-3"><i class="bi bi-shield-check me-1"></i> Verified Learner</span>
-        <h1 class="fw-bolder display-6 lh-1 mb-3">Karibu tena, <span id="welcomeName" class="text-primary">Mwanafunzi</span> 👋</h1>
-        <p class="text-secondary fs-5 mb-4">Your journey to mastering Kenyan Sign Language continues. Watch real community signs, upload your own, and get instant help from our AI bot. No fake content — only real learners like you.</p>
-        <div class="d-flex flex-wrap gap-2">
-          <a href="upload.html" class="btn btn-gradient rounded-pill px-4 py-2 fw-semibold">Upload Your First Sign</a>
-          <a href="learn.html" class="btn btn-white border bg-white rounded-pill px-4 py-2 fw-semibold"><i class="bi bi-play-circle me-1"></i> Continue Learning</a>
-        </div>
-        <div class="d-flex gap-4 mt-4">
-          <div><div class="fw-bold fs-5" id="countVideos">0</div><div class="small text-secondary">Community Signs</div></div>
-          <div><div class="fw-bold fs-5">KSL • ASL • BSL</div><div class="small text-secondary">Languages</div></div>
-          <div><div class="fw-bold fs-5 text-success">Live</div><div class="small text-secondary">Real Uploads Only</div></div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div class="bg-white rounded-4 p-4 border shadow-sm">
-          <h6 class="fw-bold mb-3"><i class="bi bi-lightbulb text-warning me-2"></i>Today's Tip</h6>
-          <p class="small text-secondary mb-3">Upload in good light, keep hands visible, and say the word clearly. Our community reviews real uploads faster.</p>
-          <div class="d-flex align-items-center gap-2 small"><img src="image/SIGNIX.png" style="width:28px"><span>Need help? Ask Signix AI bot <i class="bi bi-arrow-right"></i></span></div>
-        </div>
-      </div>
-    </div>
+<div class="container py-4">
+  <section class="welcome-hero p-4 p-md-5 mb-4">
+    <h1 class="fw-bolder display-6">Karibu tena, <span id="wName" class="text-primary">learner</span> 👋</h1>
+    <p class="text-secondary fs-5 col-lg-8">Watch real community signs, upload your own, and earn likes, views and comments. No fake creators — only real learners like you.</p>
+    <div class="d-flex gap-4 mt-3"><div><b id="cTotal">0</b><div class="small text-secondary">Community Signs</div></div><div><b>KSL • ASL • BSL</b><div class="small text-secondary">Languages</div></div></div>
   </section>
-
-  <section>
-    <div class="d-flex justify-content-between align-items-center">
-      <h2 class="fw-bold">From the community — real uploads only</h2>
-      <a href="upload.html" class="btn btn-sm btn-outline-dark rounded-pill d-none d-md-block">View all</a>
-    </div>
-    <div id="realFeed" class="row g-3 mt-3"></div>
-    <div id="realEmpty" class="d-none text-center py-5 border rounded-4 bg-white">
-      <h5>No community uploads yet</h5><p class="text-secondary small">Fake creators removed. Your real upload will show here.</p>
-      <a href="upload.html" class="btn btn-dark rounded-pill">Upload a sign</a>
-    </div>
-  </section>
-</main>
-
-<!-- AI BOT -->
-<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
-  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,#2563EB,#7C3AED)"><h6 class="mb-0">Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
-  <div class="offcanvas-body d-flex flex-column p-0">
-    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow-y:auto;background:#F8FAFF"><div class="bot-bubble ai">Jambo <span class="userNameInline">!</span> Ask me about KSL or how to upload.</div></div>
-    <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask about a sign..."><button id="sendBtn" class="btn btn-dark rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
-  </div>
+  <h5 class="fw-bold">From the community — real uploads only</h5>
+  <div id="feed" class="row g-3 mt-2"></div>
+  <div id="empty" class="d-none text-center py-5 bg-white border rounded-4">No uploads yet. Be the first to upload!</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/signix.bot.js"></script>
 <script>
-// POPULATE USER INFO
-const user = JSON.parse(localStorage.getItem('signix_user'));
-if(user){
-  document.getElementById('welcomeName').textContent = user.name?.split(' ')[0] || 'Mwanafunzi';
-  document.getElementById('navUser').textContent = user.name || '';
-  document.getElementById('menuName').textContent = user.name || 'Learner';
-  document.getElementById('menuEmail').textContent = user.email || 'learner@signix';
-  document.getElementById('menuAvatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name||'S')}&background=2563EB&color=fff`;
-  document.querySelectorAll('.userNameInline').forEach(e=>e.textContent=user.name?.split(' ')[0]);
-}
-function logout(){ localStorage.removeItem('signix_user'); window.location.replace('login.html'); }
-
-// REAL FEED ONLY
-const feed=document.getElementById('realFeed'); const empty=document.getElementById('realEmpty');
-function renderFeed(videos){
-  feed.innerHTML=''; document.getElementById('countVideos').textContent = videos.length;
-  if(!videos.length){ empty.classList.remove('d-none'); return; }
-  empty.classList.add('d-none');
-  videos.slice(0,6).forEach(v=>{
-    const d=document.createElement('div'); d.className='col-12 col-sm-6 col-md-4';
-    d.innerHTML=`<div class="feed-card"><video src="${v.url}" controls muted playsinline></video><div class="bg-overlay"></div><div class="meta"><div class="fw-bold">${v.word||'Untitled'}</div><div class="small opacity-75">@${(v.signer||'anon').replace('@','')} • real upload</div></div></div>`;
-    feed.appendChild(d);
-  });
-}
-async function loadReal(){
-  let local=JSON.parse(localStorage.getItem('signix_videos')||'[]');
-  let cloud=[]; try{ const r=await fetch(`https://res.cloudinary.com/dvtlbpkly/video/list/signix.json?v=${Date.now()}`); if(r.ok){ const j=await r.json(); cloud=(j.resources||[]).map(x=>({url:`https://res.cloudinary.com/dvtlbpkly/video/upload/${x.public_id}.mp4`,word:x.context?.custom?.word||x.public_id,signer:x.context?.custom?.signer||'community',createdAt:new Date(x.created_at).getTime()})); } }catch(e){}
-  renderFeed([...local,...cloud].sort((a,b)=>b.createdAt-a.createdAt));
-}
-loadReal();
+const user=JSON.parse(localStorage.getItem('signix_user'));
+if(user){ document.getElementById('wName').textContent=user.name.split(' ')[0]; document.getElementById('navUser').textContent=user.name; document.getElementById('mName').textContent=user.name; document.getElementById('mEmail').textContent=user.email; document.getElementById('mAv').src=`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=2563EB&color=fff` }
+function getV(){return JSON.parse(localStorage.getItem('signix_videos')||'[]')}
+function render(){ const vids=getV().sort((a,b)=>b.createdAt-a.createdAt); document.getElementById('cTotal').textContent=vids.length; const feed=document.getElementById('feed'); feed.innerHTML=''; if(!vids.length){document.getElementById('empty').classList.remove('d-none');return}
+vids.slice(0,9).forEach(v=>{ const d=document.createElement('div'); d.className='col-md-4'; d.innerHTML=`<div class="feed-card"><video src="${v.url}" controls muted></video><div class="meta w-100"><div class="fw-bold">${v.word}</div><div class="small opacity-75 d-flex justify-content-between"><span>@${v.signer}</span><span>${v.views||0} views • ${v.likes||0} likes • ${(v.comments||[]).length} comments</span></div></div></div>`; feed.appendChild(d); }) }
+render();
 </script>
-<script src="Signix.bot.js"></script>
 </body>
 </html>
