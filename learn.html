@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Learn KSL — Signix</title>
 <link rel="icon" href="image/SIGNIX.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,116 +10,111 @@
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
 body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
-h1,h2,h3,h4,.brand{font-family:'Space Grotesk',sans-serif}
+h1,h2,h3,.brand{font-family:'Space Grotesk',sans-serif}
 .navbar{backdrop-filter:blur(12px);background:rgba(255,255,255,.92)!important}
-.logo-circle{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(15,23,42,.06);overflow:hidden;flex-shrink:0}
-.logo-circle img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;padding:7px;box-sizing:border-box}
-.logo-circle.lg{width:56px;height:56px}.logo-circle.lg img{padding:9px}
-.logo-circle.sm img,.logo-circle[style*="20px"] img,.logo-circle[style*="22px"] img,.logo-circle[style*="26px"] img,.logo-circle[style*="28px"] img{padding:4px}
-.logo-circle.dark{background:#fff;border-color:#E2E8F0}
+.logo-circle{width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logo-circle img{width:100%;height:100%;object-fit:contain;padding:7px}
 .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:1.35rem;color:var(--dark);text-decoration:none}
-.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.22)}
-.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:999px;display:inline-block}
-.search-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:999px;padding:6px;box-shadow:0 8px 24px rgba(15,23,42,.05);position:relative;z-index:2}
+.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff}
+.search-wrap{background:#fff;border:2px solid #E2E8F0;border-radius:999px;padding:6px;box-shadow:0 8px 24px rgba(15,23,42,.05);display:flex;align-items:center}
 .search-wrap .form-control{border:0;box-shadow:none;background:transparent}
-.filter-pill{border:1px solid #E2E8F0;background:#fff;border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:500;white-space:nowrap;transition:.15s}
-.filter-pill.active,.filter-pill:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
-.sign-card{border:1px solid #E9ECF6;border-radius:20px;background:#fff;overflow:hidden;transition:.2s;height:100%}
-.sign-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(15,23,42,.08);border-color:#DDD6FE}
-.thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#DBEAFE,#EDE9FE 50%,#D1FAE5);position:relative;display:grid;place-items:center}
-.thumb i{font-size:2.2rem;opacity:.35}
-.progress-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
-.menu-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
-.menu-link:hover{background:#F1F5F9;color:var(--dark)}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
-.ai-highlight{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:16px;padding:14px}
-.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem;line-height:1.4}
-.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px}
-.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;border-bottom-right-radius:6px;margin-left:auto}
+.filter-pill{border:2px solid #E2E8F0;background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;white-space:nowrap}
+.filter-pill.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.sign-card{border:2px solid #E9ECF6;border-radius:20px;background:#fff;overflow:hidden;transition:.2s;height:100%}
+.sign-card:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(15,23,42,.08)}
+.thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#DBEAFE,#EDE9FE 50%,#D1FAE5);display:grid;place-items:center;font-size:2rem}
+.menu-link{display:flex;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
+.menu-link.active{background:#F1F5F9;color:var(--violet)}
 </style>
 </head>
 <body>
+<nav class="navbar sticky-top border-bottom"><div class="container py-2 d-flex align-items-center gap-2">
+<button class="btn btn-light border rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" style="width:44px;height:44px"><i class="bi bi-list"></i></button>
+<a href="index.html" class="brand ms-1"><span class="logo-circle"><img src="image/SIGNIX.png"></span>Signix</a>
+<div class="ms-auto d-flex gap-2"><a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload</a></div>
+</div></nav>
 
-<nav class="navbar sticky-top border-bottom">
-  <div class="container py-2 d-flex align-items-center gap-2">
-    <button class="btn btn-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
-    <a href="index.html" class="brand ms-1"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span>Signix</a>
-    <div class="d-none d-lg-flex align-items-center gap-2 mx-auto">
-      <a href="index.html" class="btn btn-light rounded-pill px-3"><i class="bi bi-house me-1"></i> Home</a>
-      <a href="learn.html" class="btn btn-dark rounded-pill px-3">Learn</a>
-      <a href="languages.html" class="btn btn-light rounded-pill px-3">Languages</a>
-      <a href="creators.html" class="btn btn-light rounded-pill px-3">Creators</a>
-    </div>
-    <div class="ms-auto d-flex gap-2">
-      <button class="btn btn-light rounded-pill px-3 d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#aiBot"><i class="bi bi-robot me-1"></i> AI Bot</button>
-      <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload a sign</a>
-    </div>
-  </div>
-</nav>
+<div class="offcanvas offcanvas-start" id="sideMenu" style="width:320px"><div class="offcanvas-header border-bottom"><a href="index.html" class="brand"><span class="logo-circle"><img src="image/SIGNIX.png"></span>Signix</a><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+<div class="offcanvas-body d-flex flex-column"><a href="index.html" class="menu-link">Home</a><a href="learn.html" class="menu-link active">Learn KSL</a><a href="upload.html" class="menu-link">Upload</a><a href="about.html" class="menu-link">About</a></div></div>
 
-<div class="offcanvas offcanvas-start" id="sideMenu" style="width:320px">
-  <div class="offcanvas-header border-bottom">
-    <a href="index.html" class="brand"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix</a>
-    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body d-flex flex-column">
-    <a href="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home</a>
-    <a href="learn.html" class="menu-link active"><i class="bi bi-book fs-5 text-primary"></i> Learn KSL</a>
-    <a href="languages.html" class="menu-link"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
-    <a href="creators.html" class="menu-link"><i class="bi bi-people fs-5 text-success"></i> Creators</a>
-    <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
-    <a href="about.html" class="menu-link"><i class="bi bi-info-circle fs-5"></i> About</a>
-    <hr class="my-4">
-    <div class="ai-highlight mb-3">
-      <div class="fw-bold d-flex justify-content-between align-items-center mb-2"><span class="d-flex align-items-center gap-2"><span class="logo-circle" style="width:26px;height:26px"><img src="image/SIGNIX.png" alt="Signix logo"></span> AI Assistant</span><span class="badge bg-success rounded-pill">NEW</span></div>
-      <p class="small text-secondary mb-3">Ask for a sign, handshape or example sentence.</p>
-      <button id="openAiBot" class="btn btn-gradient w-100 rounded-pill"><i class="bi bi-stars me-2"></i>Open AI Bot</button>
-    </div>
-    <div class="mt-auto p-3 bg-light rounded-4 border small d-flex align-items-center gap-2"><span class="logo-circle" style="width:22px;height:22px"><img src="image/SIGNIX.png" alt="Signix logo"></span> <span class="bg-success rounded-circle d-inline-block" style="width:8px;height:8px"></span> Nairobi • Live</div>
-  </div>
+<section class="py-4"><div class="container">
+<div class="p-4 p-lg-5 rounded-5 text-white" style="background:linear-gradient(135deg,#0F172A,#1E1B4B 50%,#1E3A8A)">
+<h1 class="display-6 fw-bold">Learn Kenyan Sign Language</h1>
+<p class="text-white-50">Search 1,500+ signs by word, meaning or category.</p>
+<div class="search-wrap mt-3"><i class="bi bi-search ms-3 text-secondary"></i><input id="searchInput" class="form-control" placeholder="Search Asante, maji, school, family..."><button id="searchBtn" type="button" class="btn btn-gradient rounded-pill px-4">Search</button></div>
+</div></div></section>
+
+<section class="container pb-5">
+<div class="d-flex gap-2 flex-wrap mb-3" id="filterPills">
+<button class="filter-pill active" data-filter="all">All</button>
+<button class="filter-pill" data-filter="greetings">Greetings</button>
+<button class="filter-pill" data-filter="school">School</button>
+<button class="filter-pill" data-filter="food">Food</button>
+<button class="filter-pill" data-filter="family">Family</button>
 </div>
-
-<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
-  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,#2563EB,#7C3AED)"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle" style="width:28px;height:28px"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
-  <div class="offcanvas-body d-flex flex-column p-0">
-    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow-y:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Habari! What KSL sign do you want to learn today?</div></div>
-    <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask how to sign..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
-  </div>
-</div>
-
-<section class="py-4 py-lg-5">
-  <div class="container">
-    <div class="p-4 p-lg-5 rounded-5 text-white position-relative overflow-hidden" style="background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 50%,#1E3A8A 100%)">
-      <div class="position-absolute" style="inset:-1px;background:radial-gradient(600px 300px at 15% 0%,rgba(124,58,237,.45),transparent),radial-gradient(600px 300px at 85% 100%,rgba(16,185,129,.35),transparent);pointer-events:none"></div>
-      <div class="row align-items-center g-4" style="position:relative;z-index:1">
-        <div class="col-lg-7">
-          <div class="d-flex align-items-center gap-3 mb-3"><span class="logo-circle lg"><img src="image/SIGNIX.png" alt="Signix logo"></span><span class="eyebrow" style="background:rgba(255,255,255,.12);color:#C4B5FD;border:1px solid rgba(255,255,255,.15)">KSL • Learn Mode</span></div>
-          <h1 class="display-6 fw-bold lh-1">Learn Kenyan<br>Sign Language</h1>
-          <p class="text-white-50 mt-3 mb-4" style="max-width:480px">1,500+ signs documented with handshape, movement and regional variants.</p>
-          <div class="search-wrap d-flex align-items-center"><i class="bi bi-search ms-3 text-secondary"></i><input id="searchInput" class="form-control" placeholder="Search Asante, maji, school, family..."><button id="searchBtn" type="button" class="btn btn-gradient rounded-pill px-4">Search</button></div>
-        </div>
-        <div class="col-lg-5">
-          <div class="bg-white text-dark rounded-4 p-3 p-md-4 shadow-lg">
-            <div class="d-flex justify-content-between align-items-center mb-3"><div class="fw-bold d-flex align-items-center gap-2"><span class="logo-circle" style="width:28px;height:28px"><img src="image/SIGNIX.png" alt="Signix logo"></span> Continue learning</div><span class="badge rounded-pill" style="background:#D1FAE5;color:#065F46">42% done</span></div>
-            <a href="index.html" class="btn btn-light w-100 rounded-pill mt-3 border"><i class="bi bi-arrow-left me-1"></i> Back Home</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="signGrid" class="row g-3"></div>
+<div id="noResults" class="d-none text-center py-5 bg-white border-2 border rounded-4 mt-3"><i class="bi bi-search fs-1 text-secondary"></i><p class="fw-bold mt-2">No signs found</p><p class="small text-secondary">Try another word like "Asante" or "Maji"</p></div>
 </section>
 
-<footer class="pt-5 pb-4" style="background:#0B1220;color:#94A3B8">
-  <div class="container">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 pb-4 border-bottom border-secondary border-opacity-25">
-      <a href="index.html" class="brand text-white"><span class="logo-circle dark"><img src="image/SIGNIX.png" alt="Signix logo"></span> Signix</a>
-      <div class="small">Learn KSL the right way • <a href="index.html" class="text-white text-decoration-none">Back Home</a></div>
-    </div>
-    <div class="d-flex justify-content-between pt-3 small"><span>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></span><span class="d-flex align-items-center gap-2"><span class="logo-circle dark" style="width:20px;height:20px"><img src="image/SIGNIX.png" alt="Signix logo"></span> © 2026 Signix</span></div>
-  </div>
-</footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="upload.js"></script>
-<script src="search.js"></script>
+<script>
+// --- DATA ---
+const signs=[
+{word:"Asante",meaning:"Thank you",cat:"greetings",icon:"bi-hand-thumbs-up"},
+{word:"Jambo",meaning:"Hello",cat:"greetings",icon:"bi-emoji-smile"},
+{word:"Maji",meaning:"Water",cat:"food",icon:"bi-droplet"},
+{word:"Chakula",meaning:"Food",cat:"food",icon:"bi-egg-fried"},
+{word:"Shule",meaning:"School",cat:"school",icon:"bi-book"},
+{word:"Mwalimu",meaning:"Teacher",cat:"school",icon:"bi-person-workspace"},
+{word:"Mama",meaning:"Mother",cat:"family",icon:"bi-heart"},
+{word:"Baba",meaning:"Father",cat:"family",icon:"bi-person"},
+{word:"Tafadhali",meaning:"Please",cat:"greetings",icon:"bi-hands"},
+{word:"Pole",meaning:"Sorry",cat:"greetings",icon:"bi-emoji-frown"},
+{word:"Kitabu",meaning:"Book",cat:"school",icon:"bi-journal-bookmark"},
+{word:"Familia",meaning:"Family",cat:"family",icon:"bi-people"}
+];
+
+const grid=document.getElementById('signGrid'), input=document.getElementById('searchInput'), btn=document.getElementById('searchBtn'), noRes=document.getElementById('noResults');
+let activeCat='all';
+
+function render(list){
+ grid.innerHTML=''; if(!list.length){noRes.classList.remove('d-none');return;} noRes.classList.add('d-none');
+ list.forEach(s=>{
+  const col=document.createElement('div');col.className='col-md-4 col-sm-6';
+  col.innerHTML=`<div class="sign-card"><div class="thumb"><i class="bi ${s.icon}"></i></div><div class="p-3"><div class="d-flex justify-content-between"><b>${s.word}</b><span class="badge bg-light text-dark border rounded-pill text-capitalize">${s.cat}</span></div><div class="small text-secondary">${s.meaning}</div><a href="lesson.html?word=${encodeURIComponent(s.word)}" class="btn btn-light border rounded-pill w-100 mt-3 btn-sm fw-semibold">Learn sign</a></div></div>`;
+  grid.appendChild(col);
+ });
+}
+
+function doSearch(){
+ const q=input.value.trim().toLowerCase();
+ let filtered=signs.filter(s=>{
+  const matchCat = activeCat==='all' || s.cat===activeCat;
+  const matchQ = !q || s.word.toLowerCase().includes(q) || s.meaning.toLowerCase().includes(q) || s.cat.includes(q);
+  return matchCat && matchQ;
+ });
+ // Also include user uploads that match
+ try{
+   const vids=JSON.parse(localStorage.getItem('signix_videos')||'[]');
+   const uploadMatches=vids.filter(v=>!q||v.word.toLowerCase().includes(q)).map(v=>({word:v.word,meaning:v.desc||'Community upload',cat:'community',icon:'bi-camera-video'}));
+   filtered = [...uploadMatches,...filtered];
+ }catch{}
+ render(filtered);
+}
+
+btn.addEventListener('click',doSearch);
+input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doSearch();}});
+input.addEventListener('input',doSearch);
+
+document.querySelectorAll('.filter-pill').forEach(p=>{
+ p.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-pill').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); activeCat=p.dataset.filter; doSearch();
+ });
+});
+
+// initial
+render(signs);
+</script>
 </body>
 </html>
