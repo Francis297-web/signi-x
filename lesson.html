@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Habari — How are you | Signix</title>
-<link rel="icon" href="SIGNIX.png" type="image/png">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson — Signix</title>
+<link rel="icon" href="image/SIGNIX.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
 body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
-h1,h2,h3,h4,.logo{font-family:'Space Grotesk',sans-serif}
+h1,h2,h3,.logo{font-family:'Space Grotesk',sans-serif}
 .navbar{backdrop-filter:blur(12px);background:rgba(255,255,255,.92)!important}
 .logo{font-weight:700;font-size:1.3rem;text-decoration:none;color:var(--dark);display:inline-flex;align-items:center;gap:10px}
-.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;box-shadow:0 4px 12px rgba(15,23,42,.06);display:grid;place-items:center;overflow:hidden;flex:0 0 40px}
-.logo-circle img{width:68%;height:68%;object-fit:contain}
+.logo-circle{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:grid;place-items:center;overflow:hidden;flex:0 0 40px}
+.logo-circle img{width:100%;height:100%;object-fit:contain;padding:7px}
 .logo-circle.sm{width:28px;height:28px}.logo-circle.xs{width:22px;height:22px}
 .btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.22)}
-.btn-gradient:hover{filter:brightness(1.05);color:#fff;transform:translateY(-1px)}
 .eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--violet);background:#EDE9FE;padding:6px 12px;border-radius:999px}
-.breadcrumb a{color:#64748B;text-decoration:none}.breadcrumb a:hover{color:var(--blue)}
-.stage{position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#DBEAFE,#EDE9FE 50%,#D1FAE5);aspect-ratio:16/10;display:grid;place-items:center;border:1px solid #E0E7FF;box-shadow:0 12px 36px rgba(15,23,42,.08)}
-.stage .hand{width:120px;height:120px;opacity:.85}
-.cc-badge{position:absolute;bottom:14px;left:14px;background:#0F172A;color:#fff;font-size:.7rem;font-weight:700;padding:5px 10px;border-radius:999px}
-.spec-card{border:1px solid #E9ECF6;border-radius:16px;background:#fff;padding:18px;height:100%;transition:.15s}
-.spec-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(15,23,42,.06)}
-.spec-card h6{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#94A3B8;font-weight:700;margin-bottom:8px}
-.variant{border:1px dashed #E2E8F0;border-radius:16px;padding:16px;background:#fff}
+.stage{position:relative;border-radius:28px;overflow:hidden;background:#0F172A;aspect-ratio:16/10;display:grid;place-items:center;border:1px solid #E0E7FF;box-shadow:0 12px 36px rgba(15,23,42,.12)}
+.stage img,.stage video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.cc-badge{position:absolute;bottom:14px;left:14px;background:rgba(15,23,42,.9);color:#fff;font-size:.7rem;font-weight:700;padding:6px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.spec-card{border:1px solid #E9ECF6;border-radius:16px;background:#fff;padding:18px;height:100%}
 .menu-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:500}
-.menu-link:hover{background:#F1F5F9}.menu-link.active{background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.12));color:var(--violet);border:1px solid #EDE9FE}
-.ai-highlight{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:16px;padding:14px}
-.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem;line-height:1.45}
-.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;border-bottom-right-radius:6px;margin-left:auto}
-footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}footer a:hover{color:#fff}
+.menu-link.active{background:#F1F5F9;color:var(--violet);border:1px solid #EDE9FE}
+.bot-bubble{max-width:85%;padding:12px 14px;border-radius:18px;font-size:.9rem}
+.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0}.bot-bubble.user{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;margin-left:auto}
+footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:none}
 </style>
 </head>
 <body>
@@ -41,135 +34,151 @@ footer{background:#0B1220;color:#94A3B8}footer a{color:#CBD5E1;text-decoration:n
 <nav class="navbar sticky-top border-bottom">
   <div class="container py-2 d-flex align-items-center gap-2">
     <button class="btn btn-light border rounded-circle d-grid" style="width:44px;height:44px;place-items:center" data-bs-toggle="offcanvas" data-bs-target="#sideMenu"><i class="bi bi-list fs-5"></i></button>
-    <a href="index.html" class="logo ms-1"><span class="logo-circle"><img src="SIGNIX.png" alt="Signix"></span>Signix</a>
+    <a href="index.html" class="logo ms-1"><span class="logo-circle"><img src="image/SIGNIX.png" alt=""></span>Signix</a>
     <ul class="navbar-nav d-none d-lg-flex flex-row mx-auto gap-1">
       <li class="nav-item"><a class="nav-link px-3" href="learn.html">Learn</a></li>
-      <li class="nav-item"><a class="nav-link px-3" href="languages.html">Languages</a></li>
-      <li class="nav-item"><a class="nav-link px-3" href="creators.html">Creators</a></li>
       <li class="nav-item"><a class="nav-link px-3" href="upload.html">Upload</a></li>
       <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
     </ul>
-    <div class="ms-auto d-flex gap-2">
-      <button class="btn btn-light rounded-pill px-3 d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#aiBot"><i class="bi bi-robot me-1"></i> AI Bot</button>
-      <a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload</a>
-    </div>
+    <div class="ms-auto d-flex gap-2"><a href="learn.html" class="btn btn-light rounded-pill px-3">Back to Search</a><a href="upload.html" class="btn btn-gradient rounded-pill px-4">Upload</a></div>
   </div>
 </nav>
 
 <div class="offcanvas offcanvas-start" id="sideMenu" style="width:330px">
-  <div class="offcanvas-header border-bottom">
-    <a href="index.html" class="logo"><span class="logo-circle sm"><img src="SIGNIX.png" alt=""></span>Signix</a>
-    <button class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
+  <div class="offcanvas-header border-bottom"><a href="index.html" class="logo"><span class="logo-circle sm"><img src="image/SIGNIX.png"></span>Signix</a><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
   <div class="offcanvas-body d-flex flex-column">
-    <a href="index.html" class="menu-link"><i class="bi bi-house fs-5"></i> Home</a>
-    <a href="learn.html" class="menu-link active"><i class="bi bi-book fs-5" style="color:var(--blue)"></i> Learn KSL</a>
-    <a href="languages.html" class="menu-link"><i class="bi bi-translate fs-5" style="color:var(--violet)"></i> Languages</a>
-    <a href="creators.html" class="menu-link"><i class="bi bi-people fs-5" style="color:var(--green)"></i> Creators</a>
-    <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload fs-5"></i> Upload</a>
-    <a href="about.html" class="menu-link"><i class="bi bi-info-circle fs-5"></i> About</a>
-    <hr class="my-4">
-    <div class="ai-highlight">
-      <div class="fw-bold d-flex align-items-center gap-2 mb-2"><span class="logo-circle sm"><img src="SIGNIX.png" alt=""></span> AI Assistant <span class="badge bg-success rounded-pill ms-auto">NEW</span></div>
-      <p class="small text-secondary mb-3">Ask for slower breakdown or coastal variant.</p>
-      <button id="openAiBot" class="btn btn-gradient w-100 rounded-pill"><i class="bi bi-stars me-2"></i>Open AI Bot</button>
-    </div>
-  </div>
-</div>
-
-<div class="offcanvas offcanvas-end" id="aiBot" style="width:380px;max-width:100vw">
-  <div class="offcanvas-header text-white" style="background:linear-gradient(135deg,var(--blue),var(--violet))"><h6 class="mb-0 d-flex align-items-center gap-2"><span class="logo-circle sm bg-white"><img src="SIGNIX.png" alt=""></span> Signix AI Bot</h6><button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button></div>
-  <div class="offcanvas-body d-flex flex-column p-0">
-    <div id="chatWindow" class="flex-grow-1 p-3 d-flex flex-column gap-3" style="overflow:auto;background:#F8FAFF"><div class="bot-bubble ai shadow-sm">Jambo! Ask me to break down Habari slowly or show the Nairobi vs Coastal form.</div></div>
-    <div class="p-3 border-top bg-white"><div class="input-group"><input id="chatInput" class="form-control rounded-pill" placeholder="Ask about this sign..."><button id="sendBtn" class="btn btn-gradient rounded-circle ms-2" style="width:44px;height:44px"><i class="bi bi-send-fill"></i></button></div></div>
+    <a href="index.html" class="menu-link"><i class="bi bi-house"></i> Home</a>
+    <a href="learn.html" class="menu-link active"><i class="bi bi-book"></i> Learn KSL</a>
+    <a href="upload.html" class="menu-link"><i class="bi bi-cloud-upload"></i> Upload</a>
   </div>
 </div>
 
 <main class="py-4">
 <div class="container">
-  <nav class="breadcrumb small mb-3"><a href="index.html">Signix</a> <span class="mx-2">/</span> <a href="learn.html">KSL</a> <span class="mx-2">/</span> <a href="learn.html">Greetings</a> <span class="mx-2">/</span> <span class="text-dark fw-semibold">Habari</span></nav>
+  <nav class="breadcrumb small mb-3"><a href="index.html">Signix</a><span class="mx-2">/</span><a href="learn.html">Learn</a><span class="mx-2">/</span><span id="crumbWord" class="text-dark fw-semibold">Post</span></nav>
 
   <div class="row g-4 g-lg-5">
     <div class="col-lg-7">
-      <div class="stage">
-        <svg class="hand" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.4"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 12V4a1.5 1.5 0 0 1 3 0v8M14 12.5V6a1.5 1.5 0 0 1 3 0v9M17 13.5l.5-2a1.4 1.4 0 0 1 2.7.6L20 17a6 6 0 0 1-6 6h-1a7 7 0 0 1-6-3.5L4.3 15a1.4 0 0 1 2.4-1.4L8 15"/></svg>
-        <span class="cc-badge"><i class="bi bi-badge-cc me-1"></i> CC • KSL • 0:12</span>
-        <span class="position-absolute top-0 end-0 m-3 logo-circle sm bg-white" style="opacity:.95"><img src="SIGNIX.png" alt=""></span>
-        <button class="position-absolute top-50 start-50 translate-middle btn-light rounded-circle shadow" style="width:64px;height:64px;display:grid;place-items:center"><i class="bi bi-play-fill fs-3"></i></button>
+      <div class="stage" id="mediaStage">
+        <!-- injected -->
       </div>
       <div class="d-flex flex-wrap gap-2 mt-3">
-        <button class="btn btn-light border rounded-pill btn-sm"><i class="bi bi-slow-motion me-1"></i> 0.5x</button>
-        <button class="btn btn-light border rounded-pill btn-sm"><i class="bi bi-mirror me-1"></i> Mirror</button>
-        <button class="btn btn-light border rounded-pill btn-sm"><i class="bi bi-badge-cc me-1"></i> Captions</button>
-        <button class="btn btn-light border rounded-pill btn-sm ms-auto" id="copyLink"><i class="bi bi-link-45deg me-1"></i> Copy link</button>
-        <button class="btn btn-light border rounded-circle" style="width:36px;height:36px;display:grid;place-items:center" id="bookmark"><i class="bi bi-bookmark"></i></button>
+        <button class="btn btn-light border rounded-pill btn-sm" onclick="document.querySelector('#mediaStage video')?.requestFullscreen()"><i class="bi bi-arrows-fullscreen me-1"></i> Fullscreen</button>
+        <button class="btn btn-light border rounded-pill btn-sm" id="copyLink"><i class="bi bi-link-45deg me-1"></i> Copy link</button>
+        <button class="btn btn-light border rounded-pill btn-sm ms-auto" id="likeBtn"><i class="bi bi-heart-fill text-danger me-1"></i><span id="likeCount">0</span> Likes</button>
+        <button class="btn btn-light border rounded-pill btn-sm" id="viewCountBtn"><i class="bi bi-eye me-1"></i><span id="viewCount">0</span> Views</button>
+      </div>
+
+      <div class="bg-white border rounded-4 p-3 mt-4">
+        <h6 class="fw-bold mb-3">Comments</h6>
+        <div id="commentList" class="d-grid gap-2 mb-3"></div>
+        <div class="input-group"><input id="commentInput" class="form-control rounded-pill" placeholder="Add a comment..."><button id="commentSend" class="btn btn-dark rounded-pill ms-2">Send</button></div>
       </div>
     </div>
 
     <div class="col-lg-5">
-      <span class="eyebrow mb-3"><span class="bg-success rounded-circle d-inline-block me-2" style="width:8px;height:8px"></span>Greetings • Beginner</span>
-      <h1 class="fw-bold mt-2" style="line-height:1.05">Habari — <span class="text-gradient">How are you</span></h1>
-      <p class="text-secondary mt-2">One of the first signs taught to new learners. Shown here with the standard form and two regional variants used in Nairobi and the coast.</p>
+      <span class="eyebrow mb-3" id="typeBadge">Community Upload</span>
+      <h1 class="fw-bold mt-2" id="titleWord" style="line-height:1.05">Loading...</h1>
+      <p class="text-secondary mt-2" id="descText">Fetching post from your uploads.</p>
 
-      <div class="row g-3 mt-3">
-        <div class="col-4"><div class="spec-card"><h6>Handshape</h6><div class="d-flex align-items-center gap-2 mb-2"><span class="logo-circle xs" style="background:#DBEAFE"><i class="bi bi-hand-index" style="color:var(--blue);font-size:.9rem"></i></span><span class="small fw-semibold">Open palm</span></div><p class="small text-secondary mb-0">Fingers relaxed and together</p></div></div>
-        <div class="col-4"><div class="spec-card"><h6>Movement</h6><div class="small fw-semibold mb-1">Short outward tilt</div><p class="small text-secondary mb-0">From chest, twice, slight wrist tilt</p></div></div>
-        <div class="col-4"><div class="spec-card"><h6>Context</h6><div class="small fw-semibold mb-1">Informal</div><p class="small text-secondary mb-0">Any time of day, any age</p></div></div>
+      <div class="row g-3 mt-2">
+        <div class="col-4"><div class="spec-card"><h6 class="small text-uppercase fw-bold text-secondary">Type</h6><div class="fw-semibold" id="specType">-</div><div class="small text-secondary" id="specMime">-</div></div></div>
+        <div class="col-4"><div class="spec-card"><h6 class="small text-uppercase fw-bold text-secondary">Signer</h6><div class="fw-semibold" id="specSigner">-</div><div class="small text-secondary">Creator</div></div></div>
+        <div class="col-4"><div class="spec-card"><h6 class="small text-uppercase fw-bold text-secondary">Date</h6><div class="fw-semibold" id="specDate">-</div><div class="small text-secondary">Uploaded</div></div></div>
       </div>
 
-      <div class="bg-white border rounded-4 p-3 mt-4 d-flex align-items-center gap-3">
-        <span class="logo-circle"><img src="SIGNIX.png" alt=""></span>
-        <div class="flex-grow-1"><div class="small fw-bold">Verified by fluent signer</div><div class="small text-secondary">@mwangi.signs • 12.4k views • Nairobi</div></div>
-        <span class="badge rounded-pill" style="background:#D1FAE5;color:#065F46"><i class="bi bi-patch-check-fill me-1"></i>Deaf reviewed</span>
+      <div class="bg-white border rounded-4 p-3 mt-4 d-flex align-items-center gap-3" id="authorCard">
+        <span class="logo-circle"><img src="image/SIGNIX.png" alt=""></span>
+        <div class="flex-grow-1"><div class="small fw-bold" id="authorName">Verified by community</div><div class="small text-secondary" id="authorMeta">0 views</div></div>
+        <span class="badge rounded-pill" style="background:#D1FAE5;color:#065F46"><i class="bi bi-patch-check-fill me-1"></i>Real upload</span>
       </div>
 
-      <div class="mt-4">
-        <h6 class="fw-bold">How it is signed</h6>
-        <p class="small text-secondary">Habari starts at chest height and moves outward with a slight tilt of the wrist, repeated once for emphasis. It can be paired with a raised eyebrow for a more informal, familiar tone.</p>
-        <p class="small text-secondary">Coastal signers often soften the motion into a single, slower tilt, while Nairobi signers tend to repeat it twice in quick succession. Both are considered standard KSL and are understood everywhere.</p>
-      </div>
-
-      <div class="row g-2 mt-3">
-        <div class="col-6"><div class="variant"><div class="small fw-bold"><span class="badge rounded-pill bg-light border text-dark me-1">A</span> Nairobi variant</div><div class="small text-secondary mt-1">Quick double tilt, crisp, used in schools.</div></div></div>
-        <div class="col-6"><div class="variant"><div class="small fw-bold"><span class="badge rounded-pill bg-light border text-dark me-1">B</span> Coastal variant</div><div class="small text-secondary mt-1">Single slow tilt, softer, often with smile.</div></div></div>
+      <div class="mt-4" id="notFound" style="display:none">
+        <div class="alert alert-warning rounded-4">Post not found. It may have been deleted on this device. Go back to Learn to see current uploads.</div>
+        <a href="learn.html" class="btn btn-dark rounded-pill">Back to Learn</a>
       </div>
 
       <div class="d-flex gap-2 mt-4">
-        <a href="learn.html" class="btn btn-light border rounded-pill px-4"><i class="bi bi-arrow-left me-1"></i> Greetings</a>
-        <a href="lesson.html" class="btn btn-gradient rounded-pill px-4 flex-grow-1">Next: Asante — Thank you <i class="bi bi-arrow-right ms-1"></i></a>
+        <a href="learn.html" class="btn btn-light border rounded-pill px-4"><i class="bi bi-arrow-left me-1"></i> Back</a>
+        <a href="upload.html" class="btn btn-gradient rounded-pill px-4 flex-grow-1">Upload your version</a>
       </div>
     </div>
-  </div>
-
-  <div class="mt-5 p-4 rounded-4 bg-white border d-flex flex-wrap justify-content-between align-items-center gap-3">
-    <div class="d-flex gap-3 align-items-center"><span class="logo-circle"><img src="SIGNIX.png" alt=""></span><div><div class="fw-bold">Practice and get feedback?</div><div class="small text-secondary">Upload your 10 second attempt, get notes from a moderator.</div></div></div>
-    <a href="upload.html" class="btn btn-dark rounded-pill px-4">Upload your version</a>
   </div>
 </div>
 </main>
 
-<footer class="pt-5 pb-4 mt-5">
-  <div class="container">
-    <div class="row g-4 pb-4 border-bottom border-secondary border-opacity-25">
-      <div class="col-lg-4"><a href="index.html" class="logo text-white"><span class="logo-circle bg-white"><img src="SIGNIX.png" alt=""></span><span class="text-white">Signix</span></a><p class="small mt-3">A reference and creator platform for sign languages, starting with KSL.</p></div>
-      <div class="col-6 col-lg-2"><h6 class="text-white small text-uppercase fw-bold">Platform</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="learn.html">Learn KSL</a></li><li><a href="languages.html">All languages</a></li><li><a href="creators.html">Creator feed</a></li><li><a href="upload.html">Upload</a></li></ul></div>
-      <div class="col-6 col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Community</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="about.html">About</a></li><li><a href="#">Guidelines</a></li><li><a href="#">Safety</a></li></ul></div>
-      <div class="col-lg-3"><h6 class="text-white small text-uppercase fw-bold">Support</h6><ul class="list-unstyled small d-grid gap-2 mt-3"><li><a href="mailto:info@nexora.co.ke">info@nexora.co.ke</a></li><li><a href="tel:+254790357975">0790 357 975</a></li></ul></div>
-    </div>
-    <div class="d-flex justify-content-between pt-3 small flex-wrap gap-2"><div>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></div><div class="d-flex align-items-center gap-2"><span class="logo-circle xs bg-white"><img src="SIGNIX.png" alt=""></span>info@nexora.co.ke</div></div>
-  </div>
-</footer>
+<footer class="pt-5 pb-4 mt-5"><div class="container"><div class="d-flex justify-content-between small"><span>Made by <b class="text-white">NEXORA TECHNOLOGIES</b></span><span>© 2026 Signix</span></div></div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const sideEl=document.getElementById('sideMenu'),botEl=document.getElementById('aiBot');
-document.getElementById('openAiBot')?.addEventListener('click',()=>{const s=bootstrap.Offcanvas.getInstance(sideEl)||new bootstrap.Offcanvas(sideEl);s.hide();setTimeout(()=>new bootstrap.Offcanvas(botEl).show(),300)});
-const chatW=document.getElementById('chatWindow'),chatI=document.getElementById('chatInput'),sendB=document.getElementById('sendBtn');
-function addM(t,w){const d=document.createElement('div');d.className='bot-bubble '+w;d.textContent=t;chatW.appendChild(d);chatW.scrollTop=chatW.scrollHeight}
-function botR(q){const t=q.toLowerCase();if(t.includes('habari'))return 'Habari: open palm at chest, tilt outward twice. Coastal = once slowly. Nairobi = twice quickly.';return 'I can break down any sign into handshape, movement and context. Try: slow down Habari';}
-function send(){const v=chatI.value.trim();if(!v)return;addM(v,'user');chatI.value='';setTimeout(()=>addM(botR(v),'ai'),500)}sendB.addEventListener('click',send);chatI.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+// --- LOAD POST FROM LOCALSTORAGE ---
+function getUploads(){try{return JSON.parse(localStorage.getItem('signix_videos')||'[]')}catch{return[]}}
+const params=new URLSearchParams(location.search);
+const id=params.get('id');
+const wordParam=params.get('word');
+let uploads=getUploads();
+let post = null;
+if(id){ post = uploads.find(v=>v.id===id); }
+if(!post && wordParam){ post = uploads.find(v=>v.word.toLowerCase()===wordParam.toLowerCase()); }
+// if still not found, try first item for demo
+if(!post && uploads.length &&!wordParam &&!id){ post = uploads[0]; }
+
+if(!post){
+ document.getElementById('notFound').style.display='block';
+ document.getElementById('titleWord').textContent='Post not found';
+ document.getElementById('descText').textContent='No matching upload found on this device.';
+ document.getElementById('mediaStage').innerHTML='<div class="text-white-50 p-5 text-center">No media</div>';
+} else {
+ // Increment view once
+ post.views=(post.views||0)+1;
+ let all=uploads.map(v=>v.id===post.id?post:v);
+ localStorage.setItem('signix_videos',JSON.stringify(all));
+
+ document.title = post.word + ' — Signix';
+ document.getElementById('crumbWord').textContent=post.word;
+ document.getElementById('titleWord').textContent=post.word;
+ document.getElementById('descText').textContent=post.desc||'No description provided.';
+ document.getElementById('typeBadge').textContent=post.isImage?'Image • Community':'Video • Community';
+ document.getElementById('specType').textContent=post.isImage?'Image':'Video';
+ document.getElementById('specMime').textContent=post.mime||'';
+ document.getElementById('specSigner').textContent=post.signer||'Unknown';
+ document.getElementById('specDate').textContent=new Date(post.createdAt).toLocaleDateString();
+ document.getElementById('authorName').textContent=post.signer;
+ document.getElementById('authorMeta').textContent=`${post.views||0} views • ${post.likes||0} likes`;
+ document.getElementById('likeCount').textContent=post.likes||0;
+ document.getElementById('viewCount').textContent=post.views||0;
+
+ const stage=document.getElementById('mediaStage');
+ if(post.isImage){
+   stage.innerHTML=`<img src="${post.url}" alt="${post.word}"><span class="cc-badge"><i class="bi bi-image me-1"></i> IMAGE • ${post.word}</span>`;
+ } else {
+   stage.innerHTML=`<video src="${post.url}" controls autoplay playsinline style="width:100%;height:100%;background:#000"></video><span class="cc-badge"><i class="bi bi-badge-cc me-1"></i> VIDEO • ${post.word}</span>`;
+ }
+
+ // Comments
+ function renderComments(){
+  const list=document.getElementById('commentList');list.innerHTML='';
+  (post.comments||[]).forEach(c=>{list.innerHTML+=`<div class="bg-light border rounded-3 p-2 small"><b>${c.by||'Anon'}</b>: ${c.text}</div>`});
+ }
+ renderComments();
+ document.getElementById('commentSend').onclick=()=>{
+  const txt=document.getElementById('commentInput').value.trim();if(!txt)return;
+  const user=JSON.parse(localStorage.getItem('signix_user')||'{}');
+  post.comments=post.comments||[];post.comments.push({by:user.name||'You',text:txt,at:Date.now()});
+  document.getElementById('commentInput').value='';
+  let updated=getUploads().map(v=>v.id===post.id?post:v);
+  localStorage.setItem('signix_videos',JSON.stringify(updated));renderComments();
+ };
+
+ document.getElementById('likeBtn').onclick=()=>{
+  post.likes=(post.likes||0)+1;document.getElementById('likeCount').textContent=post.likes;
+  document.getElementById('authorMeta').textContent=`${post.views||0} views • ${post.likes} likes`;
+  let updated=getUploads().map(v=>v.id===post.id?post:v);
+  localStorage.setItem('signix_videos',JSON.stringify(updated));
+ };
+}
+
 document.getElementById('copyLink').addEventListener('click',function(){navigator.clipboard.writeText(location.href);this.innerHTML='<i class="bi bi-check-lg me-1"></i> Copied';setTimeout(()=>this.innerHTML='<i class="bi bi-link-45deg me-1"></i> Copy link',1500)});
-document.getElementById('bookmark').addEventListener('click',function(){this.classList.toggle('active');this.innerHTML=this.classList.contains('active')?'<i class="bi bi-bookmark-fill" style="color:var(--violet)"></i>':'<i class="bi bi-bookmark"></i>'});
 </script>
 </body>
 </html>
