@@ -8,9 +8,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS/styles.css">
 <link rel="stylesheet" href="CSS/style.css?v=5">
 <script>
-// If already logged in, go to home - you can't be here
 const existing = localStorage.getItem('signix_user');
 if(existing){ window.location.replace('index.html'); }
 </script>
@@ -24,10 +24,6 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
 .btn-gradient:hover{filter:brightness(1.06);color:#fff;transform:translateY(-1px)}
 .form-control:focus{border-color:var(--violet);box-shadow:0 0 0.25rem rgba(124,58,237,.14)}
 .auth-card{background:#fff;border-radius:24px;border:1px solid #E9ECF6;box-shadow:0 12px 40px rgba(15,23,42,.06);height:100%}
-.divider{display:flex;align-items:center;gap:12px;color:#94A3B8;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
-.divider::before,.divider::after{content:"";flex:1;height:1px;background:#E2E8F0}
-.social-btn{border:1px solid #E2E8F0;background:#fff;border-radius:999px;padding:9px 14px;font-weight:500;transition:.15s}
-.social-btn:hover{background:#F8FAFF;border-color:#DDE3F3;transform:translateY(-1px)}
 .center-line{position:relative}
 @media(min-width:992px){.center-line::after{content:"";position:absolute;left:50%;top:24px;bottom:24px;width:1px;background:linear-gradient(180deg,transparent,#E2E8F0 15%,#E2E8F0 85%,transparent)}}
 .badge-soft{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:6px 10px;border-radius:999px}
@@ -111,32 +107,27 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
             <label class="form-label small fw-semibold">Password</label>
             <div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-lock"></i></span><input type="password" id="regPass" class="form-control" placeholder="At least 8 characters" required><button type="button" class="input-group-text bg-white toggle" data-target="regPass"><i class="bi bi-eye"></i></button></div>
           </div>
-          <div class="form-check small"><input class="form-check-input" type="checkbox" id="terms" required><label class="form-check-label" for="terms">I agree to <a href="#" style="color:var(--violet);text-decoration:none">Creator guidelines</a> and <a href="#" style="color:var(--violet);text-decoration:none">Terms</a></label></div>
-          <button class="btn btn-dark rounded-pill py-2 fw-semibold" type="submit" style="background:var(--dark)">Create account <i class="bi bi-stars ms-1" style="color:var(--green)"></i></button>
+          <div class="form-check small"><input class="form-check-input" type="checkbox" id="terms" required><label class="form-check-label" for="terms">I agree to <a href="creator-guidelines.html" style="color:var(--violet);text-decoration:none">Creator guidelines</a> and <a href="terms.html" style="color:var(--violet);text-decoration:none">Terms</a></label></div>
+          <button class="btn btn-dark rounded-pill py-2 fw-semibold" type="submit" style="background:var(--dark)">Create account</button>
           <p class="small text-secondary text-center mb-0"><i class="bi bi-patch-check-fill me-1" style="color:var(--green)"></i> No machine translation. Verified by fluent signers.</p>
         </form>
       </div>
     </div>
   </div>
 
-  <div class="text-center small text-secondary mt-4">Made by <b style="color:var(--dark)">NEXORA TECHNOLOGIES</b> • <a href="about.html" class="text-decoration-none" style="color:var(--violet)">Why Signix exists</a></div>
+  <div class="text-center small text-secondary mt-4"> <b style="color:var(--dark)">Signix</b> • Real signs by real people • <a href="about.html" class="text-decoration-none" style="color:var(--violet)">Why Signix exists</a></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Show/hide password
 document.querySelectorAll('.toggle').forEach(b=>{
   b.addEventListener('click',()=>{
     const i=document.getElementById(b.dataset.target); const ic=b.querySelector('i');
     i.type=i.type==='password'?'text':'password'; ic.classList.toggle('bi-eye'); ic.classList.toggle('bi-eye-slash');
   })
 });
-
-// Helper to manage users in localStorage
 function getUsers(){ return JSON.parse(localStorage.getItem('signix_users')||'[]'); }
 function saveUsers(u){ localStorage.setItem('signix_users', JSON.stringify(u)); }
-
-// REGISTER
 document.getElementById('registerForm').addEventListener('submit', e=>{
   e.preventDefault();
   const first = document.getElementById('regFirst').value.trim();
@@ -144,34 +135,24 @@ document.getElementById('registerForm').addEventListener('submit', e=>{
   const email = document.getElementById('regEmail').value.trim().toLowerCase();
   const pass = document.getElementById('regPass').value;
   const alertBox = document.getElementById('regAlert');
-
   if(pass.length < 6){ alertBox.textContent="Password must be at least 6 characters"; alertBox.classList.remove('d-none'); return; }
-
   let users = getUsers();
   if(users.find(u=>u.email===email)){
     alertBox.textContent="Account already exists, please sign in on the left.";
     alertBox.classList.remove('d-none'); return;
   }
-
   const newUser = { name: `${first} ${last}`.trim(), email, password: pass, createdAt: Date.now() };
   users.push(newUser); saveUsers(users);
-
-  // Create session for homepage guard
   localStorage.setItem('signix_user', JSON.stringify({ name: newUser.name, email: newUser.email }));
   window.location.href='index.html';
 });
-
-// LOGIN
 document.getElementById('loginForm').addEventListener('submit', e=>{
   e.preventDefault();
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
   const pass = document.getElementById('loginPass').value;
   const alertBox = document.getElementById('loginAlert');
   let users = getUsers();
-
   const found = users.find(u=>u.email===email && u.password===pass);
-
-  // Allow first-time demo login even if no users yet, to avoid lockout
   if(found || users.length===0){
     const sessionName = found? found.name : email.split('@')[0];
     localStorage.setItem('signix_user', JSON.stringify({ name: sessionName, email }));
