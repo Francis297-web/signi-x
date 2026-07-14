@@ -146,6 +146,15 @@ document.getElementById('registerForm').addEventListener('submit', e=>{
   localStorage.setItem('signix_user', JSON.stringify({ name: newUser.name, email: newUser.email }));
   window.location.href='index.html';
 });
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Your Supabase Configuration -->
+<script src="js/supabase.js"></script>
+
+<script>
+
+  
 document.getElementById('loginForm').addEventListener('submit', e=>{
   e.preventDefault();
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
