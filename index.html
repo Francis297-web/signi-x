@@ -7,38 +7,34 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="CSS/styles.css">
+<link rel="stylesheet" href="CSS/style.css">
 <script>const _s=JSON.parse(localStorage.getItem('signix_user')||'null');if(!_s)location.replace('auth.html');</script>
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
-body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#0F172A}
+body{font-family:'Inter',sans-serif;background:#F1F5F9;color:#0F172A}
 h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
-.navbar{background:rgba(255,255,255,.92)!important;backdrop-filter:blur(12px);border-bottom:2px solid #E2E8F0!important}
-.logo-circle{width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E2E8F0;display:grid;place-items:center;overflow:hidden}
-.logo-circle img{width:100%;height:100%;object-fit:contain;padding:6px}
+.navbar{background:rgba(255,255,255,.95)!important;backdrop-filter:blur(12px);border-bottom:2px solid #E2E8F0!important}
 .hero{background:linear-gradient(135deg,var(--dark) 0%, #1E3A8A 45%, var(--violet) 100%);color:#fff;border-radius:0 0 32px 32px;position:relative;overflow:hidden}
 .btn-primary-solid{background:var(--blue);border:0;color:#fff;box-shadow:0 8px 24px rgba(37,99,235,.35)}
-.btn-gradient{background:linear-gradient(135deg,var(--blue),var(--violet) 60%,var(--green));border:0;color:#fff}
 .edu-wrap{background:#fff;border:2px solid #E2E8F0;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(15,23,42,.08)}
 .carousel-item{height:420px;background:#0F172A}
 .carousel-item img{width:100%;height:100%;object-fit:cover;opacity:.9}
 .carousel-caption{background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));left:0;right:0;bottom:0;padding:28px 24px 20px;text-align:left}
-.quick-card{border:1px solid #E9ECF6;border-radius:18px;background:#fff;padding:18px;transition:.2s;text-decoration:none;color:var(--dark);display:block;height:100%}
-.quick-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,23,42,.1);border-color:#DDD6FE}
-.quick-card.ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem}
+.section-title{font-weight:800;font-size:1.4rem}
 .feed-card{height:300px;border-radius:20px;overflow:hidden;position:relative;background:#000;border:2px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .feed-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .feed-meta{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.9));color:#fff;z-index:2}
-/* SIDE MENU + CHATBOT */
-.side-link{display:flex;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:600;align-items:center}
+.side-link{display:flex;gap:12px;padding:12px 14px;border-radius:12px;color:#334155;text-decoration:none;font-weight:600}
 .side-link.active{background:var(--dark);color:#fff}
-.side-link:hover{background:#F1F5F9}
-.chatbot-card{background:linear-gradient(135deg,#EEF2FF,#F5F3FF 50%,#ECFDF5);border:1px solid #DDD6FE;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;height:340px}
-.chat-head{padding:12px 14px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-.chat-win{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#F8FAFF}
-.bot-bubble{max-width:85%;padding:10px 12px;border-radius:16px;font-size:.85rem;line-height:1.4}
-.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px}
-.bot-bubble.user{background:var(--dark);color:#fff;margin-left:auto;border-bottom-right-radius:6px}
-.chat-input-wrap{padding:10px;background:#fff;border-top:1px solid #E2E8F0;display:flex;gap:8px}
+.quick-card{border:2px solid #E2E8F0;border-radius:20px;background:#fff;padding:18px;transition:.2s;text-decoration:none;color:var(--dark);display:block;height:100%}
+.quick-card:hover{transform:translateY(-3px);border-color:var(--violet);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+.chat-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden}
+#sideChatWindow{height:280px;overflow:auto;background:#F8FAFF;padding:12px;display:flex;flex-direction:column;gap:10px}
+.chat-bubble{max-width:85%;padding:10px 12px;border-radius:16px;font-size:.85rem;line-height:1.4}
+.chat-bubble.user{background:var(--dark);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.chat-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:4px}
+.chat-bubble.typing{opacity:.6}
 </style>
 </head>
 <body>
@@ -46,47 +42,32 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
 <nav class="navbar sticky-top">
 <div class="container d-flex align-items-center gap-2 py-1">
 <button class="btn btn-light border-2 rounded-circle" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" style="width:44px;height:44px"><i class="bi bi-list fs-5"></i></button>
-<a href="index.html" class="fw-bold text-dark text-decoration-none d-flex gap-2 align-items-center ms-1"><span class="logo-circle"><img src="image/SIGNIX.png" alt="Signix"></span>Signix</a>
+<a href="index.html" class="fw-bold text-dark text-decoration-none d-flex gap-2 align-items-center ms-1"><img src="image/SIGNIX.png" style="height:34px">Signix</a>
 <div class="ms-auto d-flex align-items-center gap-2"><span id="navUser" class="small fw-bold d-none d-md-block"></span><a href="upload.html" class="btn btn-primary-solid rounded-pill px-4 py-2">Upload</a></div>
 </div>
 </nav>
 
-<!-- REDESIGNED SIDE MENU WITH QUICK LINKS + CHATBOT -->
+<!-- SIDE MENU WITH QUICK LINKS + CHATBOT -->
 <div class="offcanvas offcanvas-start" id="sideMenu" style="width:360px">
-<div class="offcanvas-header border-bottom">
-  <div class="d-flex gap-3 align-items-center"><span class="logo-circle"><img src="image/SIGNIX.png" alt=""></span><div><div id="mName" class="fw-bold"></div><div id="mEmail" class="small text-secondary"></div></div></div>
-  <button class="btn-close" data-bs-dismiss="offcanvas"></button>
-</div>
-<div class="offcanvas-body p-3 d-flex flex-column gap-4" style="overflow-y:auto">
-
-  <!-- Profile -->
-  <div class="d-flex align-items-center gap-3 p-2 bg-light rounded-4 border"><img id="mAv" style="width:44px;height:44px;border-radius:50%"><div><div class="small text-secondary">Signed in as</div><div id="mName2" class="fw-bold small"></div></div></div>
-
-  <!-- QUICK LINKS -->
-  <div>
-    <div class="small fw-bold text-uppercase text-secondary mb-2" style="letter-spacing:.08em">Quick Links</div>
+<div class="offcanvas-header border-bottom"><div class="d-flex gap-3 align-items-center"><img id="mAv" style="width:44px;height:44px;border-radius:50%"><div><div id="mName" class="fw-bold"></div><div id="mEmail" class="small text-secondary"></div></div></div><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+<div class="offcanvas-body p-3 d-flex flex-column gap-3">
+  <div class="d-grid gap-1">
     <a href="index.html" class="side-link active"><i class="bi bi-house-door-fill"></i> Home Feed</a>
-    <a href="learn.html" class="side-link"><i class="bi bi-book" style="color:var(--blue)"></i> Learn KSL</a>
-    <a href="languages.html" class="side-link"><i class="bi bi-translate" style="color:var(--violet)"></i> All Languages</a>
-    <a href="upload.html" class="side-link"><i class="bi bi-cloud-upload" style="color:var(--green)"></i> My Studio / Upload</a>
+    <a href="learn.html" class="side-link"><i class="bi bi-book"></i> Learn KSL</a>
+    <a href="languages.html" class="side-link"><i class="bi bi-translate"></i> Languages (18)</a>
+    <a href="creators.html" class="side-link"><i class="bi bi-people"></i> Creators</a>
+    <a href="upload.html" class="side-link"><i class="bi bi-camera-video"></i> My Studio</a>
     <a href="about.html" class="side-link"><i class="bi bi-info-circle"></i> About Signix</a>
     <a href="creator-guidelines.html" class="side-link"><i class="bi bi-shield-check"></i> Guidelines</a>
   </div>
 
-  <!-- CHATBOT LINKED TO signix.bot.js -->
-  <div class="mt-2">
-    <div class="small fw-bold text-uppercase text-secondary mb-2 d-flex justify-content-between"><span>Signix AI Bot</span><span class="badge bg-success rounded-pill">LIVE</span></div>
-    <div class="chatbot-card">
-      <div class="chat-head"><span><i class="bi bi-robot me-2"></i>Ask KSL</span><span class="badge bg-white text-dark rounded-pill" style="font-size:.65rem">AI</span></div>
-      <div id="sideChatWindow" class="chat-win">
-        <div class="bot-bubble ai shadow-sm">Jambo! 👋 I'm your KSL assistant. Ask me how to sign "Asante" or how to upload.</div>
-      </div>
-      <div class="chat-input-wrap">
-        <input id="sideChatInput" class="form-control form-control-sm rounded-pill" placeholder="Ask about a sign...">
-        <button id="sideChatSend" class="btn btn-dark rounded-circle d-grid" style="width:36px;height:36px;place-items:center"><i class="bi bi-send-fill small"></i></button>
-      </div>
-    </div>
-    <div class="small text-secondary mt-2"><i class="bi bi-lightbulb me-1"></i>Powered by <code>js/signix.bot.js</code></div>
+  <hr class="my-1">
+
+  <!-- CHATBOT IN SIDE MENU -->
+  <div class="chat-wrap">
+    <div class="p-2 px-3 bg-dark text-white small fw-bold d-flex justify-content-between align-items-center"><span><i class="bi bi-robot me-1"></i> Signix AI Bot</span><span class="badge bg-success rounded-pill" style="font-size:.6rem">GEMINI 2.5</span></div>
+    <div id="sideChatWindow"><div class="chat-bubble ai">Jambo! I'm Signix AI. Ask me how to sign "Asante", or how to upload. I know all your pages.</div></div>
+    <div class="p-2 border-top d-flex gap-2"><input id="sideChatInput" class="form-control rounded-pill form-control-sm" placeholder="Ask about KSL..."><button id="sideChatSend" class="btn btn-dark rounded-circle" style="width:36px;height:36px"><i class="bi bi-send-fill"></i></button></div>
   </div>
 
   <a href="#" onclick="localStorage.removeItem('signix_user');location.href='auth.html'" class="side-link text-danger mt-auto"><i class="bi bi-box-arrow-right"></i> Logout</a>
@@ -94,102 +75,31 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
 </div>
 
 <!-- HERO -->
-<section class="hero">
-<div class="container py-5 position-relative" style="z-index:2">
-<div class="row align-items-center">
-<div class="col-lg-7"><span class="badge bg-white text-dark rounded-pill px-3 py-2 fw-bold"><span style="width:8px;height:8px;background:var(--green);display:inline-block;border-radius:50%;margin-right:6px"></span>LIVE COMMUNITY</span>
-<h1 class="display-5 fw-bolder mt-3">Karibu tena, <span id="wName" style="color:#93C5FD">learner</span>.</h1>
-<p class="fs-5 mt-3" style="color:#CBD5E1">Learn Kenyan Sign Language from fluent creators.</p>
-<div class="d-flex gap-2 mt-4"><a href="#quickLinks" class="btn btn-light rounded-pill px-4 py-2 fw-bold">Explore</a><a href="upload.html" class="btn btn-primary-solid rounded-pill px-4 py-2 fw-bold">Upload a Sign</a></div>
-</div>
-<div class="col-lg-5 d-none d-lg-block text-end"><div class="bg-white text-dark rounded-4 p-4 d-inline-block text-start" style="min-width:280px"><div class="fw-bold">Today on Signix</div><div class="d-flex justify-content-between mt-3"><div><b id="cTotal" class="fs-4">0</b><div class="small text-secondary">Signs</div></div><div><b>KSL</b><div class="small text-secondary">Primary</div></div><div><b style="color:var(--green)">Verified</b><div class="small text-secondary">Creators</div></div></div></div></div>
-</div>
-</div>
-</section>
+<section class="hero"><div class="container py-5 position-relative" style="z-index:2"><div class="row align-items-center"><div class="col-lg-7"><span class="badge bg-white text-dark rounded-pill px-3 py-2 fw-bold">LIVE COMMUNITY</span><h1 class="display-5 fw-bolder mt-3">Karibu tena, <span id="wName" style="color:#93C5FD">learner</span>.</h1><p class="fs-5 mt-3" style="color:#CBD5E1">Learn Kenyan Sign Language from fluent creators.</p></div><div class="col-lg-5 d-none d-lg-block text-end"><div class="bg-white text-dark rounded-4 p-4 d-inline-block text-start" style="min-width:280px"><div class="fw-bold">Today</div><div class="d-flex justify-content-between mt-3"><div><b id="cTotal" class="fs-4">0</b><div class="small text-secondary">Signs</div></div><div><b>KSL</b><div class="small text-secondary">Primary</div></div><div><b style="color:var(--green)">Verified</b><div class="small text-secondary">Creators</div></div></div></section>
 
 <!-- QUICK LINKS GRID -->
-<section id="quickLinks" class="container py-4">
-<div class="row g-3">
-  <div class="col-6 col-lg-3"><a href="learn.html" class="quick-card"><div class="ic" style="background:#DBEAFE;color:var(--blue)"><i class="bi bi-book"></i></div><div class="fw-bold mt-3">Learn KSL</div><div class="small text-secondary mt-1">Search community uploads</div><span class="badge bg-light border text-dark rounded-pill mt-3">Open →</span></a></div>
-  <div class="col-6 col-lg-3"><a href="languages.html" class="quick-card"><div class="ic" style="background:#EDE9FE;color:var(--violet)"><i class="bi bi-translate"></i></div><div class="fw-bold mt-3">Languages</div><div class="small text-secondary mt-1">18 tracked • 1 live</div><span class="badge bg-light border text-dark rounded-pill mt-3">Browse →</span></a></div>
-  <div class="col-6 col-lg-3"><a href="upload.html" class="quick-card"><div class="ic" style="background:#D1FAE5;color:#065F46"><i class="bi bi-cloud-upload"></i></div><div class="fw-bold mt-3">Upload</div><div class="small text-secondary mt-1">Share a real sign</div><span class="badge bg-dark text-white rounded-pill mt-3">Studio →</span></a></div>
-  <div class="col-6 col-lg-3"><a href="about.html" class="quick-card"><div class="ic" style="background:#FEF3C7;color:#92400E"><i class="bi bi-info-circle"></i></div><div class="fw-bold mt-3">About Signix</div><div class="small text-secondary mt-1">Why we exist + AI bot</div><span class="badge bg-light border text-dark rounded-pill mt-3">Read →</span></a></div>
-</div>
-</section>
+<section class="container py-4"><h2 class="section-title mb-3">Quick Links</h2><div class="row g-3">
+  <div class="col-6 col-md-3"><a href="learn.html" class="quick-card"><i class="bi bi-book fs-4" style="color:var(--blue)"></i><div class="fw-bold mt-2">Learn KSL</div><div class="small text-secondary">Search dictionary</div></a></div>
+  <div class="col-6 col-md-3"><a href="languages.html" class="quick-card"><i class="bi bi-globe fs-4" style="color:var(--violet)"></i><div class="fw-bold mt-2">Languages</div><div class="small text-secondary">18 tracked, 1 live</div></a></div>
+  <div class="col-6 col-md-3"><a href="upload.html" class="quick-card"><i class="bi bi-cloud-upload fs-4" style="color:var(--green)"></i><div class="fw-bold mt-2">Upload Studio</div><div class="small text-secondary">Teach a sign</div></a></div>
+  <div class="col-6 col-md-3"><a href="about.html" class="quick-card"><i class="bi bi-info-circle fs-4"></i><div class="fw-bold mt-2">About Signix</div><div class="small text-secondary">Founder story</div></a></div>
+</div></section>
 
-<!-- EDUCATIVE CAROUSEL -->
-<section id="edu" class="container py-2">
-<div class="d-flex justify-content-between align-items-end mb-3"><div><h2 class="fw-bold fs-5 mb-1">Learn Something New Today</h2><p class="text-secondary small mb-0">From the founder</p></div></div>
-<div class="edu-wrap">
-<div id="eduCarousel" class="carousel slide" data-bs-ride="carousel">
-<div class="carousel-indicators"><button type="button" data-bs-target="#eduCarousel" data-bs-slide-to="0" class="active"></button><button type="button" data-bs-target="#eduCarousel" data-bs-slide-to="1"></button><button type="button" data-bs-target="#eduCarousel" data-bs-slide-to="2"></button></div>
-<div class="carousel-inner">
-<div class="carousel-item active"><img src="image/edu/edu1.jpg" onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop'" alt="KSL Alphabet"><div class="carousel-caption"><h5>KSL Alphabet - Herufi</h5><p>Master the 26 handshapes.</p><a href="learn.html" class="btn btn-light rounded-pill btn-sm fw-bold px-3">Start Lesson</a></div></div>
-<div class="carousel-item"><img src="image/edu/edu2.jpg" onerror="this.src='https://images.unsplash.com/photo-1543269664-56d93c1b41a5?q=80&w=1200&auto=format&fit=crop'" alt="Greetings"><div class="carousel-caption"><h5>Greetings & Respect</h5><p>How Deaf culture greets elders.</p><a href="learn.html" class="btn btn-light rounded-pill btn-sm fw-bold px-3">Learn</a></div></div>
-<div class="carousel-item"><img src="image/edu/edu3.jpg" onerror="this.src='https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c4?q=80&w=1200&auto=format&fit=crop'" alt="Classroom"><div class="carousel-caption"><h5>Classroom Signs</h5><p>Essential signs for learners.</p><a href="learn.html" class="btn btn-light rounded-pill btn-sm fw-bold px-3">View</a></div></div>
-</div>
-<button class="carousel-control-prev" type="button" data-bs-target="#eduCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-<button class="carousel-control-next" type="button" data-bs-target="#eduCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
-</div>
-</div>
-</section>
+<!-- EDU CAROUSEL + FEED (same as before) -->
+<section id="edu" class="container py-2"><div class="edu-wrap"><div id="eduCarousel" class="carousel slide" data-bs-ride="carousel"><div class="carousel-inner"><div class="carousel-item active"><img src="image/edu/edu1.jpg" alt="KSL"><div class="carousel-caption"><h5>KSL Alphabet</h5><p>Master the 26 handshapes.</p></div></div></div></div></div></section>
+<section class="container pb-5"><h2 class="section-title mt-4">From the Community</h2><div id="feed" class="row g-3 mt-1"></div></section>
 
-<!-- FEED -->
-<section class="container py-4 pb-5">
-<h2 class="fw-bold fs-5 mt-2">From the Community — Real Uploads</h2>
-<div id="feed" class="row g-3 mt-1"></div>
-<div id="empty" class="d-none text-center py-5 bg-white border rounded-4 mt-3"><i class="bi bi-camera-video fs-1 text-secondary"></i><p class="fw-bold mt-2">No uploads yet</p><a href="upload.html" class="btn btn-dark rounded-pill px-4">Upload Now</a></div>
-</section>
-
-<!-- SCRIPTS - CORRECT ORDER -->
+<!-- SCRIPTS - LATEST UMD 2.50.0 COMPLIANT -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Supabase Latest UMD 2.50.0 -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.50.0/dist/umd/supabase.min.js"></script>
 <script src="js/supabase.js"></script>
-<!-- Chatbot Logic -->
 <script src="js/signix.bot.js"></script>
-
 <script>
 const user=JSON.parse(localStorage.getItem('signix_user'));
-if(user){
-  document.getElementById('wName').textContent=user.name.split(' ')[0];
-  document.getElementById('navUser').textContent=user.name;
-  document.getElementById('mName').textContent=user.name;
-  document.getElementById('mName2').textContent=user.name;
-  document.getElementById('mEmail').textContent=user.email;
-  document.getElementById('mAv').src=`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=2563EB&color=fff`;
-}
+if(user){document.getElementById('wName').textContent=user.name.split(' ')[0];document.getElementById('navUser').textContent=user.name;document.getElementById('mName').textContent=user.name;document.getElementById('mEmail').textContent=user.email;document.getElementById('mAv').src=`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=2563EB&color=fff`}
 function getV(){return JSON.parse(localStorage.getItem('signix_videos')||'[]')}
-function render(){
-  const vids=getV().sort((a,b)=>b.createdAt-a.createdAt);
-  document.getElementById('cTotal').textContent=vids.length;
-  const feed=document.getElementById('feed');feed.innerHTML='';
-  if(!vids.length){document.getElementById('empty').classList.remove('d-none');return}
-  vids.forEach(v=>{
-    const d=document.createElement('div');d.className='col-md-4';
-    d.innerHTML=`<div class="feed-card"><video src="${v.url}" controls muted playsinline></video><div class="feed-meta"><div class="d-flex justify-content-between"><b>${v.word}</b><span class="badge bg-white text-dark rounded-pill">${v.views||0} views</span></div><div class="small d-flex justify-content-between mt-1" style="color:#E2E8F0"><span>@${v.signer}</span><span><i class="bi bi-heart-fill text-danger me-1"></i>${v.likes||0}</span></div></div></div>`;
-    feed.appendChild(d);
-  });
-}
+function render(){const vids=getV().sort((a,b)=>b.createdAt-a.createdAt);document.getElementById('cTotal').textContent=vids.length;const feed=document.getElementById('feed');feed.innerHTML='';vids.forEach(v=>{const d=document.createElement('div');d.className='col-md-4';d.innerHTML=`<div class="feed-card"><video src="${v.url}" controls muted playsinline></video><div class="feed-meta"><b>${v.word}</b><div class="small">${v.signer}</div></div></div>`;feed.appendChild(d);})}
 render();
-
-// Fallback if signix.bot.js not yet created - so chatbot still works
-if(!window.SignixBot){
-  const win=document.getElementById('sideChatWindow'), inp=document.getElementById('sideChatInput'), btn=document.getElementById('sideChatSend');
-  function addBubble(t,who){const d=document.createElement('div');d.className='bot-bubble '+who;d.textContent=t;win.appendChild(d);win.scrollTop=win.scrollHeight;}
-  async function sendSide(){
-    const q=inp.value.trim(); if(!q) return;
-    addBubble(q,'user'); inp.value='';
-    const typing=document.createElement('div'); typing.className='bot-bubble ai'; typing.textContent='Thinking...'; win.appendChild(typing);
-    try{
-      // if supabase bot logic exists in signix.bot.js it will override this
-      const res = window.SignixBot? await window.SignixBot.ask(q) : `For "${q}" - check Learn page, or upload a clear video of that sign.`;
-      typing.remove(); addBubble(res,'ai');
-    }catch{ typing.remove(); addBubble('Offline: search "Asante" or "Habari" in Learn.','ai'); }
-  }
-  btn.addEventListener('click',sendSide);
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter') sendSide();});
-}
 </script>
 </body>
 </html>
