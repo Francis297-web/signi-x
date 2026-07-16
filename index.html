@@ -7,8 +7,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="CSS/styles.css">
-<link rel="stylesheet" href="CSS/style.css">
 <script>const _s=JSON.parse(localStorage.getItem('signix_user')||'null');if(!_s)location.replace('auth.html');</script>
 <style>
 :root{--blue:#2563EB;--violet:#7C3AED;--green:#10B981;--dark:#0F172A}
@@ -29,12 +27,19 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
 .side-link.active{background:var(--dark);color:#fff}
 .quick-card{border:2px solid #E2E8F0;border-radius:20px;background:#fff;padding:18px;transition:.2s;text-decoration:none;color:var(--dark);display:block;height:100%}
 .quick-card:hover{transform:translateY(-3px);border-color:var(--violet);box-shadow:0 12px 24px rgba(0,0,0,.08)}
-.chat-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:16px;overflow:hidden}
-#sideChatWindow{height:280px;overflow:auto;background:#F8FAFF;padding:12px;display:flex;flex-direction:column;gap:10px}
-.chat-bubble{max-width:85%;padding:10px 12px;border-radius:16px;font-size:.85rem;line-height:1.4}
-.chat-bubble.user{background:var(--dark);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
-.chat-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:4px}
-.chat-bubble.typing{opacity:.6}
+
+/* FLOATING BOT */
+#botFAB{position:fixed;bottom:24px;right:24px;width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;border:0;box-shadow:0 10px 30px rgba(37,99,235,.45);z-index:1055;display:grid;place-items:center;font-size:26px;transition:.2s}
+#botFAB:hover{transform:scale(1.05)}
+#botScreen{position:fixed;bottom:100px;right:24px;width:380px;max-width:calc(100vw - 32px);height:540px;background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(15,23,42,.25);border:1px solid #E2E8F0;z-index:1055;display:flex;flex-direction:column;overflow:hidden;transform:translateY(20px) scale(.98);opacity:0;pointer-events:none;transition:.28s cubic-bezier(.4,0,.2,1)}
+#botScreen.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto}
+.bot-header{padding:14px 16px;background:linear-gradient(135deg,var(--dark),#1E3A8A);color:#fff;display:flex;justify-content:space-between;align-items:center}
+#chatWindow{flex:1;overflow-y:auto;background:#F8FAFF;padding:14px;display:flex;flex-direction:column;gap:10px}
+.bot-bubble{max-width:85%;padding:10px 14px;border-radius:18px;font-size:.9rem;line-height:1.45}
+.bot-bubble.user{background:var(--dark);color:#fff;margin-left:auto;border-bottom-right-radius:6px}
+.bot-bubble.ai{background:#fff;border:1px solid #E2E8F0;border-bottom-left-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.bot-input{padding:12px;background:#fff;border-top:1px solid #E2E8F0;display:flex;gap:8px;align-items:center}
+.bot-input input{flex:1}
 </style>
 </head>
 <body>
@@ -47,29 +52,17 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
 </div>
 </nav>
 
-<!-- SIDE MENU WITH QUICK LINKS + CHATBOT -->
-<div class="offcanvas offcanvas-start" id="sideMenu" style="width:360px">
+<!-- SIDE MENU - ONLY QUICK LINKS NOW -->
+<div class="offcanvas offcanvas-start" id="sideMenu" style="width:330px">
 <div class="offcanvas-header border-bottom"><div class="d-flex gap-3 align-items-center"><img id="mAv" style="width:44px;height:44px;border-radius:50%"><div><div id="mName" class="fw-bold"></div><div id="mEmail" class="small text-secondary"></div></div></div><button class="btn-close" data-bs-dismiss="offcanvas"></button></div>
-<div class="offcanvas-body p-3 d-flex flex-column gap-3">
-  <div class="d-grid gap-1">
-    <a href="index.html" class="side-link active"><i class="bi bi-house-door-fill"></i> Home Feed</a>
-    <a href="learn.html" class="side-link"><i class="bi bi-book"></i> Learn KSL</a>
-    <a href="languages.html" class="side-link"><i class="bi bi-translate"></i> Languages (18)</a>
-    <a href="creators.html" class="side-link"><i class="bi bi-people"></i> Creators</a>
-    <a href="upload.html" class="side-link"><i class="bi bi-camera-video"></i> My Studio</a>
-    <a href="about.html" class="side-link"><i class="bi bi-info-circle"></i> About Signix</a>
-    <a href="creator-guidelines.html" class="side-link"><i class="bi bi-shield-check"></i> Guidelines</a>
-  </div>
-
-  <hr class="my-1">
-
-  <!-- CHATBOT IN SIDE MENU -->
-  <div class="chat-wrap">
-    <div class="p-2 px-3 bg-dark text-white small fw-bold d-flex justify-content-between align-items-center"><span><i class="bi bi-robot me-1"></i> Signix AI Bot</span><span class="badge bg-success rounded-pill" style="font-size:.6rem">GEMINI 2.5</span></div>
-    <div id="sideChatWindow"><div class="chat-bubble ai">Jambo! I'm Signix AI. Ask me how to sign "Asante", or how to upload. I know all your pages.</div></div>
-    <div class="p-2 border-top d-flex gap-2"><input id="sideChatInput" class="form-control rounded-pill form-control-sm" placeholder="Ask about KSL..."><button id="sideChatSend" class="btn btn-dark rounded-circle" style="width:36px;height:36px"><i class="bi bi-send-fill"></i></button></div>
-  </div>
-
+<div class="offcanvas-body p-3 d-flex flex-column gap-2">
+  <a href="index.html" class="side-link active"><i class="bi bi-house-door-fill"></i> Home Feed</a>
+  <a href="learn.html" class="side-link"><i class="bi bi-book"></i> Learn KSL</a>
+  <a href="languages.html" class="side-link"><i class="bi bi-translate"></i> Languages (18)</a>
+  <a href="creators.html" class="side-link"><i class="bi bi-people"></i> Creators</a>
+  <a href="upload.html" class="side-link"><i class="bi bi-camera-video"></i> My Studio</a>
+  <a href="about.html" class="side-link"><i class="bi bi-info-circle"></i> About Signix</a>
+  <a href="creator-guidelines.html" class="side-link"><i class="bi bi-shield-check"></i> Guidelines</a>
   <a href="#" onclick="localStorage.removeItem('signix_user');location.href='auth.html'" class="side-link text-danger mt-auto"><i class="bi bi-box-arrow-right"></i> Logout</a>
 </div>
 </div>
@@ -77,7 +70,7 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
 <!-- HERO -->
 <section class="hero"><div class="container py-5 position-relative" style="z-index:2"><div class="row align-items-center"><div class="col-lg-7"><span class="badge bg-white text-dark rounded-pill px-3 py-2 fw-bold">LIVE COMMUNITY</span><h1 class="display-5 fw-bolder mt-3">Karibu tena, <span id="wName" style="color:#93C5FD">learner</span>.</h1><p class="fs-5 mt-3" style="color:#CBD5E1">Learn Kenyan Sign Language from fluent creators.</p></div><div class="col-lg-5 d-none d-lg-block text-end"><div class="bg-white text-dark rounded-4 p-4 d-inline-block text-start" style="min-width:280px"><div class="fw-bold">Today</div><div class="d-flex justify-content-between mt-3"><div><b id="cTotal" class="fs-4">0</b><div class="small text-secondary">Signs</div></div><div><b>KSL</b><div class="small text-secondary">Primary</div></div><div><b style="color:var(--green)">Verified</b><div class="small text-secondary">Creators</div></div></div></section>
 
-<!-- QUICK LINKS GRID -->
+<!-- QUICK LINKS -->
 <section class="container py-4"><h2 class="section-title mb-3">Quick Links</h2><div class="row g-3">
   <div class="col-6 col-md-3"><a href="learn.html" class="quick-card"><i class="bi bi-book fs-4" style="color:var(--blue)"></i><div class="fw-bold mt-2">Learn KSL</div><div class="small text-secondary">Search dictionary</div></a></div>
   <div class="col-6 col-md-3"><a href="languages.html" class="quick-card"><i class="bi bi-globe fs-4" style="color:var(--violet)"></i><div class="fw-bold mt-2">Languages</div><div class="small text-secondary">18 tracked, 1 live</div></a></div>
@@ -85,9 +78,23 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
   <div class="col-6 col-md-3"><a href="about.html" class="quick-card"><i class="bi bi-info-circle fs-4"></i><div class="fw-bold mt-2">About Signix</div><div class="small text-secondary">Founder story</div></a></div>
 </div></section>
 
-<!-- EDU CAROUSEL + FEED (same as before) -->
-<section id="edu" class="container py-2"><div class="edu-wrap"><div id="eduCarousel" class="carousel slide" data-bs-ride="carousel"><div class="carousel-inner"><div class="carousel-item active"><img src="image/edu/edu1.jpg" alt="KSL"><div class="carousel-caption"><h5>KSL Alphabet</h5><p>Master the 26 handshapes.</p></div></div></div></div></div></section>
+<section id="edu" class="container py-2"><div class="edu-wrap"><div id="eduCarousel" class="carousel slide" data-bs-ride="carousel"><div class="carousel-inner"><div class="carousel-item active"><img src="image/edu/edu1.jpg" alt="KSL"><div class="carousel-caption"><h5>KSL Alphabet</h5><p>Master the 26 handshapes.</p></div></div></div></section>
 <section class="container pb-5"><h2 class="section-title mt-4">From the Community</h2><div id="feed" class="row g-3 mt-1"></div></section>
+
+<!-- FLOATING BUTTON + BOT OWN SCREEN -->
+<button id="botFAB"><i class="bi bi-robot"></i></button>
+
+<div id="botScreen">
+  <div class="bot-header">
+    <div class="d-flex align-items-center gap-2"><span class="bg-white text-dark rounded-circle d-grid" style="width:32px;height:32px;place-items:center"><i class="bi bi-robot"></i></span><div><div class="fw-bold small">Signix AI</div><div class="small opacity-75" style="font-size:.7rem">Gemini 2.5 • KSL Tutor</div></div></div>
+    <button id="botClose" class="btn btn-sm btn-light rounded-circle" style="width:30px;height:30px"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <div id="chatWindow"><div class="bot-bubble ai">Jambo! 👋 I'm your KSL tutor. Ask me how to sign "Asante" or where to upload.</div></div>
+  <div class="bot-input">
+    <input id="chatInput" class="form-control rounded-pill" placeholder="Ask about KSL...">
+    <button id="sendBtn" class="btn btn-dark rounded-circle" style="width:42px;height:42px"><i class="bi bi-send-fill"></i></button>
+  </div>
+</div>
 
 <!-- SCRIPTS - LATEST UMD 2.50.0 COMPLIANT -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -100,6 +107,11 @@ if(user){document.getElementById('wName').textContent=user.name.split(' ')[0];do
 function getV(){return JSON.parse(localStorage.getItem('signix_videos')||'[]')}
 function render(){const vids=getV().sort((a,b)=>b.createdAt-a.createdAt);document.getElementById('cTotal').textContent=vids.length;const feed=document.getElementById('feed');feed.innerHTML='';vids.forEach(v=>{const d=document.createElement('div');d.className='col-md-4';d.innerHTML=`<div class="feed-card"><video src="${v.url}" controls muted playsinline></video><div class="feed-meta"><b>${v.word}</b><div class="small">${v.signer}</div></div></div>`;feed.appendChild(d);})}
 render();
+
+// FAB toggle
+const fab=document.getElementById('botFAB'), screen=document.getElementById('botScreen'), closeBtn=document.getElementById('botClose');
+fab.addEventListener('click',()=>{screen.classList.toggle('open'); if(screen.classList.contains('open')) document.getElementById('chatInput').focus();});
+closeBtn.addEventListener('click',()=>screen.classList.remove('open'));
 </script>
 </body>
 </html>
