@@ -118,7 +118,16 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif}
   <div class="text-center small text-secondary mt-4"> <b style="color:var(--dark)">Signix</b> • Real signs by real people • <a href="about.html" class="text-decoration-none" style="color:var(--violet)">Why Signix exists</a></div>
 </div>
 
+<!-- SCRIPTS - CORRECT ORDER -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<!-- Your Supabase Configuration -->
+<script src="js/supabase.js"></script>
+
+<!-- App Logic -->
 <script>
 document.querySelectorAll('.toggle').forEach(b=>{
   b.addEventListener('click',()=>{
@@ -128,6 +137,7 @@ document.querySelectorAll('.toggle').forEach(b=>{
 });
 function getUsers(){ return JSON.parse(localStorage.getItem('signix_users')||'[]'); }
 function saveUsers(u){ localStorage.setItem('signix_users', JSON.stringify(u)); }
+
 document.getElementById('registerForm').addEventListener('submit', e=>{
   e.preventDefault();
   const first = document.getElementById('regFirst').value.trim();
@@ -146,15 +156,7 @@ document.getElementById('registerForm').addEventListener('submit', e=>{
   localStorage.setItem('signix_user', JSON.stringify({ name: newUser.name, email: newUser.email }));
   window.location.href='index.html';
 });
-<!-- Supabase Library -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- Your Supabase Configuration -->
-<script src="js/supabase.js"></script>
-
-<script>
-
-  
 document.getElementById('loginForm').addEventListener('submit', e=>{
   e.preventDefault();
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
