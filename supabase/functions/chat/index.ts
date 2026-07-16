@@ -6,12 +6,13 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-// Helper: extract a short search term for retrieval
+const MODEL = "gemini-2.0-flash"; // FIXED - 2.5-flash is retired, use 2.0-flash or 1.5-flash
+
 function extractSearchTerm(message: string): string {
   const cleaned = message.toLowerCase()
-   .replace(/teach me|how to sign|sign for|what is|what's|how do you|in ksl|kenyan sign language/g, "")
-   .replace(/[^\w\s]/g, " ")
-   .trim();
+  .replace(/teach me|how to sign|sign for|what is|what's|how do you|in ksl|kenyan sign language/g, "")
+  .replace(/[^\w\s]/g, " ")
+  .trim();
   return cleaned.split(/\s+/).slice(0, 3).join(" ").slice(0, 40);
 }
 
@@ -24,9 +25,7 @@ async function searchSignixLibrary(keyword: string, url: string, key: string) {
     );
     if (!res.ok) return [];
     return await res.json();
-  } catch {
-    return [];
-  }
+  } catch { return []; }
 }
 
 serve(async (req) => {
@@ -39,12 +38,10 @@ serve(async (req) => {
     const { message, history = [] } = await req.json();
     if (!message || typeof message!== "string" || message.trim().length < 1 || message.length > 1000) {
       return new Response(JSON.stringify({ error: "Valid message required" }), {
-        status: 400,
-        headers: {...corsHeaders, "Content-Type": "application/json" },
+        status: 400, headers: {...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    // --- Retrieval: try to find matching Signix content ---
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     let sources: any[] = [];
@@ -58,7 +55,6 @@ serve(async (req) => {
       }
     }
 
-    // --- System Prompt with your fixes ---
     const systemPrompt = `
 You are Signix AI, official tutor for Signix.
 
@@ -83,16 +79,12 @@ YOUR TEACHING STYLE:
 8. You can use light Sheng: Sawa, Poa.
 9. Always suggest a next lesson on Signix.
 10. If the user simply says "Hi", "Hello", "Hey", "Good morning", or another greeting, greet them warmly before talking about Signix.
-Example:
-User: Hi
-Assistant: Hello! 👋 Welcome to Signix. I'm your AI tutor for Kenyan Sign Language. I can help you learn signs, answer questions, explain Deaf culture, or guide you through Signix. What would you like to learn today?
 
 ${retrievalContext? `Relevant Signix library matches:\n${retrievalContext}\nIf relevant, mention them as "I found this in Learn" with title.` : ""}
 `;
 
-    // --- Structured history (fix #5) ---
     const contents = [
-     ...history.slice(-12).map((m: any) => ({
+    ...history.slice(-12).map((m: any) => ({
         role: m.role === "assistant"? "model" : "user",
         parts: [{ text: m.content }],
       })),
@@ -100,7 +92,7 @@ ${retrievalContext? `Relevant Signix library matches:\n${retrievalContext}\nIf r
     ];
 
     const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -108,7 +100,6 @@ ${retrievalContext? `Relevant Signix library matches:\n${retrievalContext}\nIf r
           systemInstruction: { parts: [{ text: systemPrompt }] },
           contents,
           generationConfig: { temperature: 0.65, topP: 0.9, maxOutputTokens: 1200 },
-          // No custom safetySettings - rely on Gemini defaults (fix #4)
         }),
       }
     );
@@ -116,8 +107,7 @@ ${retrievalContext? `Relevant Signix library matches:\n${retrievalContext}\nIf r
     if (!geminiRes.ok) {
       const err = await geminiRes.text();
       return new Response(JSON.stringify({ error: err }), {
-        status: geminiRes.status,
-        headers: {...corsHeaders, "Content-Type": "application/json" },
+        status: geminiRes.status, headers: {...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
@@ -130,8 +120,7 @@ ${retrievalContext? `Relevant Signix library matches:\n${retrievalContext}\nIf r
 
   } catch (err) {
     return new Response(JSON.stringify({ error: err instanceof Error? err.message : "Unknown" }), {
-      status: 500,
-      headers: {...corsHeaders, "Content-Type": "application/json" },
+      status: 500, headers: {...corsHeaders, "Content-Type": "application/json" },
     });
   }
 });
