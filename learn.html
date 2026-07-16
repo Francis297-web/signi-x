@@ -49,7 +49,15 @@ body{font-family:'Inter',sans-serif;background:#F8FAFF;color:#1E293B}
 <div id="emptyState" class="text-center py-5 bg-white border-2 border rounded-4 mt-3"><i class="bi bi-cloud-upload fs-1 text-secondary"></i><p class="fw-bold mt-2">No uploads yet</p><p class="small text-secondary">Your learn page will only display what you and others upload.</p></div>
 </section>
 
+<!-- SCRIPTS - CORRECT ORDER - LATEST UMD 2.50.0 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Supabase Library - Latest UMD compliant with publishable keys -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.50.0/dist/umd/supabase.min.js"></script>
+
+<!-- Supabase Config -->
+<script src="js/supabase.js"></script>
+
 <script>
 const grid=document.getElementById('signGrid'), input=document.getElementById('searchInput'), btn=document.getElementById('searchBtn'), noRes=document.getElementById('noResults'), empty=document.getElementById('emptyState');
 let activeFilter='all';
